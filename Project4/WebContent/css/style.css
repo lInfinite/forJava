@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+dl a:link{
+	color:#FFF;
+}
+dl a:visited{
+	color:#FFF;
+}
+dl a:hover{
+	color:#0F0;
+}
+dl a:active{
+	color:#FFF;
+}
+.main_button tr{ 
+    background-color:#00F; 
+	width:550;
+}
+
+dd{
+	display:none;
+}
+#top li{
+	list-style:none;
+	float:right;
+}
+
+.page{
+	width:30px;
+}
+

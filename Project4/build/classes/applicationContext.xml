@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Middle tier application context definition for the image database.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context
+				http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx 
+				http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@aptech.keji.asia:1521:orcl"/>
+        <property name="username" value="pb_linw"/>
+        <property name="password" value="LinWei"/>
+    </bean>
+    
+    
+    <!-- 用注解配置实体类 -->
+   <bean id="SessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"/>
+	       <!-- .getCurrentSession() -->
+	       <property name="exposeTransactionAwareSessionFactory"><value>false</value></property>
+	       <property name="hibernateProperties">
+			   <value>    
+					hibernate.show_sql=true
+					hibernate.hbm2ddl.auto=create
+					hibernate.current_session_context_class=thread
+			   </value>
+		   </property>
+       <property name="annotatedClasses">
+           <list>
+             <value>com.entity.SellChance</value>
+             <value>com.entity.CreateClinet</value>
+             
+             <value>com.entity.Role</value>
+             <value>com.entity.User</value>
+             
+             <value>com.entity.ClintLevel</value>
+             <value>com.entity.Region</value>
+           </list>
+       </property>
+   </bean> 
+<!-- Util -->   
+   <bean id="Util" class="com.util.Util" />
+<!-- dao -->
+   <bean id="BaseImpl" class="com.dao.impl.BaseImpl">
+       <property name="util" ref="Util"/>
+   </bean>
+<!-- service -->
+   <bean id="SellImpl" class="com.service.dao.impl.SellImpl">
+       <property name="base" ref="BaseImpl"/>
+       <property name="util" ref="Util"></property>
+   </bean>   
+   
+   <bean id="UserImpl" class="com.service.dao.impl.UserImpl">
+       <property name="base" ref="BaseImpl"/>
+       <property name="util" ref="Util"></property>
+   </bean>
+
+   <bean id="RoleImpl" class="com.service.dao.impl.RoleImpl">
+       <property name="base" ref="BaseImpl"/>
+       <property name="util" ref="Util"></property>
+   </bean>   
+   
+   <bean id="CreateClinetImpl" class="com.service.dao.impl.CreateClinetImpl">
+       <property name="base" ref="BaseImpl"/>
+       <property name="util" ref="Util"></property>
+   </bean>
+<!-- action -->
+   <bean id="SellAction" class="com.web.action.SellAction">
+       <property name="base" ref="BaseImpl"/>
+       <property name="sell_dao" ref="SellImpl"/>
+   </bean>
+   
+  <bean id="UserAction" class="com.web.action.UserAction">
+       <property name="base" ref="BaseImpl"/>
+       <property name="user_dao" ref="UserImpl"/>
+   </bean>
+
+</beans>
