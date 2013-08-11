@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Middle tier application context definition for the image database.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context
+				http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx 
+				http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@aptech.keji.asia:1521:orcl"/>
+        <property name="username" value="pb_linw"/>
+        <property name="password" value="LinWei"/>
+      <!--   <property name="hibernate.show_sql" value="true"/> -->
+    </bean>
+    
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"/>
+       <property name="exposeTransactionAwareSessionFactory"><value>false</value></property>
+       <property name="hibernateProperties"><value>hibernate.current_session_context_class=thread</value></property>
+       <property name="annotatedClasses">
+           <list>
+             <value>aa.entity.Users</value>
+             <value>aa.entity.Files</value>
+             <value>aa.entity.Mail</value>
+             <value>aa.entity.Days</value>
+           </list>
+       </property>
+   </bean> 
+   
+<!--
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"/>
+       <property name="mappingResources">
+           <list>
+             <value>aa/entity/Users</value>
+             <value>aa/entity/Files</value>
+             <value>aa/entity/Mail</value>
+             <value>aa/entity/Days</value>
+           </list>
+       </property>
+   </bean>
+     -->
+    <bean id="BaseImpl" class="aa.base.dao.impl.BaseImpl"> </bean>
+ <!-- ===========================================【Entity】====================================================== -->    
+      
+      <bean id="Users" class="aa.entity.Users"></bean>
+      <bean id="Mail" class="aa.entity.Mail"></bean>
+      <bean id="Files" class="aa.entity.Files"></bean>
+      <bean id="Days" class="aa.entity.Days"></bean>
+      
+<!-- ============================================【User】====================================================== -->    
+
+    <bean id="UserAction" class="aa.web.action.UserAction">
+        <property name="usi" ref="UserServiceImpl"/>      
+    </bean>
+    
+    <bean id="UserServiceImpl" class="aa.service.dao.impl.UserServiceImpl"> 
+        <property name="baseImpl" ref="BaseImpl"/>     
+    </bean>
+ 
+ <!-- =========================================【Mail&Files】==================================================== -->
+
+    <bean id="MailAction" class="aa.web.action.MailAction">
+        <property name="msi" ref="MailSericeImpl"/>
+        <property name="fsi" ref="FilesSericeImpl"/>
+        <property name="file" ref="Files"/>
+    </bean>
+    
+    <bean id="MailSericeImpl" class="aa.service.dao.impl.MailSericeImpl">
+        <property name="baseImpl" ref="BaseImpl"/>
+    </bean>
+    <bean id="FilesSericeImpl" class="aa.service.dao.impl.FilesSericeImpl">
+        <property name="baseImpl" ref="BaseImpl"/>
+    </bean>
+ <!-- ============================================【Days】====================================================== -->
+ 
+    <bean id="DaysAction" class="aa.web.action.DaysAction">
+        <property name="dsi" ref="DaysSericeImpl"/>
+    </bean>
+    
+    <bean id="DaysSericeImpl" class="aa.service.dao.impl.DaysSericeImpl">
+        <property name="baseImpl" ref="BaseImpl"/>
+    </bean>
+    
+    
+</beans>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.multipart.maxSize" value="9000000"/>
+
+
+    <package name="user" namespace="/" extends="struts-default">
+        
+        <action name="user_*" class="UserAction" method="{1}">
+            <result name="goto_index">/user_msg.jsp</result>
+            <result name="goto_manager2">/user_manager2.jsp</result>
+            <result name="goto_manager3">/user_manager3.jsp</result>
+            <result name="goto_logon">/logon.jsp</result>
+            <result name="jump_logon" type="redirect">/</result>
+        </action>
+        
+        <action name="mail_*" class="MailAction" method="{1}">
+            <result name="send" type="dispatcher">/mail_send.jsp</result>
+            <result name="checkMail" type="dispatcher">/mail_check.jsp</result>
+            <result name="oneMail" type="dispatcher">/mail_mail.jsp</result>
+            <result name="gotoDelete" type="dispatcher">/mail_delete.jsp</result>
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">is</param>
+            </result>
+            <result name="input" type="redirect">erorr.html</result>
+        </action>
+        
+        <action name="days_*" class="DaysAction" method="{1}">
+            <result name="leave">/day_leave.jsp</result>
+            <result name="day">/day_day.jsp</result>
+            <result name="check">/day_check.jsp</result>
+        </action>
+        
+    </package>
+
+<!-- json -->
+    <package name="json" extends="json-default">
+        <action name="ajax_*" class="UserAction" method="{1}">
+        
+            <result type="json" name="update">
+                <param name="includeProperties">u.*</param>
+            </result>
+            
+            <result type="json" name="change">
+                <param name="includeProperties">u.*</param>
+            </result>
+            
+        </action>
+    </package>
+    
+<!--    <package name="mail" namespace="/" extends="struts-default">
+        <action name="send" class="UserAction" method="send">
+            <result name="send">/send.jsp</result>
+        </action>
+    </package> -->
+</struts>
