@@ -80,10 +80,10 @@
        <property name="sell_dao" ref="SellImpl"/>
    </bean>
    
-  <bean id="UserAction" class="com.web.action.UserAction">
+<!--   <bean id="UserAction" class="com.web.action.UserAction">
        <property name="base" ref="BaseImpl"/>
        <property name="user_dao" ref="UserImpl"/>
        <property name="page" ref="Page"/>
-   </bean>
+   </bean> -->
 
 </beans>

@@ -12,7 +12,9 @@
     <package name="user" namespace="/" extends="struts-default">
         <action name="*" class="com.web.action.UserAction" method="{1}">
             <result name="index">/WEB-INF/jsp/index.jsp</result>
-            <result name="init_role">/WEB-INF/jsp/privilege/privilege_user.jsp</result>
+            <result name="init_user">/WEB-INF/jsp/privilege/privilege_user.jsp</result>
+            <result name="init_role">/WEB-INF/jsp/privilege/privilege_role.jsp</result>
+            <result name="init_role_add">/WEB-INF/jsp/privilege/privilege_user_create.html</result>
         </action>
     </package>    
        

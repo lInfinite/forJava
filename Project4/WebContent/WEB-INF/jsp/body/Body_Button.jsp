@@ -29,7 +29,7 @@
                <dd id="base_product_query"><a href="#" target="body_main">查询产品信息</a></dd>
                <dd id="base_storage_query"><a href="#" target="body_main">查询仓库</a></dd>
            <dt><a onclick="showButton(['privilege_user','privilege_role'])">权限管理</a></dt>
-               <dd id="privilege_user"><a href="#" target="body_main">用户管理</a></dd>
+               <dd id="privilege_user"><a href="user_manage" target="body_main">用户管理</a></dd>
                <dd id="privilege_role"><a href="role_manage" target="body_main">角色管理</a></dd>
        </dl>
        </dd>
