@@ -49,6 +49,7 @@
    </bean> 
 <!-- Util -->   
    <bean id="Util" class="com.util.Util" />
+   <bean id="Page" class="com.util.Page" />
 <!-- dao -->
    <bean id="BaseImpl" class="com.dao.impl.BaseImpl">
        <property name="util" ref="Util"/>
@@ -82,6 +83,7 @@
   <bean id="UserAction" class="com.web.action.UserAction">
        <property name="base" ref="BaseImpl"/>
        <property name="user_dao" ref="UserImpl"/>
+       <property name="page" ref="Page"/>
    </bean>
 
 </beans>

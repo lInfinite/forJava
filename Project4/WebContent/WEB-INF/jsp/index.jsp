@@ -12,11 +12,11 @@
 <body>
  <jsp:include page="body/Body_Top.jsp"/>
  <br/>
-	<span>
-	     <jsp:include page="body/Body_Button.jsp"/>
-	</span>
-	<span>
-	     <jsp:include page="body/Body_main.jsp"/>
-	</span>
+ <table width="100%">
+     <tr>
+         <td style="background-color:#00F; width:25%;" valign="top"><jsp:include page="body/Body_Button.jsp"/></td>
+         <td style="width:75%;"><jsp:include page="body/Body_main.jsp"/></td>
+     </tr>
+ </table>
 </body>
 </html>
