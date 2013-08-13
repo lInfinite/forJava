@@ -14,7 +14,8 @@
             <result name="index">/WEB-INF/jsp/index.jsp</result>
             <result name="init_user">/WEB-INF/jsp/privilege/privilege_user.jsp</result>
             <result name="init_role">/WEB-INF/jsp/privilege/privilege_role.jsp</result>
-            <result name="init_role_add">/WEB-INF/jsp/privilege/privilege_user_create.html</result>
+            <result name="init_user_add">/WEB-INF/jsp/privilege/privilege_user_create.html</result>
+            <result name="init_role_add">/WEB-INF/jsp/privilege/privilege_role_create.html</result>
         </action>
     </package>    
        

@@ -41,6 +41,7 @@
              
              <value>com.entity.Role</value>
              <value>com.entity.User</value>
+             <value>com.entity.Manage</value>
              
              <value>com.entity.ClintLevel</value>
              <value>com.entity.Region</value>

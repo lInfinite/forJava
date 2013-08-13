@@ -25,6 +25,7 @@ import com.util.Page;
 public class UserAction extends ActionSupport implements SessionAware{
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
     private User user;
+    private Role role;
     private Map<String, Object> session;
     private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
     private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
@@ -40,7 +41,21 @@ public class UserAction extends ActionSupport implements SessionAware{
     	return "init_role";
     }
     
+    public String add_use(){
+    	return "init_user_add";
+    }
+    
     public String add_role(){
+    	return "init_role_add";
+    }
+    
+    public String addRole(){
+    	System.out.println("role.name:"+role.getName());
+    	java.util.Iterator t = role.getManage().iterator();
+    	while(t.hasNext()){
+    		System.out.println(t.next());
+    	}
+    	base.add(role);
     	return "init_role_add";
     }
     
@@ -66,11 +81,16 @@ public class UserAction extends ActionSupport implements SessionAware{
     	}
     }
     
-   
-    
-    
-    
-    @Override
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	
+	@Override
     public void setSession(Map<String, Object> session) {
     	this.session = session;
     }

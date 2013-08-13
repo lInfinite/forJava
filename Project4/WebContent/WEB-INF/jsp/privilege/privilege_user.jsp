@@ -9,7 +9,7 @@
 <body>
 用户管理<br/>
 <input type="button" value="关于"/>
-<input type="button" value="新建"/>
+<a href="add_use"><input type="button" value="新建"/></a>
 <input type="button" value="查询"/>
 <table>
     <tr>

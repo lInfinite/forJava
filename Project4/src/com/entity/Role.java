@@ -15,8 +15,8 @@ public class Role {
     private long id;
 	@Column(name="name")
     private String name;
-	@Column(name="manage")
-    private String manage;
+	@OneToMany(mappedBy="role")
+    private Set<Manage> manage;
 	@ManyToMany
 	@JoinTable(
 	    name="role_and_user",
@@ -24,6 +24,7 @@ public class Role {
 	    inverseJoinColumns={ @JoinColumn(name="user_id")}
 	)
 	private Set<User> user;
+	
 	public long getId() {
 		return id;
 	}
@@ -36,11 +37,18 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getManage() {
+	public Set<Manage> getManage() {
 		return manage;
 	}
-	public void setManage(String manage) {
+	public void setManage(Set<Manage> manage) {
 		this.manage = manage;
 	}
+	public Set<User> getUser() {
+		return user;
+	}
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
+
     
 }
