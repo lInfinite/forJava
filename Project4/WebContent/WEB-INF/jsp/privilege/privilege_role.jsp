@@ -26,11 +26,13 @@
         <td>角色名</td>
         <td>操作</td>
     </tr>
+    <s:iterator value="role_list" id="role_list">
     <tr>
-        <td>编号</td>
-        <td>角色名</td>
+        <td><s:property value="id"/></td>
+        <td><s:property value="name"/></td>
         <td>操作</td>
     </tr>
+   </s:iterator>
 </table>
 <jsp:include page="../body/Body_Page.jsp"/>
 </body>

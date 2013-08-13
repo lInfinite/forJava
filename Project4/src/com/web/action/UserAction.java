@@ -1,7 +1,10 @@
 package com.web.action;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -15,6 +18,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.dao.BaseDao;
 import com.dao.impl.BaseImpl;
+import com.entity.Manage;
 import com.entity.Role;
 import com.entity.User;
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,34 +33,50 @@ public class UserAction extends ActionSupport implements SessionAware{
     private Map<String, Object> session;
     private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
     private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
-    private Page page = (Page)context.getBean("Page");
-    private List<Role> role_list;
+    private Page page = null;
+    private List<User> user_list = null;
+    private List<Role> role_list = null;
+    private Set<Manage> manage = new HashSet<Manage>();
     
     public String user_manage(){
-    	return "init_user";
+    	page = (Page)context.getBean("Page");
+    	user_list = base.query("User", page.getPage(), 5);
+    	return "privilege_user.jsp";
     }
     
     public String role_manage(){
+    	page = (Page)context.getBean("Page");
     	role_list = base.query("Role", page.getPage(), 5);
-    	return "init_role";
+    	return "privilege_role.jsp";
     }
     
     public String add_use(){
-    	return "init_user_add";
+    	page = (Page)context.getBean("Page");
+    	role_list = base.query("Role", page.getPage(), 5);
+    	return "privilege_user_create.jsp";
     }
     
     public String add_role(){
-    	return "init_role_add";
+    	return "privilege_role_create.html";
     }
     
     public String addRole(){
-    	System.out.println("role.name:"+role.getName());
-    	java.util.Iterator t = role.getManage().iterator();
-    	while(t.hasNext()){
-    		System.out.println(t.next());
-    	}
+    	role.setManage(manage);
     	base.add(role);
-    	return "init_role_add";
+    	System.out.println("role.name:"+role.getName());
+    	Iterator<Manage> t = role.getManage().iterator();
+    	while(t.hasNext()){
+    		Manage manage=t.next();
+    		manage.setRole(role);
+    		base.add(manage);
+    		System.out.println(manage.getName());
+    	}
+    	return "privilege_role.jsp";
+    }
+    
+    public String addUser(){
+    	base.add(user);
+    	return "privilege_user.jsp";
     }
     
     public String login(){
@@ -77,9 +97,13 @@ public class UserAction extends ActionSupport implements SessionAware{
     		return "index";
     	}else{
     		//木该有户返回登录
-    		return "";
+    		return "login.html";
     	}
     }
+    
+    
+    
+    
     
     public Role getRole() {
 		return role;
@@ -89,11 +113,6 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.role = role;
 	}
 
-	
-	@Override
-    public void setSession(Map<String, Object> session) {
-    	this.session = session;
-    }
     
 	public User getUser() {
 		return user;
@@ -102,7 +121,36 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.user = user;
 	}
 
+	public Set<Manage> getManage() {
+		return manage;
+	}
+
+	public void setManage(Set<Manage> manage) {
+		this.manage = manage;
+	}
+
+	public List<User> getUser_list() {
+		return user_list;
+	}
+
+	public void setUser_list(List<User> user_list) {
+		this.user_list = user_list;
+	}
+
+	public List<Role> getRole_list() {
+		return role_list;
+	}
+
+	public void setRole_list(List<Role> role_list) {
+		this.role_list = role_list;
+	}
 
 
+
+	
+	@Override
+    public void setSession(Map<String, Object> session) {
+    	this.session = session;
+    }
     
 }
