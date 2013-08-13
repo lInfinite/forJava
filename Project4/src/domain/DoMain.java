@@ -30,13 +30,14 @@ public class DoMain {
 			User user = new User();
 			Region region = new Region();
 			ClintLevel clint_level = new ClintLevel();
-			
+			Manage manage = new Manage();
 			session.save(sell_chance);
 		    session.save(create_clinet);
 		    session.save(role);
 		    session.save(user);
 		    session.save(region);
 		    session.save(clint_level);
+		    session.save(manage);
 		    t.commit();
 		}catch(HibernateException he){
 			t.rollback();

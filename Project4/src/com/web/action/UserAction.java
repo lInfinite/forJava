@@ -36,7 +36,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     private Page page = null;
     private List<User> user_list = null;
     private List<Role> role_list = null;
-    private Set<Manage> manage = new HashSet<Manage>();
     
     public String user_manage(){
     	page = (Page)context.getBean("Page");
@@ -61,16 +60,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     public String addRole(){
-    	role.setManage(manage);
-    	base.add(role);
-    	System.out.println("role.name:"+role.getName());
-    	Iterator<Manage> t = role.getManage().iterator();
-    	while(t.hasNext()){
-    		Manage manage=t.next();
-    		manage.setRole(role);
-    		base.add(manage);
-    		System.out.println(manage.getName());
-    	}
     	return "privilege_role.jsp";
     }
     
@@ -121,13 +110,6 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.user = user;
 	}
 
-	public Set<Manage> getManage() {
-		return manage;
-	}
-
-	public void setManage(Set<Manage> manage) {
-		this.manage = manage;
-	}
 
 	public List<User> getUser_list() {
 		return user_list;

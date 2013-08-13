@@ -15,7 +15,7 @@ public class Role {
     private long id;
 	@Column(name="name")
     private String name;
-	@OneToMany(mappedBy="role")
+	@ManyToMany(mappedBy="role")
     private Set<Manage> manage;
 	@ManyToMany
 	@JoinTable(
