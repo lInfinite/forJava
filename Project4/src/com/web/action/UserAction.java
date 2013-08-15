@@ -1,19 +1,18 @@
 package com.web.action;
 
+
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.dao.BaseDao;
@@ -27,15 +26,22 @@ import com.service.dao.impl.UserImpl;
 import com.util.Page;
 
 public class UserAction extends ActionSupport implements SessionAware{
+	
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
+	private HttpServletResponse response = ServletActionContext.getResponse();
+	private HttpServletRequest request = ServletActionContext.getRequest();
+	private Map<String, Object> session;
+	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
+	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
+	
     private User user;
     private Role role;
-    private Map<String, Object> session;
-    private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
-    private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
+    private Manage manage;
+    
     private Page page = null;
     private List<User> user_list = null;
     private List<Role> role_list = null;
+    private String[] Manages_name;
     
     public String user_manage(){
     	page = (Page)context.getBean("Page");
@@ -44,8 +50,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     public String role_manage(){
-    	page = (Page)context.getBean("Page");
-    	role_list = base.query("Role", page.getPage(), 5);
     	return "privilege_role.jsp";
     }
     
@@ -60,6 +64,16 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     public String addRole(){
+    	//String[] Manages_name = request.getParameterValues("Manages_name");
+    	for(int i=0; i<Manages_name.length; i++){
+    		System.out.println(Manages_name[i]);
+    		manage = new Manage();
+    		manage.setName(Manages_name[i]);
+    		Set<Role> role_set = manage.getRole();
+    		role_set.add(role);
+    	}
+    	base.add(manage);
+    	base.add(role);
     	return "privilege_role.jsp";
     }
     
@@ -128,8 +142,25 @@ public class UserAction extends ActionSupport implements SessionAware{
 	}
 
 
+	
+	public Manage getManage() {
+		return manage;
+	}
+
+	public void setManage(Manage manage) {
+		this.manage = manage;
+	}
 
 	
+
+	public String[] getManages_name() {
+		return Manages_name;
+	}
+
+	public void setManages_name(String[] manages_name) {
+		Manages_name = manages_name;
+	}
+
 	@Override
     public void setSession(Map<String, Object> session) {
     	this.session = session;
