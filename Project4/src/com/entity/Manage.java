@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="project4_manage")
 public class Manage {
@@ -23,12 +25,7 @@ public class Manage {
 	private long id;
 	@Column(name="name")
     private String name;
-	@ManyToMany
-	@JoinTable(
-		    name="project4_role_and_manage",
-		    joinColumns={ @JoinColumn(name="manage_id")},
-		    inverseJoinColumns={ @JoinColumn(name="role_id")}
-		)
+	@ManyToMany(mappedBy="manage")
 	private Set<Role> role;
 	
 	

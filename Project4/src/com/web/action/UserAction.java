@@ -64,15 +64,13 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     public String addRole(){
-    	//String[] Manages_name = request.getParameterValues("Manages_name");
+    	Set<Manage> manage_set = new HashSet<Manage>();
     	for(int i=0; i<Manages_name.length; i++){
-    		System.out.println(Manages_name[i]);
     		manage = new Manage();
     		manage.setName(Manages_name[i]);
-    		Set<Role> role_set = manage.getRole();
-    		role_set.add(role);
+    		manage_set.add(manage);
     	}
-    	base.add(manage);
+    	role.setManage(manage_set);
     	base.add(role);
     	return "privilege_role.jsp";
     }
@@ -80,6 +78,13 @@ public class UserAction extends ActionSupport implements SessionAware{
     public String addUser(){
     	base.add(user);
     	return "privilege_user.jsp";
+    }
+    
+    public void testChekbox(){
+    	String[] test_number = request.getParameterValues("test_number");
+    	for(int i=0; i<test_number.length; i++){
+    		System.out.println(test_number[i]);
+    	}
     }
     
     public String login(){

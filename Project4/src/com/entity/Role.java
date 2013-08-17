@@ -15,7 +15,12 @@ public class Role {
     private long id;
 	@Column(name="name")
     private String name;
-	@ManyToMany(mappedBy="role")
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+		    name="project4_role_and_manage",
+		    joinColumns={ @JoinColumn(name="role_id")},
+		    inverseJoinColumns={ @JoinColumn(name="manage_id")}
+		)
     private Set<Manage> manage;
 	@ManyToMany
 	@JoinTable(
