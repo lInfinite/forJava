@@ -13,30 +13,27 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Util {
 	
-    //hibernate工厂
+    //hibernate
 	public SessionFactory getSessionFactory(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		return (SessionFactory)context.getBean("SessionFactory");
 	}
 	
 	//md5
-    public String eccrypt(String str){  
-        //根据MD5算法生成MessageDigest对象  
+    public String eccrypt(String str){
         MessageDigest md5=null;
 			try {
 				md5 = MessageDigest.getInstance("MD5");
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}  
-        byte[] srcBytes = str.getBytes();  
-        //使用srcBytes更新摘要  
+        byte[] srcBytes = str.getBytes();
         md5.update(srcBytes);  
-        //完成哈希计算，得到result  
         byte[] resultBytes = md5.digest();  
         return new String(resultBytes);
     }  
     
-	//创建时间
+	//绯荤粺鏃堕棿
     public String systemTime(){
     	Date date=new Date();
     	String dt = new String(new SimpleDateFormat("yyyy-MM-dd").format(date));
@@ -48,7 +45,7 @@ public class Util {
     
     
     
-	//过滤特殊字符
+	//鐗规畩瀛楃杩囨护
 	public String str(String str){
 		str = str.replaceAll("\\~", "&#126;");
 		str = str.replaceAll("\\}", "&#125;");
@@ -81,7 +78,9 @@ public class Util {
     	str = str.replaceAll("\\!", "&#33;");
 		return str;
 	}
-	//获取get开头的方法名
+	
+	
+	
 	public List<String> getMethodName(Object object){
 		Class c = object.getClass();
 		List<String> list= new ArrayList<String>();
@@ -96,7 +95,9 @@ public class Util {
 		}
 		return list;
 	}
-	//获取方法内调用的参数类型
+	
+
+	
 	public List<Class> getParameterType(Object object, String methodName) throws ClassNotFoundException{
 		Class c = object.getClass();
 		List<Class> list = new ArrayList<Class>();
@@ -112,7 +113,9 @@ public class Util {
 		}
 		return list;
 	}
-	//获取对象所有get开头的方法并且有内容的返回值
+	
+
+	
 	public Map<String, Object> getValue(Object object) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		Class c = object.getClass();

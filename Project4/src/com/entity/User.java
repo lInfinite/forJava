@@ -14,10 +14,13 @@ public class User {
     private long id;
 	@Column(name="name")
     private String name;
+	
 	@Column(name="password")
     private String password;
-    @ManyToMany(mappedBy="user")
-    private Set<Role> role;
+	
+    @ManyToOne
+    @JoinColumn(name="role_id")
+    private Role role;
     
     
 	public long getId() {
@@ -26,23 +29,27 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Set<Role> getRole() {
+	
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(Set<Role> role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
+    
     
 }

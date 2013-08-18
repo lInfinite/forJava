@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.UserDao;
 import com.service.dao.impl.UserImpl;
 import com.util.Page;
+import com.util.Util;
 
 public class UserAction extends ActionSupport implements SessionAware{
 	
@@ -33,6 +33,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
+	private Util util = (Util)context.getBean("Util");
 	
     private User user;
     private Role role;
@@ -43,26 +44,36 @@ public class UserAction extends ActionSupport implements SessionAware{
     private List<Role> role_list = null;
     private String[] Manages_name;
     
+    
+    //初始化用户管理页面
     public String user_manage(){
     	page = (Page)context.getBean("Page");
     	user_list = base.query("User", page.getPage(), 5);
     	return "privilege_user.jsp";
     }
     
+    
+    //初始化角色页面
     public String role_manage(){
     	return "privilege_role.jsp";
     }
     
+    
+    //初始化用户添加页面
     public String add_use(){
     	page = (Page)context.getBean("Page");
     	role_list = base.query("Role", page.getPage(), 5);
     	return "privilege_user_create.jsp";
     }
     
+    
+    //初始化角色添加页面
     public String add_role(){
     	return "privilege_role_create.html";
     }
     
+    
+    //添加角色
     public String addRole(){
     	Set<Manage> manage_set = new HashSet<Manage>();
     	for(int i=0; i<Manages_name.length; i++){
@@ -75,36 +86,35 @@ public class UserAction extends ActionSupport implements SessionAware{
     	return "privilege_role.jsp";
     }
     
-    public String addUser(){
-    	base.add(user);
-    	return "privilege_user.jsp";
-    }
     
-    public void testChekbox(){
-    	String[] test_number = request.getParameterValues("test_number");
-    	for(int i=0; i<test_number.length; i++){
-    		System.out.println(test_number[i]);
-    	}
+    //删除角色
+    public String deleteRole(){
+    	long id = Integer.parseInt(request.getParameter("role_id"));
+    	Role role = (Role)base.object("Role", id);
+    	base.delete(role);
+    	return "";
     }
+
     
+    //用户注册
     public String login(){
     	if(user_dao.user(user)!=null){
-    		//�����û� ��������ע��
     	    return "";
     	}else{
-    		//�ɹ�ע��
+    		user.setPassword(util.eccrypt(user.getPassword()));
     		base.add(user);
     		return "";
     	}
     }
     
+    
+    //用户登陆
     public String logon(){
     	//User u = user_dao.user(user);
     	if(user!=null){
     		//session.put("user", u);
     		return "index";
     	}else{
-    		//ľ���л����ص�¼
     		return "login.html";
     	}
     }
@@ -146,8 +156,6 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.role_list = role_list;
 	}
 
-
-	
 	public Manage getManage() {
 		return manage;
 	}

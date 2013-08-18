@@ -13,8 +13,10 @@ public class Role {
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_role_seq")     
 	@SequenceGenerator(name="p4_role_seq", sequenceName="project4_role_sequence", allocationSize=1)
     private long id;
+	
 	@Column(name="name")
     private String name;
+	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
 		    name="project4_role_and_manage",
@@ -22,13 +24,10 @@ public class Role {
 		    inverseJoinColumns={ @JoinColumn(name="manage_id")}
 		)
     private Set<Manage> manage;
-	@ManyToMany
-	@JoinTable(
-	    name="role_and_user",
-	    joinColumns={ @JoinColumn(name="role_id")},
-	    inverseJoinColumns={ @JoinColumn(name="user_id")}
-	)
+	
+	@OneToMany(mappedBy="role")
 	private Set<User> user;
+	
 	
 	public long getId() {
 		return id;
