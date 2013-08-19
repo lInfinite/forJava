@@ -23,7 +23,6 @@ public class Test {
 		Util util = (Util)context.getBean("Util");
 		String a ="~ @ # $ % ^ & * ( ) - + = ' : ; < > / ? \\ \" [ ] { } ";
 		System.out.println(util.str(a));*/
-		
 		List<Role> role_list = base.query("Role", page.getPage(), 5);
 		for(Role role:role_list){
 			System.out.println("role_id:"+role.getId());

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,7 +10,7 @@
 <body>
 用户管理<br/>
 <input type="button" value="关于"/>
-<a href="add_use"><input type="button" value="新建"/></a>
+<a href="add_user"><input type="button" value="新建"/></a>
 <input type="button" value="查询"/>
 <table>
     <tr>
@@ -29,7 +30,7 @@
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="name"/></td>
-        <td><a>[编辑]</a> &nbsp; <a>[删除]</a></td>
+        <td><a href="update_user?user.id=<s:property value="id"/>">[编辑]</a> &nbsp; <a href="">[删除]</a></td>
     </tr>
     </s:iterator>
 </table>

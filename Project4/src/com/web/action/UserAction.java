@@ -45,30 +45,77 @@ public class UserAction extends ActionSupport implements SessionAware{
     private String[] Manages_name;
     
     
+    
+
+    
+    //用户登陆
+    public String logon(){
+    	user.setPassword(util.eccrypt(user.getPassword()));
+    	User u = user_dao.user(user, true);
+    	if(u!=null){
+    		session.put("user", u);
+    		return "index";
+    	}else{
+    		return "login.html";
+    	}
+    }
+    
+    
     //初始化用户管理页面
     public String user_manage(){
     	page = (Page)context.getBean("Page");
-    	System.out.println("page:"+page.getPage());
     	user_list = base.query("User", page.getPage(), 5);
+    	for(User user:user_list){
+    		System.out.println(user.getName());
+    	}
     	return "privilege_user.jsp";
     }
     
     
-    //初始化角色页面
+    //初始化 用户添加页面
+    public String add_user(){
+    	page = (Page)context.getBean("Page");
+    	role_list = base.query("Role");
+    	return "privilege_user_create.jsp";
+    }
+
+    
+    //用户注册
+    public String login(){
+    	if(user_dao.user(user, false)!=null){
+    		this.addActionError("已有改用户名");
+    	    return "privilege_user_create.jsp";
+    	}else{
+    		user.setPassword(util.eccrypt(user.getPassword()));
+    		base.add(user);
+    		return "privilege_user.jsp";
+    	}
+    } 
+    
+    
+    //初始化 更新用户页面
+    public String update_user(){
+    	page = (Page)context.getBean("Page");
+    	role_list = base.query("Role");
+    	return "privilege_user_update.jsp";
+    }
+    
+    
+    //更新用户
+    public String updateUser(){
+    	user.setPassword(util.eccrypt(user.getPassword()));
+    	base.update(user);
+    	return "privilege_user.jsp";
+    }
+    
+    
+    //初始化 角色页面
     public String role_manage(){
     	return "privilege_role.jsp";
     }
     
     
-    //初始化用户添加页面
-    public String add_use(){
-    	page = (Page)context.getBean("Page");
-    	role_list = base.query("Role");
-    	return "privilege_user_create.jsp";
-    }
-    
-    
-    //初始化角色添加页面
+    //初始化 角色添加页面
     public String add_role(){
     	return "privilege_role_create.html";
     }
@@ -90,37 +137,10 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //删除角色
     public String deleteRole(){
-    	long id = Integer.parseInt(request.getParameter("role_id"));
-    	Role role = (Role)base.object("Role", id);
-    	base.delete(role);
     	return "";
     }
-
+   
     
-    //用户注册
-    public String login(){
-    	if(user_dao.user(user, false)!=null){
-    		this.addActionError("已有改用户名");
-    	    return "privilege_user_create.jsp";
-    	}else{
-    		user.setPassword(util.eccrypt(user.getPassword()));
-    		base.add(user);
-    		return "privilege_user.jsp";
-    	}
-    }
-    
-    
-    //用户登陆
-    public String logon(){
-    	user.setPassword(util.eccrypt(user.getPassword()));
-    	User u = user_dao.user(user, true);
-    	if(u!=null){
-    		session.put("user", u);
-    		return "index";
-    	}else{
-    		return "login.html";
-    	}
-    }
     
     
     

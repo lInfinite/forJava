@@ -109,7 +109,7 @@ public class BaseImpl implements BaseDao {
 	public Object object(String entityName, long id) {
         Session session = util.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-		return (Object)session.load(entityName,id);
+		return session.get(entityName,id);
 	}
 
 	@Override
