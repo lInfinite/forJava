@@ -11,7 +11,7 @@ import com.entity.*;
 import com.util.Util;
 
 public class DoMain {
-	public static void main(String[] arge){
+	public static void main2(String[] arge){
 		DoMain domain = new DoMain();
 		domain.initTable();
 	}

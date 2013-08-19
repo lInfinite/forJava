@@ -17,12 +17,18 @@ public class UserImpl implements UserDao {
    
     
     @Override
-	public User user(User user) {
+	public User user(User user, boolean password) {
 		Map<String, Object> value = new HashMap<String, Object>();
 		value.put("name", user.getName());
-		value.put("password", user.getPassword());
+		if(password){
+			value.put("password", user.getPassword());
+		}
 		List<User> list = base.query("User", value);
-		return (User)list.get(0);
+		if(list.size()>0){
+		    return (User)list.get(0);
+		}else{
+			return null;
+		}
 	}
     
 	@Override

@@ -30,7 +30,7 @@
 	<property name="hibernateProperties">
 		<value>
 			hibernate.show_sql=true
-			hibernate.hbm2ddl.auto=create
+			hibernate.hbm2ddl.auto=update
 			hibernate.current_session_context_class=thread
 		</value>
 	</property>

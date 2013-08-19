@@ -5,7 +5,7 @@ import java.util.List;
 import com.entity.User;
 
 public interface UserDao {
-	public User user(User user);
+	public User user(User user, boolean password);
     public User user(long id);
     public List<User> query();
     public List<User> query(int page);

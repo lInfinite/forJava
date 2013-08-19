@@ -16,7 +16,7 @@
 
 <body>
 用户管理>添加用户<br/>
-<form action="" method="post">
+<form action="login" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>
@@ -35,9 +35,9 @@
     </tr>
     <tr>
         <td>密码</td>
-        <td><input name="user.password" id="user_password" type="text"/></td>
+        <td><input name="user.password" id="user_password" type="password"/></td>
         <td>确认密码</td>
-        <td><input id="user_password2" type="text" onBlur="check_pw('user_password', 'user_password2')"/></td>
+        <td><input id="user_password2" type="password" onBlur="check_pw('user_password', 'user_password2')"/></td>
     </tr>
 </table>
 </form>

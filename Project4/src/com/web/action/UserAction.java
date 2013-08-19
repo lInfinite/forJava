@@ -34,12 +34,12 @@ public class UserAction extends ActionSupport implements SessionAware{
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
+	private Page page = null;
 	
     private User user;
     private Role role;
     private Manage manage;
     
-    private Page page = null;
     private List<User> user_list = null;
     private List<Role> role_list = null;
     private String[] Manages_name;
@@ -48,6 +48,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     //初始化用户管理页面
     public String user_manage(){
     	page = (Page)context.getBean("Page");
+    	System.out.println("page:"+page.getPage());
     	user_list = base.query("User", page.getPage(), 5);
     	return "privilege_user.jsp";
     }
@@ -62,7 +63,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     //初始化用户添加页面
     public String add_use(){
     	page = (Page)context.getBean("Page");
-    	role_list = base.query("Role", page.getPage(), 5);
+    	role_list = base.query("Role");
     	return "privilege_user_create.jsp";
     }
     
@@ -98,21 +99,23 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //用户注册
     public String login(){
-    	if(user_dao.user(user)!=null){
-    	    return "";
+    	if(user_dao.user(user, false)!=null){
+    		this.addActionError("已有改用户名");
+    	    return "privilege_user_create.jsp";
     	}else{
     		user.setPassword(util.eccrypt(user.getPassword()));
     		base.add(user);
-    		return "";
+    		return "privilege_user.jsp";
     	}
     }
     
     
     //用户登陆
     public String logon(){
-    	//User u = user_dao.user(user);
-    	if(user!=null){
-    		//session.put("user", u);
+    	user.setPassword(util.eccrypt(user.getPassword()));
+    	User u = user_dao.user(user, true);
+    	if(u!=null){
+    		session.put("user", u);
     		return "index";
     	}else{
     		return "login.html";
