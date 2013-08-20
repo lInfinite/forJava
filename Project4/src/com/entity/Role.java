@@ -12,7 +12,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_role_seq")     
 	@SequenceGenerator(name="p4_role_seq", sequenceName="project4_role_sequence", allocationSize=1)
-    private long id;
+    private Long id;
 	
 	@Column(name="name")
     private String name;
@@ -29,10 +29,11 @@ public class Role {
 	private Set<User> user;
 	
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

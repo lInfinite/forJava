@@ -13,17 +13,18 @@ public class ClintLevel {
 	@Id
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_clintlevel_seq")     
 	@SequenceGenerator(name="p4_clintlevel_seq", sequenceName="project4_clintlevel_sequence", allocationSize=1)
-    private long id;
+    private Long id;
 	@Column(name="value")
 	private String value;
 	@OneToMany(mappedBy="clinet_level")
 	private Set<SellChance> sell_chance;
 	
 	
-	public long getId() {
+    
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getValue() {

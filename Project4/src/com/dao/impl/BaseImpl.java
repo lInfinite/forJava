@@ -120,7 +120,7 @@ public class BaseImpl implements BaseDao {
 	
 	
 	@Override
-	public Object object(String entityName, long id) {
+	public Object object(Class entityName, long id) {
         Session session = util.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 		return session.get(entityName,id);

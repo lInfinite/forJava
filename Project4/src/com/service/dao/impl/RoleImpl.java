@@ -1,6 +1,6 @@
 package com.service.dao.impl;
 
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,38 +11,15 @@ import com.util.Util;
 
 public class RoleImpl implements RoleDao {
     
+	
+	
 	private BaseDao base;
     private Util util;
     
-    
-	@Override
-	public List<Role> query() {
-		return base.query("Role");
-	}
-
-	
-	@Override
-	public List<Role> query(int page) {
-		return base.query("Role", page, 5);
-	}	
-	
-	
-	@Override
-    public List<Role> query(Role role){
-		Map<String, Object> value = util.getValue(role);
-		return base.query("Role", value);
-	}
-	
-	
-	@Override
-	public List<Role> query(Role role, int page) {
-		Map<String, Object> value = util.getValue(role);
-		return base.query("Role", value, page, 5);
-	}
 
 	@Override
 	public Role role(long id) {
-		return (Role)base.object("Role", id);
+		return (Role)base.object(Role.class, id);
 	}
 
 	

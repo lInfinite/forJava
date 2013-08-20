@@ -1,7 +1,6 @@
 package com.service.dao.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +38,7 @@ public class SellImpl implements SellDao {
 
 	@Override
 	public SellChance sellChance(long id) {
-		return (SellChance)base.object("SellChance", id);
+		return (SellChance)base.object(SellChance.class, id);
 	}
 
 	

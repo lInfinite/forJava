@@ -15,7 +15,7 @@ public class SellChance {
 	@Id
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_sellchance_seq")     
 	@SequenceGenerator(name="p4_sellchance_seq", sequenceName="project4_sellchance_sequence", allocationSize=1)
-    private long id;
+    private Long id;
 	@Column(name="clinet_name")
     private String clinet_name;
 	@ManyToOne
@@ -51,10 +51,11 @@ public class SellChance {
     
     
     
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getClinet_name() {

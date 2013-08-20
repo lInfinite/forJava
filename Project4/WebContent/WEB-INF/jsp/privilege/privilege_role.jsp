@@ -10,17 +10,19 @@
 
 <body>
 用户管理<br/>
+<form action="queryRole" method="post">
 <input type="button" value="关于"/>
 <a href="add_role"><input type="button" value="新建"/></a>
-<input type="button" value="查询"/>
+<input type="submit" value="查询"/>
 <table>
     <tr>
         <td>编号</td>
-        <td><input type="text" /></td>
+        <td><input name="role.id" type="text" /></td>
         <td>角色名</td>
-        <td><input type="text" /></td>
+        <td><input name="role.name" type="text" /></td>
     </tr>
 </table>
+</form>
 <table style="width:100%;">
     <tr style="background-color:#00F; color:#FFF; width:100%;">
         <td>编号</td>
@@ -31,7 +33,7 @@
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="name"/></td>
-        <td>操作</td>
+        <td><a href='deleteRole?role.id=<s:property value="id"/>'>[编辑]</a>&nbsp;<a href='updateRole?role.id=<s:property value="id"/>'>[删除]</a></td>
     </tr>
    </s:iterator>
 </table>

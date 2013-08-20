@@ -22,17 +22,18 @@ public class Manage {
 	@Id
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_manage_seq")     
 	@SequenceGenerator(name="p4_manage_seq", sequenceName="project4_manage_sequence", allocationSize=1)
-	private long id;
+	private Long id;
 	@Column(name="name")
     private String name;
 	@ManyToMany(mappedBy="manage")
 	private Set<Role> role;
 	
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

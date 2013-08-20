@@ -32,5 +32,8 @@ public class Test {
 		for(User user: user_list){
 			System.out.println("user_name:"+user.getName());
 		}
+		
+		User u = (User)base.object(User.class, 1);
+		System.out.println("u.name" + u.getName());
 	}
 }

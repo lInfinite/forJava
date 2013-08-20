@@ -1,6 +1,6 @@
 package com.service.dao.impl;
 
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,36 +30,11 @@ public class UserImpl implements UserDao {
 			return null;
 		}
 	}
-    
-	@Override
-	public List<User> query() {
-		return base.query("User");
-	}
-
-	
-	@Override
-	public List<User> query(int page) {
-		return base.query("User", page, 5);
-	}
-	
-	
-	@Override
-	public List<User> query(User user){
-		Map<String, Object> value = util.getValue(user);
-		return base.query("User", value);
-	}
-	
-	
-	@Override
-	public List<User> query(User user, int page) {
-		Map<String, Object> value = util.getValue(user);
-		return base.query("User", value, page, 5);
-	}
 
 	
 	@Override
 	public User user(long id) {
-		return (User)base.object("User", id);
+		return (User)base.object(User.class, id);
 	}
 
 	

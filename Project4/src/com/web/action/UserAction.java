@@ -20,7 +20,9 @@ import com.entity.Manage;
 import com.entity.Role;
 import com.entity.User;
 import com.opensymphony.xwork2.ActionSupport;
+import com.service.dao.RoleDao;
 import com.service.dao.UserDao;
+import com.service.dao.impl.RoleImpl;
 import com.service.dao.impl.UserImpl;
 import com.util.Page;
 import com.util.Util;
@@ -32,6 +34,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	private HttpServletRequest request = ServletActionContext.getRequest();
 	private Map<String, Object> session;
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
+	private RoleDao role_dao = (RoleImpl)context.getBean("RoleImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
 	private Page page = (Page)context.getBean("Page");;
@@ -47,7 +50,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     
 
-    
     //用户登陆
     public String logon(){
     	user.setPassword(util.eccrypt(user.getPassword()));
@@ -64,9 +66,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     //初始化用户管理页面
     public String user_manage(){
     	user_list = base.query("User", null, page.getPage(), 5);
-    	for(User user:user_list){
-    		System.out.println(user.getName());
-    	}
     	return "privilege_user.jsp";
     }
     
@@ -93,15 +92,14 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化 更新用户页面
     public String update_user(){
+    	user = user_dao.user(user.getId());
     	role_list = base.query("Role");
     	return "privilege_user_update.jsp";
     }
     
     
-    //更新用户
+    //编辑用户
     public String updateUser(){
-    	System.out.println("user_id:"+user.getId());
-    	user=(User)base.object("User", user.getId());
     	user.setPassword(util.eccrypt(user.getPassword()));
     	base.update(user);
     	return "privilege_user.jsp";
@@ -110,6 +108,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //删除角色
     public String deleteUser(){
+    	user = user_dao.user(user.getId());
     	base.delete(user);
     	return "privilege_user.jsp";
     }
@@ -124,11 +123,15 @@ public class UserAction extends ActionSupport implements SessionAware{
     	return "privilege_user.jsp";
     }
     
+   
+    /**
+     * 角色
+     * */
     
     
     //初始化 角色页面
     public String role_manage(){
-    	role_list = base.query("Role");
+    	role_list = base.query("Role", page.getPage(), 5);
     	return "privilege_role.jsp";
     }
     
@@ -155,10 +158,26 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //删除角色
     public String deleteRole(){
+    	role = role_dao.role(role.getId());
+    	base.delete(role);
     	return "";
     }
-   
     
+    
+    //编辑角色
+    public String updateRole(){
+    	return "";
+    }
+    
+   
+    //条件查询
+    public String queryRole(){
+    	role_list = base.query("Role",
+			    			   util.getValue(role), 
+			    			   page.getPage(),
+			    			   5);
+    	return "privilege_role.jsp";
+    }
     
     
     

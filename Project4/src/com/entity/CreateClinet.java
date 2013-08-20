@@ -11,7 +11,7 @@ public class CreateClinet {
 	@Id
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_createclinet_seq")     
 	@SequenceGenerator(name="p4_createclinet_seq", sequenceName="project4_createclinet_sequence", allocationSize=1)
-    private long id;
+    private Long id;
 	@Column(name="time")
     private String time;
 	@Column(name="project")
@@ -22,10 +22,11 @@ public class CreateClinet {
 	@JoinColumn(name="sell_chance_id")
     private SellChance sell_chance;
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTime() {
