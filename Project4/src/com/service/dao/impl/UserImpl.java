@@ -36,6 +36,7 @@ public class UserImpl implements UserDao {
 		return base.query("User");
 	}
 
+	
 	@Override
 	public List<User> query(int page) {
 		return base.query("User", page, 5);
@@ -44,48 +45,18 @@ public class UserImpl implements UserDao {
 	
 	@Override
 	public List<User> query(User user){
-		Map<String, Object> value;
-		try {
-			value = util.getValue(user);
-			return base.query("User", value);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Map<String, Object> value = util.getValue(user);
+		return base.query("User", value);
 	}
+	
 	
 	@Override
 	public List<User> query(User user, int page) {
-		Map<String, Object> value;
-		try {
-			value = util.getValue(user);
-			return base.query("User", value, page, 5);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Map<String, Object> value = util.getValue(user);
+		return base.query("User", value, page, 5);
 	}
 
+	
 	@Override
 	public User user(long id) {
 		return (User)base.object("User", id);

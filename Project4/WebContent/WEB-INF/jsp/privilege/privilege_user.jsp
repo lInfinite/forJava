@@ -9,17 +9,19 @@
 
 <body>
 用户管理<br/>
+<form action="queryUsers" method="post">
 <input type="button" value="关于"/>
 <a href="add_user"><input type="button" value="新建"/></a>
-<input type="button" value="查询"/>
+<input type="submit" value="查询"/>
 <table>
     <tr>
         <td>编号</td>
-        <td><input type="text" /></td>
+        <td><input name="user.id" type="text" /></td>
         <td>用户名</td>
-        <td><input type="text" /></td>
+        <td><input name="user.name" type="text" /></td>
     </tr>
 </table>
+</form>
 <table width="100%">
     <tr style="background-color:#00F; color:#FFF; ">
         <td>编号</td>
@@ -30,7 +32,7 @@
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="name"/></td>
-        <td><a href="update_user?user.id=<s:property value="id"/>">[编辑]</a> &nbsp; <a href="">[删除]</a></td>
+        <td><a href='update_user?user.id=<s:property value="id"/>'>[编辑]</a> &nbsp; <a href='deleteUser?user.id=<s:property value="id"/>'>[删除]</a></td>
     </tr>
     </s:iterator>
 </table>

@@ -109,6 +109,24 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
+    //删除角色
+    public String deleteUser(){
+    	base.delete(user);
+    	return "privilege_user.jsp";
+    }
+    
+    
+    //条件查询
+    public String queryUsers(){
+    	user_list = base.query("User",
+			    			   util.getValue(user), 
+			    			   page.getPage(),
+			    			   5);
+    	return "privilege_user.jsp";
+    }
+    
+    
+    
     //初始化 角色页面
     public String role_manage(){
     	return "privilege_role.jsp";

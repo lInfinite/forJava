@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <div>
-        <span>共?条记录</span>
+        <span>共<s:property value="id"/>条记录</span>
         <span>每页<input class="page" type="text" style="width:30px;" value="" /></span>
         <span>第<input class="page" type="text" style="width:30px;" value="" />页/共?页</span>
         <span>

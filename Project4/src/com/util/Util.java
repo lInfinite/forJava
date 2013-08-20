@@ -116,13 +116,15 @@ public class Util {
 	
 
 	
-	public Map<String, Object> getValue(Object object) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException{
+	public Map<String, Object> getValue(Object object){// throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		Class c = object.getClass();
 		List<String> method_list = getMethodName(object);
         Object[] arge={};
+        try {
 		for(String name : method_list){ 
-			List<Class> arge_list = getParameterType(object,name);
+			List<Class> arge_list;
+				arge_list = getParameterType(object,name);
 			String notGet = name.substring(3, name.length()).toLowerCase();
 			if(arge_list.size()==0){
 				Method m = c.getMethod(name, null);
@@ -139,6 +141,25 @@ public class Util {
 			        }
 				}
 			}
+		}
+        } catch (ClassNotFoundException e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        } catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return map;
 	} 

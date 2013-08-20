@@ -17,57 +17,24 @@ public class SellImpl implements SellDao {
     
     @Override
 	public List<SellChance> query() {
-			return base.query("SellChance");
+		return base.query("SellChance");
 	}
 	
 	@Override
 	public List<SellChance> query(int page) {
-			return base.query("SellChance", page, 5);
+		return base.query("SellChance", page, 5);
 	}
 	
 	@Override
 	public List<SellChance> query(SellChance sell_chance) {
-			Map<String, Object> value;
-			try {
-				value = util.getValue(sell_chance);
-				return base.query("SellChance", value);
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return null;
+		Map<String, Object> value = util.getValue(sell_chance);
+		return base.query("SellChance", value);
 	}
 	
 	@Override
 	public List<SellChance> query(SellChance sell_chance, int page) {
-
-		Map<String, Object> value;
-		try {
-			value = util.getValue(sell_chance);
-			return base.query("SellChance", value, page, 5);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Map<String, Object> value = util.getValue(sell_chance);
+		return base.query("SellChance", value, page, 5);
 	}
 
 	@Override

@@ -15,6 +15,7 @@ public class CreateClinetImpl implements CreateClinetDao {
 	private BaseDao base;
 	private Util util;
 	
+	
 	@Override
 	public List<CreateClinet> query() {
 		return base.query("CreateClinet");
@@ -25,47 +26,18 @@ public class CreateClinetImpl implements CreateClinetDao {
 		return base.query("CreateClinet", page, 5);
 	}
 	
+	
 	@Override
 	public List<CreateClinet> query(CreateClinet create_clinet) {
-		Map<String, Object> value;
-			try {
-				value = util.getValue(create_clinet);
-				return base.query("CreateClinet", value);
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		return null;
+		Map<String, Object> value = util.getValue(create_clinet);
+		return base.query("CreateClinet", value);
 	}
+	
+	
 	@Override
 	public List<CreateClinet> query(CreateClinet create_clinet, int page) {
-		Map<String, Object> value;
-			try {
-				value = util.getValue(create_clinet);
-				return base.query("CreateClinet", value, page, 5);
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return null;
+		Map<String, Object> value = util.getValue(create_clinet);
+		return base.query("CreateClinet", value, page, 5);
 	}
 
 

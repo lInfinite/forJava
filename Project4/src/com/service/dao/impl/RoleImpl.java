@@ -13,57 +13,31 @@ public class RoleImpl implements RoleDao {
     
 	private BaseDao base;
     private Util util;
+    
+    
 	@Override
 	public List<Role> query() {
 		return base.query("Role");
 	}
 
+	
 	@Override
 	public List<Role> query(int page) {
 		return base.query("Role", page, 5);
 	}	
 	
+	
 	@Override
     public List<Role> query(Role role){
-		Map<String, Object> value;
-		try {
-			value = util.getValue(role);
-			return base.query("Role", value);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-    return null;
+		Map<String, Object> value = util.getValue(role);
+		return base.query("Role", value);
 	}
+	
+	
 	@Override
 	public List<Role> query(Role role, int page) {
-		Map<String, Object> value;
-		try {
-			value = util.getValue(role);
-			return base.query("Role", value, page, 5);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	    return null;
+		Map<String, Object> value = util.getValue(role);
+		return base.query("Role", value, page, 5);
 	}
 
 	@Override
