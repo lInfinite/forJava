@@ -23,12 +23,12 @@ public class Test {
 		Util util = (Util)context.getBean("Util");
 		String a ="~ @ # $ % ^ & * ( ) - + = ' : ; < > / ? \\ \" [ ] { } ";
 		System.out.println(util.str(a));*/
-		List<Role> role_list = base.query("Role", page.getPage(), 5);
+		List<Role> role_list = base.query("Role", null, page.getPage(), 5);
 		for(Role role:role_list){
 			System.out.println("role_id:"+role.getId());
 		}
 		System.out.println("=====================================================");
-		List<User> user_list = base.query("User", page.getPage(), 5);
+		List<User> user_list = base.query("User", null, page.getPage(), 5);
 		for(User user: user_list){
 			System.out.println("user_name:"+user.getName());
 		}

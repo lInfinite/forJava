@@ -34,7 +34,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
-	private Page page = null;
+	private Page page = (Page)context.getBean("Page");;
 	
     private User user;
     private Role role;
@@ -63,8 +63,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化用户管理页面
     public String user_manage(){
-    	page = (Page)context.getBean("Page");
-    	user_list = base.query("User", page.getPage(), 5);
+    	user_list = base.query("User", null, page.getPage(), 5);
     	for(User user:user_list){
     		System.out.println(user.getName());
     	}
@@ -74,7 +73,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化 用户添加页面
     public String add_user(){
-    	page = (Page)context.getBean("Page");
     	role_list = base.query("Role");
     	return "privilege_user_create.jsp";
     }
@@ -95,7 +93,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化 更新用户页面
     public String update_user(){
-    	page = (Page)context.getBean("Page");
     	role_list = base.query("Role");
     	return "privilege_user_update.jsp";
     }
@@ -103,6 +100,8 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //更新用户
     public String updateUser(){
+    	System.out.println("user_id:"+user.getId());
+    	user=(User)base.object("User", user.getId());
     	user.setPassword(util.eccrypt(user.getPassword()));
     	base.update(user);
     	return "privilege_user.jsp";
@@ -129,6 +128,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化 角色页面
     public String role_manage(){
+    	role_list = base.query("Role");
     	return "privilege_role.jsp";
     }
     

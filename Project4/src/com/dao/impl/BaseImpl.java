@@ -43,6 +43,7 @@ public class BaseImpl implements BaseDao {
         }
 	}
 
+	
 	@Override
 	public void update(Object object) {
         Session session = util.getSessionFactory().getCurrentSession();
@@ -56,6 +57,7 @@ public class BaseImpl implements BaseDao {
         }
 	}
 	
+	
 	@Override
 	public List query(String entityName) {
 		Session session = util.getSessionFactory().getCurrentSession();
@@ -64,6 +66,7 @@ public class BaseImpl implements BaseDao {
 		Query query = session.createQuery(hql);
 		return query.list();
 	}
+	
 	
 	@Override
 	public List query(String entityName, int page ,int  max_results) {
@@ -75,6 +78,7 @@ public class BaseImpl implements BaseDao {
 		query.setMaxResults(max_results);
 		return query.list();
 	}
+	
 	
 	@Override
 	public List query(String entityName, Map<String,Object> value){
@@ -89,21 +93,31 @@ public class BaseImpl implements BaseDao {
     	}
 		return query.list();
 	}
+	
+	
 	@Override
 	public List query(String entityName, Map<String,Object> value, int page, int max_results){
+		Query query = null;
+		String hql = null;
 		Session session = util.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		String hql = "from "+entityName+where(value);
-    	Iterator iterator = value.entrySet().iterator();
-        Query query = session.createQuery(hql);
-    	for(;iterator.hasNext();){
-    		Entry<String,Object> entry = (Entry)iterator.next();
-    		query.setParameter(entry.getKey(), entry.getValue());
-    	}
+		if(value!=null && value.size()>0){
+			hql = "from "+entityName+where(value);
+	    	Iterator iterator = value.entrySet().iterator();
+	        query = session.createQuery(hql);
+	    	for(;iterator.hasNext();){
+	    		Entry<String,Object> entry = (Entry)iterator.next();
+	    		query.setParameter(entry.getKey(), entry.getValue());
+	    	}
+		}else{
+			hql = "from "+entityName;
+			query = session.createQuery(hql);
+		}
     	query.setMaxResults(max_results);
     	query.setFirstResult(page);
 		return query.list();
 	}
+	
 	
 	@Override
 	public Object object(String entityName, long id) {
@@ -112,6 +126,7 @@ public class BaseImpl implements BaseDao {
 		return session.get(entityName,id);
 	}
 
+	
 	@Override
     public String where(Map valueName){
     	Iterator it = valueName.entrySet().iterator();
