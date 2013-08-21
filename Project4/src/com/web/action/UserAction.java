@@ -160,13 +160,28 @@ public class UserAction extends ActionSupport implements SessionAware{
     public String deleteRole(){
     	role = role_dao.role(role.getId());
     	base.delete(role);
-    	return "";
+    	return "privilege_role.jsp";
+    }
+    
+    
+    //初始化编辑角色页面
+    public String update_role(){
+    	role = role_dao.role(role.getId());
+    	return "privilege_role_update.jsp";
     }
     
     
     //编辑角色
     public String updateRole(){
-    	return "";
+    	Set<Manage> manage_set = new HashSet<Manage>();
+    	for(int i=0; i<Manages_name.length; i++){
+    		manage = new Manage();
+    		manage.setName(Manages_name[i]);
+    		manage_set.add(manage);
+    	}
+    	role.setManage(manage_set);
+    	base.update(role);
+    	return "privilege_role.jsp";
     }
     
    

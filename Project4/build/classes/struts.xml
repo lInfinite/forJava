@@ -18,6 +18,7 @@
             <result name="privilege_user_create.jsp">/WEB-INF/jsp/privilege/privilege_user_create.jsp</result>
             <result name="privilege_user_update.jsp">/WEB-INF/jsp/privilege/privilege_user_update.jsp</result>
             <result name="privilege_role_create.html">/WEB-INF/jsp/privilege/privilege_role_create.html</result>
+            <result name="privilege_role_update.jsp">/WEB-INF/jsp/privilege/privilege_role_update.jsp</result>
         </action>
     </package>    
        

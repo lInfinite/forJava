@@ -1,4 +1,7 @@
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,24 +10,27 @@
 </head>
 
 <body>
-角色管理>创建角色<br/>
-<form action="addRole" method="post">
+角色管理>编辑角色<br/>
+<form action="updateRole" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>
 <table>
     <tr>
+        <td style="background-color:#00F; color:#FFF">编号</td>
+        <td>
+            <s:property value="role.id"/>
+            <input name="role.id" type="hidden" value=' <s:property value="role.id"/>'/>
+        </td>
         <td style="background-color:#00F; color:#FFF">角色名</td>
-        <td><input name="role.name" type="text" /></td>
-        <td style="background-color:#00F; color:#FFF"></td>
-        <td></td>
+        <td><input name="role.name" type="text" value='<s:property value="role.name"/>' /></td>
     </tr>
     <tr>
         <td style="background-color:#00F; color:#FFF">
         指定权限
         </td>
         <td colspan="3">
-          <dl id="checkboxes">
+                    <dl id="checkboxes">
            <dt>营销管理
                <input onChange="handelCheckbox(['sell_chance_checkbox','sell_develop_checkbox'])" type="checkbox"/></dt>
                    <dd>销售机会管理<input id="sell_chance_checkbox" name="Manages_name" value="销售机会管理" type="checkbox"/></dd>

@@ -29,7 +29,6 @@ public class Manage {
 	private Set<Role> role;
 	
 	
-	
 	public Long getId() {
 		return id;
 	}
@@ -48,6 +47,10 @@ public class Manage {
 	public void setRole(Set<Role> role) {
 		this.role = role;
 	}
+	
+	
+	
+	
 
 	
 	
