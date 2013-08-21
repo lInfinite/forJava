@@ -31,14 +31,13 @@ import com.util.Util;
 public class UserAction extends ActionSupport implements SessionAware{
 	
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-	private HttpServletResponse response = ServletActionContext.getResponse();
-	private HttpServletRequest request = ServletActionContext.getRequest();
 	private Map<String, Object> session;
+	
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
 	private RoleDao role_dao = (RoleImpl)context.getBean("RoleImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
-	private Page page = (Page)context.getBean("Page");;
+	private Page page = (Page)context.getBean("Page");
 	
     private User user;
     private Role role;

@@ -2,25 +2,34 @@ package com.web.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.dao.BaseDao;
+import com.dao.impl.BaseImpl;
 import com.entity.*;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.SellDao;
+import com.service.dao.impl.SellImpl;
 import com.util.Page;
 
 public class SellAction extends ActionSupport{
 	
-	private SellDao sell_dao;
+	
+	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
+	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
 	private SellChance sell_chance;
-	private BaseDao base;
-	private Page page;
-	private List<SellChance> _init_sell_list;
+	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");;
+	private Page page = (Page)context.getBean("Page");
+	
+	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
 	
 	
-    public String index(){
-    	_init_sell_list = sell_dao.query(page.getPage());
+    public String chance_manage(){
+    	sell_list = sell_dao.query(page.getPage());
     	return "_init_sell_chance";
     }
 
@@ -59,18 +68,17 @@ public class SellAction extends ActionSupport{
 		this.sell_chance = sell_chance;
 	}
 
-
-
-
-
-	public List<SellChance> get_init_sell_list() {
-		return _init_sell_list;
-	}
-	public void set_init_sell_list(List<SellChance> _init_sell_list) {
-		this._init_sell_list = _init_sell_list;
-	}
-
 	
+	public List<SellChance> getSell_list() {
+		return sell_list;
+	}
+
+
+	public void setSell_list(List<SellChance> sell_list) {
+		this.sell_list = sell_list;
+	}
+
+
 	public List<ClintLevel> getClient_level_list() {
 		return client_level_list;
 	}

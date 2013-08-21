@@ -76,10 +76,10 @@
        <property name="util" ref="Util"></property>
    </bean>
 <!-- action -->
-   <bean id="SellAction" class="com.web.action.SellAction">
+<!--    <bean id="SellAction" class="com.web.action.SellAction">
        <property name="base" ref="BaseImpl"/>
        <property name="sell_dao" ref="SellImpl"/>
-   </bean>
+   </bean> -->
    
 <!--   <bean id="UserAction" class="com.web.action.UserAction">
        <property name="base" ref="BaseImpl"/>
