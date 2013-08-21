@@ -8,8 +8,14 @@
   <!--   <constant name="struts.devMode" value="true" /> -->
     <constant name="struts.objectFactory" value="spring"/>
 
-
-    <package name="user" namespace="/" extends="struts-default">
+    <package name="sell" namespace="/sell" extends="struts-default">
+        <action name="*" class="com.web.action.SellAction" method="{1}">
+            <result name="login.html">/login.html</result>
+        </action>
+    </package>  
+    
+    
+    <package name="user" namespace="/user" extends="struts-default">
         <action name="*" class="com.web.action.UserAction" method="{1}">
             <result name="login.html">/login.html</result>
             <result name="index">/WEB-INF/jsp/index.jsp</result>

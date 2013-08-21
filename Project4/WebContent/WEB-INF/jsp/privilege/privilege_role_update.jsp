@@ -11,7 +11,7 @@
 
 <body>
 角色管理>编辑角色<br/>
-<form action="updateRole" method="post">
+<form action="user/updateRole" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>
@@ -20,7 +20,7 @@
         <td style="background-color:#00F; color:#FFF">编号</td>
         <td>
             <s:property value="role.id"/>
-            <input name="role.id" type="hidden" value=' <s:property value="role.id"/>'/>
+            <input name="role.id" type="hidden" value='<s:property value="role.id"/>'/>
         </td>
         <td style="background-color:#00F; color:#FFF">角色名</td>
         <td><input name="role.name" type="text" value='<s:property value="role.name"/>' /></td>

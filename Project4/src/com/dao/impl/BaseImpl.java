@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,8 +39,8 @@ public class BaseImpl implements BaseDao {
 	         session.delete(object);
 	         t.commit();
         }catch(HibernateException he){
-       	 t.rollback();
-       	 he.printStackTrace();
+	       	 t.rollback();
+	       	 he.printStackTrace();
         }
 	}
 
@@ -52,8 +53,8 @@ public class BaseImpl implements BaseDao {
 	         session.update(object);
 	         t.commit();
         }catch(HibernateException he){
-       	 t.rollback();
-       	 he.printStackTrace();
+	       	 t.rollback();
+	       	 he.printStackTrace();
         }
 	}
 	
@@ -122,8 +123,11 @@ public class BaseImpl implements BaseDao {
 	@Override
 	public Object object(Class entityName, long id) {
         Session session = util.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-		return session.get(entityName,id);
+        Transaction t = session.beginTransaction();
+        Object obj = session.get(entityName,id);
+        Hibernate.initialize(obj);
+        t.commit();
+		return obj;
 	}
 
 	

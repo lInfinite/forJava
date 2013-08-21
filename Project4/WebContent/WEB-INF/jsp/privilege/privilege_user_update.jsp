@@ -10,14 +10,17 @@
 
 <body>
 用户管理>添加用户<br/>
-<form action="updateUser" method="post">
+<form action="user/updateUser" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>
 <table>
     <tr>
         <td>编号</td>
-        <td><s:property value="user.id"/></td>
+        <td>
+            <s:property value="user.id"/>
+            <input name="user.id" type="hidden" value='<s:property value="user.id"/>'/>
+        </td>
         <td>用户名</td>
         <td><input name="user.name" type="text" value='<s:property value="user.name"/>'/></td>
     </tr>  

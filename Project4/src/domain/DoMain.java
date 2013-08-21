@@ -28,6 +28,8 @@ public class DoMain {
 			SellChance sell_chance = new SellChance();
 			Role role = new Role();
 			User user = new User();
+			user.setName("admin");
+			user.setPassword(util.eccrypt("admin"));
 			Region region = new Region();
 			ClintLevel clint_level = new ClintLevel();
 			Manage manage = new Manage();

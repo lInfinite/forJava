@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Hibernate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -85,7 +86,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     	}else{
     		user.setPassword(util.eccrypt(user.getPassword()));
     		base.add(user);
-    		return "privilege_user.jsp";
+    		return user_manage();
     	}
     } 
     
@@ -102,15 +103,14 @@ public class UserAction extends ActionSupport implements SessionAware{
     public String updateUser(){
     	user.setPassword(util.eccrypt(user.getPassword()));
     	base.update(user);
-    	return "privilege_user.jsp";
+    	return user_manage();
     }
     
     
-    //删除角色
+    //删除用户
     public String deleteUser(){
-    	user = user_dao.user(user.getId());
     	base.delete(user);
-    	return "privilege_user.jsp";
+    	return user_manage();
     }
     
     
@@ -145,22 +145,28 @@ public class UserAction extends ActionSupport implements SessionAware{
     //添加角色
     public String addRole(){
     	Set<Manage> manage_set = new HashSet<Manage>();
-    	for(int i=0; i<Manages_name.length; i++){
-    		manage = new Manage();
-    		manage.setName(Manages_name[i]);
-    		manage_set.add(manage);
+    	if(Manages_name!=null){
+	    	for(int i=0; i<Manages_name.length; i++){
+	    		manage = new Manage();
+	    		manage.setName(Manages_name[i]);
+	    		manage_set.add(manage);
+	    	}
+	    	role.setManage(manage_set);
     	}
-    	role.setManage(manage_set);
     	base.add(role);
-    	return "privilege_role.jsp";
+    	return role_manage();
     }
     
     
     //删除角色
     public String deleteRole(){
     	role = role_dao.role(role.getId());
+    	
+    	for(User u:role.getUser()){
+    		base.delete(u);
+    	}
     	base.delete(role);
-    	return "privilege_role.jsp";
+    	return role_manage();
     }
     
     
@@ -174,14 +180,16 @@ public class UserAction extends ActionSupport implements SessionAware{
     //编辑角色
     public String updateRole(){
     	Set<Manage> manage_set = new HashSet<Manage>();
-    	for(int i=0; i<Manages_name.length; i++){
-    		manage = new Manage();
-    		manage.setName(Manages_name[i]);
-    		manage_set.add(manage);
+    	if(Manages_name!=null){
+	    	for(int i=0; i<Manages_name.length; i++){
+	    		manage = new Manage();
+	    		manage.setName(Manages_name[i]);
+	    		manage_set.add(manage);
+	    	}
+	    	role.setManage(manage_set);
     	}
-    	role.setManage(manage_set);
     	base.update(role);
-    	return "privilege_role.jsp";
+    	return role_manage();
     }
     
    
@@ -210,6 +218,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	public User getUser() {
 		return user;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -223,6 +232,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.user_list = user_list;
 	}
 
+	
 	public List<Role> getRole_list() {
 		return role_list;
 	}
@@ -231,6 +241,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.role_list = role_list;
 	}
 
+	
 	public Manage getManage() {
 		return manage;
 	}
@@ -240,7 +251,6 @@ public class UserAction extends ActionSupport implements SessionAware{
 	}
 
 	
-
 	public String[] getManages_name() {
 		return Manages_name;
 	}
@@ -249,6 +259,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 		Manages_name = manages_name;
 	}
 
+	
 	@Override
     public void setSession(Map<String, Object> session) {
     	this.session = session;
