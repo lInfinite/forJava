@@ -81,7 +81,20 @@ public class BaseAction  extends ActionSupport{
      * 服务类型
      * **/
     
+    //初始化服务类型
     
+    
+    //初始化编辑服务类型
+    
+    
+    //条件查询服务类型
+    
+    
+    //添加服务类型
+    
+    //编辑服务类型
+    
+    //删除服务类型
     
     
     
