@@ -14,8 +14,10 @@ public class ClintLevel {
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_clintlevel_seq")     
 	@SequenceGenerator(name="p4_clintlevel_seq", sequenceName="project4_clintlevel_sequence", allocationSize=1)
     private Long id;
+	
 	@Column(name="value")
 	private String value;
+	
 	@OneToMany(mappedBy="clinet_level")
 	private Set<SellChance> sell_chance;
 	

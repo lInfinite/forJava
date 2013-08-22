@@ -58,33 +58,23 @@
 <!-- service -->
    <bean id="SellImpl" class="com.service.dao.impl.SellImpl">
        <property name="base" ref="BaseImpl"/>
-       <property name="util" ref="Util"></property>
    </bean>   
    
    <bean id="UserImpl" class="com.service.dao.impl.UserImpl">
        <property name="base" ref="BaseImpl"/>
-       <property name="util" ref="Util"></property>
    </bean>
 
    <bean id="RoleImpl" class="com.service.dao.impl.RoleImpl">
        <property name="base" ref="BaseImpl"/>
-       <property name="util" ref="Util"></property>
    </bean>   
    
    <bean id="CreateClinetImpl" class="com.service.dao.impl.CreateClinetImpl">
        <property name="base" ref="BaseImpl"/>
-       <property name="util" ref="Util"></property>
    </bean>
-<!-- action -->
-<!--    <bean id="SellAction" class="com.web.action.SellAction">
-       <property name="base" ref="BaseImpl"/>
-       <property name="sell_dao" ref="SellImpl"/>
-   </bean> -->
    
-<!--   <bean id="UserAction" class="com.web.action.UserAction">
-       <property name="base" ref="BaseImpl"/>
-       <property name="user_dao" ref="UserImpl"/>
-       <property name="page" ref="Page"/>
-   </bean> -->
+   <bean id="BasesImpl" class="com.service.dao.impl.BasesImpl">
+       <property name="base" ref="BaseImpl"></property>
+   </bean>
+
 
 </beans>

@@ -16,36 +16,50 @@ public class SellChance {
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_sellchance_seq")     
 	@SequenceGenerator(name="p4_sellchance_seq", sequenceName="project4_sellchance_sequence", allocationSize=1)
     private Long id;
+	
 	@Column(name="clinet_name")
     private String clinet_name;
+	
 	@ManyToOne
 	@JoinColumn(name="clinet_level")
     private ClintLevel clinet_level;
+	
 	@ManyToOne
 	@JoinColumn(name="region")
     private Region region;
+	
 	@Column(name="chance_from")
     private String chance_from;
+	
 	@Column(name="odds")
     private String odds;
+	
 	@Column(name="charge")
     private String charge;
+	
 	@Column(name="phone")
     private String phone;
+	
 	@Column(name="summary")
     private String summary;
+	
 	@Column(name="chance_describe")
     private String chance_describe;
+	
 	@OneToOne
 	@JoinColumn(name="clinet_manage")
     private User clinet_manage;
+	
 	@Column(name="appoint_time")
     private String appoint_time;
+	
 	@Column(name="state")
     private String state;
+	
 	@OneToOne
 	@JoinColumn(name="create_man")
     private User create_man;
+	
     @OneToMany(mappedBy="sell_chance")
     private Set<CreateClinet> create_clinet;
     

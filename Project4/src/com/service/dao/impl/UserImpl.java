@@ -13,7 +13,6 @@ import com.util.Util;
 public class UserImpl implements UserDao {
    
 	private BaseDao base;
-    private Util util;
    
     
     @Override
@@ -48,13 +47,6 @@ public class UserImpl implements UserDao {
 		this.base = base;
 	}
 
-	public Util getUtil() {
-		return util;
-	}
-
-	public void setUtil(Util util) {
-		this.util = util;
-	}
 
 	
 

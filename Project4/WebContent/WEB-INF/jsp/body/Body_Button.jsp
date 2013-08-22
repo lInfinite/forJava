@@ -23,14 +23,14 @@
                <dd id="statistik_client_service"><a href="#" target="body_main">客户服务分析</a></dd>
                <dd id="statistik_client_runaway"><a href="#" target="body_main">客户流失分析</a></dd>
            <dt><a onclick="showButton(['base_client_level','base_service_type','base_client_region','base_query_product','base_query_storage'])">基础管理</a></dt>
-               <dd id="base_client_level"><a href="#" target="body_main">客户等级管理</a></dd>
+               <dd id="base_client_level"><a href="<%=request.getContextPath() %>/base/clintlevel" target="body_main">客户等级管理</a></dd>
                <dd id="base_service_type"><a href="#" target="body_main">服务类型管理</a></dd>
                <dd id="base_client_region"><a href="#" target="body_main">客户地区管理</a></dd>
                <dd id="base_product_query"><a href="#" target="body_main">查询产品信息</a></dd>
                <dd id="base_storage_query"><a href="#" target="body_main">查询仓库</a></dd>
            <dt><a onclick="showButton(['privilege_user','privilege_role'])">权限管理</a></dt>
-               <dd id="privilege_user"><a href="user_manage" target="body_main">用户管理</a></dd>
-               <dd id="privilege_role"><a href="role_manage" target="body_main">角色管理</a></dd>
+               <dd id="privilege_user"><a href="<%=request.getContextPath() %>/user/user_manage" target="body_main">用户管理</a></dd>
+               <dd id="privilege_role"><a href="<%=request.getContextPath() %>/user/role_manage" target="body_main">角色管理</a></dd>
        </dl>
        </dd>
 </dl>

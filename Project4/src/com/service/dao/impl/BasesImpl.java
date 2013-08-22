@@ -1,33 +1,27 @@
 package com.service.dao.impl;
 
-
 import java.util.List;
 import java.util.Map;
 
+import com.entity.ClintLevel;
+import com.service.dao.BasesDao;
 import com.dao.BaseDao;
-import com.entity.Role;
-import com.service.dao.RoleDao;
-import com.util.Util;
 
-public class RoleImpl implements RoleDao {
+public class BasesImpl implements BasesDao {
     
-	
-	
 	private BaseDao base;
-    
-
+	
+	
 	@Override
-	public Role role(long id) {
-		return (Role)base.object(Role.class, id);
+	public ClintLevel clint_level(Long id) {
+		return (ClintLevel)base.object(ClintLevel.class, id);
 	}
 
-	
-	
-	
-	
+
 	public BaseDao getBase() {
 		return base;
 	}
+
 
 	public void setBase(BaseDao base) {
 		this.base = base;

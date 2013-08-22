@@ -26,18 +26,22 @@ public class SellAction extends ActionSupport{
 	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
+	private List<User> user_list;
 	
 	
-    public String chance_manage(){
-    	sell_list = sell_dao.query(page.getPage());
-    	return "_init_sell_chance";
+    public String sell_manage(){
+    	sell_list = base.query("Sell");
+    	return "sell_chance.jsp";
     }
 
     
-    public String create(){
-    	
-    	return "_init_create_sell_chance";
+    public String create_sell(){
+    	client_level_list = base.query("ClintLevel");
+    	region_list = base.query("Region");
+    	user_list = base.query("User");
+    	return "sell_chance_add.jsp";
     }
+    
     
     
     

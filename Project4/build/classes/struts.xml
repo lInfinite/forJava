@@ -10,10 +10,18 @@
 
     <package name="sell" namespace="/sell" extends="struts-default">
         <action name="*" class="com.web.action.SellAction" method="{1}">
-            <result name="login.html">/login.html</result>
+            <result name="sell_chance.jsp">/WEB-INF/jsp/sell/sell_chance.jsp</result>
+            <result name="sell_chance_add.jsp">/WEB-INF/jsp/sell/sell_chance_add.jsp</result>
         </action>
     </package>  
-    
+   
+    <package name="bases" namespace="/base" extends="struts-default">
+        <action name="*" class="com.web.action.BaseAction" method="{1}">
+            <result name="base_client_level.jsp">/WEB-INF/jsp/base/base_client_level.jsp</result>
+            <result name="base_client_level_create.html">/WEB-INF/jsp/base/base_client_level_create.html</result>
+            <result name="base_client_level_update.jsp">/WEB-INF/jsp/base/base_client_level_update.jsp</result>
+        </action>
+    </package>  
     
     <package name="user" namespace="/user" extends="struts-default">
         <action name="*" class="com.web.action.UserAction" method="{1}">
