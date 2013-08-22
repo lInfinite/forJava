@@ -81,23 +81,47 @@ public class BaseAction  extends ActionSupport{
      * 服务类型
      * **/
     
-    //初始化服务类型
+    //初始化服务类型 
+    public String base_service(){
+    	base.query("", page.getPage(), 5);
+    	return "base_service.jsp";
+    }
+    
+    //初始化添加服务类型
+    public String create_service(){
+    	return "base_service_create.html";
+    }
     
     
     //初始化编辑服务类型
+    public String update_service(){
+    	return "base_service_update.jsp";
+    }
     
     
     //条件查询服务类型
+    public String queryService(){
+    	base.query("", util.getValue(null), page.getPage(), 5);
+    	return "base_service.jsp";
+    }
     
     
     //添加服务类型
+    public String createService(){
+    	return base_service();
+    }
+    
     
     //编辑服务类型
+    
+    
     
     //删除服务类型
     
     
-    
+    /**
+     *地区
+     * **/
     
     
     

@@ -20,6 +20,10 @@
             <result name="base_client_level.jsp">/WEB-INF/jsp/base/base_client_level.jsp</result>
             <result name="base_client_level_create.html">/WEB-INF/jsp/base/base_client_level_create.html</result>
             <result name="base_client_level_update.jsp">/WEB-INF/jsp/base/base_client_level_update.jsp</result>
+
+            <result name="base_service.jsp">/WEB-INF/jsp/base/base_service.jsp</result>
+            <result name="base_service_create.html">/WEB-INF/jsp/base/base_service_create.html</result>
+            <result name="base_service_update.jsp">/WEB-INF/jsp/base/base_service_update.jsp</result>
         </action>
     </package>  
     
