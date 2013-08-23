@@ -12,12 +12,16 @@ public class CreateClinet {
 	@GeneratedValue(strategy=SEQUENCE, generator="p4_createclinet_seq")     
 	@SequenceGenerator(name="p4_createclinet_seq", sequenceName="project4_createclinet_sequence", allocationSize=1)
     private Long id;
+	
 	@Column(name="time")
     private String time;
+	
 	@Column(name="project")
     private String project;
+	
 	@Column(name="effect")
     private String effect;
+	
 	@ManyToOne
 	@JoinColumn(name="sell_chance_id")
     private SellChance sell_chance;

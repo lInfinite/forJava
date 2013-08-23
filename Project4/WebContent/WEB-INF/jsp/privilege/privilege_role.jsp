@@ -33,7 +33,7 @@
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="name"/></td>
-        <td><a href='user/update_role?role.id=<s:property value="id"/>'>[编辑]</a>&nbsp;<a href='user/deleteRole?role.id=<s:property value="id"/>'>[删除]</a></td>
+        <td><a href='update_role?role.id=<s:property value="id"/>'>[编辑]</a>&nbsp;<a href='deleteRole?role.id=<s:property value="id"/>'>[删除]</a></td>
     </tr>
    </s:iterator>
 </table>

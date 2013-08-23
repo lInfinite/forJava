@@ -17,24 +17,32 @@
    
     <package name="bases" namespace="/base" extends="struts-default">
         <action name="*" class="com.web.action.BaseAction" method="{1}">
+            <!-- 客户等级  -->
             <result name="base_client_level.jsp">/WEB-INF/jsp/base/base_client_level.jsp</result>
             <result name="base_client_level_create.html">/WEB-INF/jsp/base/base_client_level_create.html</result>
             <result name="base_client_level_update.jsp">/WEB-INF/jsp/base/base_client_level_update.jsp</result>
-
-            <result name="base_service.jsp">/WEB-INF/jsp/base/base_service.jsp</result>
-            <result name="base_service_create.html">/WEB-INF/jsp/base/base_service_create.html</result>
-            <result name="base_service_update.jsp">/WEB-INF/jsp/base/base_service_update.jsp</result>
+            <!-- 服务类型  -->
+            <result name="base_service_type.jsp">/WEB-INF/jsp/base/base_service_type.jsp</result>
+            <result name="base_service_type_create.html">/WEB-INF/jsp/base/base_service_type_create.html</result>
+            <result name="base_service_type_update.jsp">/WEB-INF/jsp/base/base_service_type_update.jsp</result>
+            <!-- 地区 -->
+            <result name="base_client_region.jsp">/WEB-INF/jsp/base/base_client_region.jsp</result>
+            <result name="base_client_region_create.html">/WEB-INF/jsp/base/base_client_region_create.html</result>
+            <result name="base_client_region_update.jsp">/WEB-INF/jsp/base/base_client_region_update.jsp</result>
         </action>
     </package>  
     
     <package name="user" namespace="/user" extends="struts-default">
         <action name="*" class="com.web.action.UserAction" method="{1}">
+            <!-- 登陆 -->
             <result name="login.html">/login.html</result>
             <result name="index">/WEB-INF/jsp/index.jsp</result>
+            <!-- 用户 -->
             <result name="privilege_user.jsp">/WEB-INF/jsp/privilege/privilege_user.jsp</result>
-            <result name="privilege_role.jsp">/WEB-INF/jsp/privilege/privilege_role.jsp</result>
             <result name="privilege_user_create.jsp">/WEB-INF/jsp/privilege/privilege_user_create.jsp</result>
             <result name="privilege_user_update.jsp">/WEB-INF/jsp/privilege/privilege_user_update.jsp</result>
+            <!-- 角色 -->
+            <result name="privilege_role.jsp">/WEB-INF/jsp/privilege/privilege_role.jsp</result>
             <result name="privilege_role_create.html">/WEB-INF/jsp/privilege/privilege_role_create.html</result>
             <result name="privilege_role_update.jsp">/WEB-INF/jsp/privilege/privilege_role_update.jsp</result>
         </action>

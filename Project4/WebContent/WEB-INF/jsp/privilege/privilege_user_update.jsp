@@ -10,7 +10,7 @@
 
 <body>
 用户管理>添加用户<br/>
-<form action="user/updateUser" method="post">
+<form action="updateUser" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>

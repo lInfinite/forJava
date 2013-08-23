@@ -45,6 +45,9 @@
              
              <value>com.entity.ClintLevel</value>
              <value>com.entity.Region</value>
+             <value>com.entity.ServiceType</value>
+             <value>com.entity.Product</value>
+             <value>com.entity.Stock</value>
            </list>
        </property>
    </bean> 

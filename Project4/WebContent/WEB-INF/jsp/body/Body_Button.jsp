@@ -24,8 +24,8 @@
                <dd id="statistik_client_runaway"><a href="#" target="body_main">客户流失分析</a></dd>
            <dt><a onclick="showButton(['base_client_level','base_service_type','base_client_region','base_query_product','base_query_storage'])">基础管理</a></dt>
                <dd id="base_client_level"><a href="<%=request.getContextPath() %>/base/clintlevel" target="body_main">客户等级管理</a></dd>
-               <dd id="base_service_type"><a href="#" target="body_main">服务类型管理</a></dd>
-               <dd id="base_client_region"><a href="#" target="body_main">客户地区管理</a></dd>
+               <dd id="base_service_type"><a href="<%=request.getContextPath() %>/base/service_type" target="body_main">服务类型管理</a></dd>
+               <dd id="base_client_region"><a href="<%=request.getContextPath() %>/base/region" target="body_main">客户地区管理</a></dd>
                <dd id="base_product_query"><a href="#" target="body_main">查询产品信息</a></dd>
                <dd id="base_storage_query"><a href="#" target="body_main">查询仓库</a></dd>
            <dt><a onclick="showButton(['privilege_user','privilege_role'])">权限管理</a></dt>

@@ -11,7 +11,7 @@
 
 <body>
 角色管理>编辑角色<br/>
-<form action="user/updateRole" method="post">
+<form action="updateRole" method="post">
 <input type="button" value="关于"/>
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>

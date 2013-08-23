@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.entity.ClintLevel;
+import com.entity.Region;
+import com.entity.ServiceType;
 import com.service.dao.BasesDao;
 import com.dao.BaseDao;
 
@@ -17,6 +19,20 @@ public class BasesImpl implements BasesDao {
 		return (ClintLevel)base.object(ClintLevel.class, id);
 	}
 
+
+	@Override
+	public ServiceType service_type(Long id) {
+		return (ServiceType)base.object(ServiceType.class, id);
+	}
+
+
+	@Override
+	public Region region(Long id) {
+		return (Region)base.object(Region.class, id);
+	}
+
+	
+	
 
 	public BaseDao getBase() {
 		return base;
