@@ -38,7 +38,11 @@ public class BaseAction  extends ActionSupport{
 	 * **/
 	//初始客户等级
 	public String clintlevel(){
-		clint_level_list = base.query("ClintLevel", page.getPage(), 5);
+		if(clint_level==null){
+		    clint_level_list = base.query("ClintLevel", null, page.getPage(), 5);
+		}else{
+	    	clint_level_list = base.query("ClintLevel", util.getValue(clint_level), page.getPage(), 5);
+		}
 		return "base_client_level.jsp";
 	}
 	
@@ -55,12 +59,6 @@ public class BaseAction  extends ActionSupport{
 		return "base_client_level_update.jsp";
 	}
     
-    
-	//条件查询
-    public String queryClintLevel(){
-    	clint_level_list = base.query("ClintLevel", util.getValue(clint_level), page.getPage(), 5);
-    	return "base_client_level.jsp";
-    }
 
     
     //创建客户等级
@@ -90,7 +88,11 @@ public class BaseAction  extends ActionSupport{
     
     //初始化服务类型 
     public String service_type(){
-    	service_type_list = base.query("ServiceType", page.getPage(), 5);
+    	if(service_type==null){
+    	    service_type_list = base.query("ServiceType", null, page.getPage(), 5);
+    	}else{
+        	service_type_list = base.query("ServiceType", util.getValue(service_type), page.getPage(), 5);
+    	}
     	return "base_service_type.jsp";
     }
     
@@ -105,13 +107,6 @@ public class BaseAction  extends ActionSupport{
     public String update_service_type(){
     	service_type = bases_dao.service_type(service_type.getId());
     	return "base_service_type_update.jsp";
-    }
-    
-    
-    //条件查询服务类型
-    public String queryServiceType(){
-    	service_type_list = base.query("ServiceType", util.getValue(service_type), page.getPage(), 5);
-    	return "base_service_type.jsp";
     }
     
     
@@ -142,7 +137,11 @@ public class BaseAction  extends ActionSupport{
     
     //初始化地区
     public String region(){
-    	region_list = base.query("Region", page.getPage(), 5);
+    	if(region==null){
+    	    region_list = base.query("Region", null, page.getPage(), 5);
+    	}else{
+        	region_list = base.query("Region", util.getValue(region), page.getPage(), 5);
+    	}
     	return "base_client_region.jsp";
     }
     
@@ -157,13 +156,6 @@ public class BaseAction  extends ActionSupport{
     public String update_region(){
     	region = bases_dao.region(region.getId());
     	return "base_client_region_update.jsp";
-    }
-    
-    
-    //条件查询
-    public String queryRegion(){
-    	region_list = base.query("Region", util.getValue(region), page.getPage(), 5);
-    	return "base_client_region.jsp";
     }
     
     

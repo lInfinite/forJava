@@ -70,18 +70,6 @@ public class BaseImpl implements BaseDao {
 	
 	
 	@Override
-	public List query(String entityName, int page ,int  max_results) {
-		Session session = util.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		String hql = "from "+entityName;
-		Query query = session.createQuery(hql);
-		query.setFirstResult(page);
-		query.setMaxResults(max_results);
-		return query.list();
-	}
-	
-	
-	@Override
 	public List query(String entityName, Map<String,Object> value){
 		Session session = util.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

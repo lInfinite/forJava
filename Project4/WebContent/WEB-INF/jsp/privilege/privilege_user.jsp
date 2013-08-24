@@ -9,7 +9,7 @@
 
 <body>
 用户管理<br/>
-<form action="user/queryUsers" method="post">
+<form action="user_manage" method="post">
 <input type="button" value="关于"/>
 <a href="add_user"><input type="button" value="新建"/></a>
 <input type="submit" value="查询"/>

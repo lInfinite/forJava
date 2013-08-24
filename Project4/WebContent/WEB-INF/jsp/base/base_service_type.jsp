@@ -10,7 +10,7 @@
 
 <body>
 服务类型管理<br/>
-<form action="queryServiceType" method="post">
+<form action="service_type" method="post">
     <input type="button" value="关于"/>
     <a href="create_service_type"><input type="button" value="新建"/></a>
     <input type="submit" value="查询"/>

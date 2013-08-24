@@ -65,7 +65,11 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化用户管理页面
     public String user_manage(){
-    	user_list = base.query("User", null, page.getPage(), 5);
+    	if(user==null){
+    	    user_list = base.query("User", null, page.getPage(), 5);
+    	}else{
+        	user_list = base.query("User", util.getValue(user), page.getPage(), 5);
+    	}
     	return "privilege_user.jsp";
     }
     
@@ -112,16 +116,6 @@ public class UserAction extends ActionSupport implements SessionAware{
     	return user_manage();
     }
     
-    
-    //条件查询
-    public String queryUsers(){
-    	user_list = base.query("User",
-			    			   util.getValue(user), 
-			    			   page.getPage(),
-			    			   5);
-    	return "privilege_user.jsp";
-    }
-    
    
     /**
      * 角色
@@ -130,7 +124,11 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     //初始化 角色页面
     public String role_manage(){
-    	role_list = base.query("Role", page.getPage(), 5);
+    	if(role==null){
+    	role_list = base.query("Role", null, page.getPage(), 5);
+    	}else{
+    		role_list = base.query("Role", util.getValue(role), page.getPage(), 5);
+    	}
     	return "privilege_role.jsp";
     }
     
@@ -191,15 +189,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     	return role_manage();
     }
     
-   
-    //条件查询
-    public String queryRole(){
-    	role_list = base.query("Role",
-			    			   util.getValue(role), 
-			    			   page.getPage(),
-			    			   5);
-    	return "privilege_role.jsp";
-    }
+
     
     
     

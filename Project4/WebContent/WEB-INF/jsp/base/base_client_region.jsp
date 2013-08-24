@@ -10,7 +10,7 @@
 
 <body>
 地区管理<br/>
-<form action="queryRegion" method="post">
+<form action="region" method="post">
     <input type="button" value="关于"/>
     <a href="create_region"><input type="button" value="新建"/></a>
     <input type="submit" value="查询"/>

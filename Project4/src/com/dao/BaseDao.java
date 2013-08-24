@@ -8,7 +8,6 @@ public interface BaseDao {
 	public void delete(Object object);
 	public void update(Object object);
 	public List query(String entityName);
-	public List query(String entityName,int page, int max_results);
 	public List query(String entityName, Map<String,Object> value);
 	public List query(String entityName, Map<String,Object> value, int page, int max_results);
     public String where(Map valueName);

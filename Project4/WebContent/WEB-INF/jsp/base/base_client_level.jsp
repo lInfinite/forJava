@@ -10,7 +10,7 @@
 
 <body>
 客户等级管理<br/>
-<form action="queryClintLevel" method="post">
+<form action="clintlevel" method="post">
     <input type="button" value="关于"/>
     <a href="base/create_clintlevel"><input type="button" value="新建"/></a>
     <input type="submit" value="查询"/>
