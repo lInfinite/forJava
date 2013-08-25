@@ -34,14 +34,16 @@
         <td>件数</td>
         <td>备注</td>
     </tr>
+    <s:iterator value="" id="">
     <tr>
-        <td>序号</td>
-        <td>产品</td>
-        <td>仓库</td>
-        <td>货位</td>
-        <td>件数</td>
-        <td>备注</td>
+        <td><s:property value="id"/></td>
+        <td>产品<s:property value=""/></td>
+        <td>仓库<s:property value=""/></td>
+        <td>货位<s:property value=""/></td>
+        <td>件数<s:property value=""/></td>
+        <td>备注<s:property value=""/></td>
     </tr>
+    </s:iterator>
 </table>
 </body>
 </html>

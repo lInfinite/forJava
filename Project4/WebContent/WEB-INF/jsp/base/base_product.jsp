@@ -10,9 +10,9 @@
 
 <body>
 产品查询<br/>
-<form action="" method="post">
+<form action="product" method="post">
 <input type="button" value="关于"/>
-<a><input type="button" value="新建"/></a>
+<a href="product_create"><input type="button" value="新建"/></a>
 <input type="submit" value="查询"/>
 <table>
     <tr>
@@ -36,16 +36,20 @@
         <td>备注</td>
         <td>操作</td>
     </tr>
+    <s:iterator value="product_list" id="product_list">
     <tr>
-        <td>编号</td>
-        <td>名称</td>
-        <td>型号</td>
-        <td>等级/批次</td>
-        <td>单位</td>
-        <td>单价(元)</td>
-        <td>备注</td>
-        <td><a>[编辑]</a><a>［删除］</a></td>
+        <td><s:property value="id"/></td>
+        <td><s:property value="name"/></td>
+        <td><s:property value="modle"/></td>
+        <td><s:property value="level"/></td>
+        <td><s:property value="unit"/></td>
+        <td><s:property value="money"/></td>
+        <td><s:property value="remark"/></td>
+        <td><a href='product_update?product.id=<s:property value="product.id"/>'>[编辑]</a>
+            <a href='deleteProduct?product.id=<s:property value="product.id"/>'>[删除]</a>
+        </td>
     </tr>
+    </s:iterator>
 </table>
 <!--body——page.html-->
 </body>

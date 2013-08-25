@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,17 +26,17 @@
         <td class="title_td">产品</td>
         <td>
             <select name="">
-                <option value=""></option>
+                <option value=''></option>
             </select>
         </td>
         <td class="title_td">仓库</td>
-        <td><input name="" type="text" value=""/></td>
+        <td><input name="" type="text" value=''/></td>
     </tr>
     <tr>
         <td class="title_td">货位</td>
-        <td><input name="" type="text" value=""/></td>
+        <td><input name="" type="text" value=''/></td>
         <td class="title_td">件数</td>
-        <td><input name="" type="text" value=""/></td>
+        <td><input name="" type="text" value=''/></td>
     </tr>  
     <tr>
         <td class="title_td">备注</td>

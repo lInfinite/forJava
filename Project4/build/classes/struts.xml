@@ -29,6 +29,10 @@
             <result name="base_client_region.jsp">/WEB-INF/jsp/base/base_client_region.jsp</result>
             <result name="base_client_region_create.html">/WEB-INF/jsp/base/base_client_region_create.html</result>
             <result name="base_client_region_update.jsp">/WEB-INF/jsp/base/base_client_region_update.jsp</result>
+            <!-- 商品 -->
+            <result name="base_product.jsp">/WEB-INF/jsp/base/base_product.jsp</result>
+            <result name="base_service_type_create.html">/WEB-INF/jsp/base/base_service_type_create.html</result>
+            <result name="base_service_type_update.jsp">/WEB-INF/jsp/base/base_service_type_update.jsp</result>
         </action>
     </package>  
     

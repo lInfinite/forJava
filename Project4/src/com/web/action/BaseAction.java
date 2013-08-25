@@ -9,6 +9,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.dao.BaseDao;
 import com.dao.impl.BaseImpl;
 import com.entity.ClintLevel;
+import com.entity.Product;
 import com.entity.Region;
 import com.entity.ServiceType;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,10 +29,14 @@ public class BaseAction  extends ActionSupport{
 	private ClintLevel clint_level;
 	private ServiceType service_type;
 	private Region region;
-	
+    private Product product;
+    
 	private List<ClintLevel> clint_level_list;
 	private List<ServiceType> service_type_list;
 	private List<Region> region_list;
+	private List<Product> product_list;
+	
+	
 	
 	/**
 	 * 客户等级
@@ -180,6 +185,73 @@ public class BaseAction  extends ActionSupport{
     }
     
     
+    /**
+     * 商品
+     * **/
+    
+    //商品
+    public String product(){
+    	if(product==null){
+    	    product_list = base.query("Product", null, page.getPage(), 5);
+    	}else{
+    		product_list = base.query("Product", util.getValue(product), page.getPage(), 5);
+    	}
+    	return "base_product.jsp";
+    }
+    
+    
+    //初始化添加
+    public String product_create(){
+    	return "base_service_type_create.html";
+    }
+    
+    
+    //初始化更新
+    public String product_update(){
+    	product = bases_dao.product(product.getId());
+    	return "base_service_type_update.jsp";
+    }
+    
+    
+    //添加
+    public String createProduct(){
+    	base.add(product);
+    	return product();
+    }
+    
+    
+    //更新
+    public String updateProduct(){
+    	base.update(product);
+    	return product();
+    }
+    
+    
+    //删除
+    public String deleteProduct(){
+    	base.delete(product);
+    	return product();
+    }
+    
+    
+    /**
+     * 库存
+     * **/
+
+    
+    //商品
+    
+    //初始化添加
+    
+    //初始化更新
+    
+    //添加
+    
+    //更新
+    
+    //删除
+
+    
     
     
     
@@ -250,7 +322,29 @@ public class BaseAction  extends ActionSupport{
 	public void setRegion_list(List<Region> region_list) {
 		this.region_list = region_list;
 	}
-	
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+	public List<Product> getProduct_list() {
+		return product_list;
+	}
+
+
+	public void setProduct_list(List<Product> product_list) {
+		this.product_list = product_list;
+	}
+
 	
 	
 }
+	
+	

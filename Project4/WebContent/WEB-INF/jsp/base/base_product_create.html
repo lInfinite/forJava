@@ -9,33 +9,33 @@
 </style>
 <body>
 产品添加
-<form action="" method="post">
+<form action="createProduct" method="post">
     <input type="button" value="返回"/>
     <input type="submit" value="保存"/>
 <table style="width:100%">
     <tr>
         <td class="title_td">名称</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="product.name" type="text"/></td>
         <td class="title_td">型号</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="product.model" type="text"/></td>
     </tr>
     <tr>
         <td class="title_td">单位</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="product.unit" type="text"/></td>
         <td class="title_td">单价</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="product.money" type="text"/></td>
     </tr>
     
     <tr>
         <td class="title_td">等级/批次</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="product.level" type="text"/></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
         <td class="title_td">备注</td>
         <td colspan="3">
-        <textarea style="width:100%; height:200px;"></textarea>
+        <textarea name="product.remark" style="width:100%; height:200px;"></textarea>
         </td>
     </tr>
 </table>
