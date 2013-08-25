@@ -17,11 +17,11 @@
 <table>
     <tr>
         <td>名称</td>
-        <td><input type="text" /></td>
+        <td><input name="product.name" type="text" /></td>
         <td>型号</td>
-        <td><input type="text"/></td>
+        <td><input name="product.model" type="text"/></td>
         <td>等级/批次</td>
-        <td><input type="text"/></td>
+        <td><input name="product.level" type="text"/></td>
     </tr>
 </table>
 </form>

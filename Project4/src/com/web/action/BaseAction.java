@@ -12,6 +12,7 @@ import com.entity.ClintLevel;
 import com.entity.Product;
 import com.entity.Region;
 import com.entity.ServiceType;
+import com.entity.Stock;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.BasesDao;
 import com.service.dao.impl.BasesImpl;
@@ -30,11 +31,13 @@ public class BaseAction  extends ActionSupport{
 	private ServiceType service_type;
 	private Region region;
     private Product product;
+    private Stock stock;
     
 	private List<ClintLevel> clint_level_list;
 	private List<ServiceType> service_type_list;
 	private List<Region> region_list;
 	private List<Product> product_list;
+	private List<Stock> stock_list;
 	
 	
 	
@@ -240,17 +243,50 @@ public class BaseAction  extends ActionSupport{
 
     
     //商品
+    public String stock(){
+    	if(stock==null){
+    	    stock_list = base.query("Stock", null, page.getPage(), 5);
+    	}else{
+    		stock_list = base.query("Stock",util.getValue(stock), page.getPage(), 5);
+    	}
+    	return "base_stock.jsp";
+    }
+    
     
     //初始化添加
+    public String create_stock(){
+    	product_list = base.query("Stock");
+    	return "base_stock_create.jsp";
+    }
+    
     
     //初始化更新
+    public String update_stock(){
+    	stock = bases_dao.stock(stock.getId());
+    	product_list = base.query("Stock");
+    	return "base_stock_update.jsp";
+    }
+    
     
     //添加
+    public String createStock(){
+    	base.add(stock);
+    	return stock();
+    }
+    
     
     //更新
+    public String updateStock(){
+    	base.update(stock);
+    	return stock();
+    }
+    
     
     //删除
-
+    public String deleteStock(){
+    	base.delete(stock);
+    	return stock();
+    }
     
     
     
@@ -343,8 +379,28 @@ public class BaseAction  extends ActionSupport{
 		this.product_list = product_list;
 	}
 
+
+	public Stock getStock() {
+		return stock;
+	}
+
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+
+	public List<Stock> getStock_list() {
+		return stock_list;
+	}
+
+
+	public void setStock_list(List<Stock> stock_list) {
+		this.stock_list = stock_list;
+	}
+
 	
-	
+    	
 }
 	
 	

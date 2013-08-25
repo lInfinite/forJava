@@ -12,30 +12,32 @@
 </style>
 <body>
 库存添加
-<form action="" method="post">
+<form action="createStock" method="post">
 <input type="button" value="返回"/>
 <input type="submit" value="保存"/>
 <table style="width:100%;">
     <tr>
         <td class="title_td">产品</td>
         <td>
-            <select name="">
-                <option value=''></option>
+            <select name="stock.product">
+              <s:iterator value="product_list" id="product_list">
+                  <option value='<s:property value="id"/>'><s:property value="name"/></option>
+              </s:iterator>
             </select>
         </td>
         <td class="title_td">仓库</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="stock.repositories" type="text"/></td>
     </tr>
     <tr>
         <td class="title_td">货位</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="stock.cargo_space" type="text"/></td>
         <td class="title_td">件数</td>
-        <td><input name="" type="text"/></td>
+        <td><input name="stock.number" type="text"/></td>
     </tr>  
     <tr>
         <td class="title_td">备注</td>
         <td colspan="3">
-        <textarea style="width:100%; height:200px;"></textarea>
+        <textarea name="stock.remark" style="width:100%; height:200px;"></textarea>
         </td>
     </tr>
 </table>
