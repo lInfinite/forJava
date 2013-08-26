@@ -21,7 +21,7 @@ public class Stock {
     private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="product")
+	@JoinColumn(name="product_id")
 	private Product product;
 	
 	@Column(name="repositories")

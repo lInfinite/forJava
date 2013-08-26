@@ -27,7 +27,7 @@
                <dd id="base_service_type"><a href="<%=request.getContextPath() %>/base/service_type" target="body_main">服务类型管理</a></dd>
                <dd id="base_client_region"><a href="<%=request.getContextPath() %>/base/region" target="body_main">客户地区管理</a></dd>
                <dd id="base_product"><a href="<%=request.getContextPath() %>/base/product" target="body_main">查询产品信息</a></dd>
-               <dd id="base_stock"><a href="<%=request.getContextPath() %>/base/" target="body_main">查询仓库</a></dd>
+               <dd id="base_stock"><a href="<%=request.getContextPath() %>/base/stock" target="body_main">查询仓库</a></dd>
            <dt><a onclick="showButton(['privilege_user','privilege_role'])">权限管理</a></dt>
                <dd id="privilege_user"><a href="<%=request.getContextPath() %>/user/user_manage" target="body_main">用户管理</a></dd>
                <dd id="privilege_role"><a href="<%=request.getContextPath() %>/user/role_manage" target="body_main">角色管理</a></dd>

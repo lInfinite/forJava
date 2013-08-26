@@ -6,8 +6,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dao.impl.BaseImpl;
+import com.entity.Product;
 import com.entity.Role;
 import com.entity.SellChance;
+import com.entity.Stock;
 import com.entity.User;
 import com.service.dao.SellDao;
 import com.service.dao.impl.SellImpl;
@@ -15,7 +17,7 @@ import com.util.Page;
 import com.util.Util;
 
 public class Test {
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		Page page = new Page();
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		BaseImpl base = (BaseImpl)context.getBean("BaseImpl");
@@ -35,5 +37,17 @@ public class Test {
 		
 		User u = (User)base.object(User.class, 1);
 		System.out.println("u.name" + u.getName());
+	}
+	public static void main(String[] args) {
+		Product p = new Product();
+		Stock s = new Stock();
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		BaseImpl base = (BaseImpl)context.getBean("BaseImpl");
+		
+		base.add(p);
+		base.add(s);
+		
+		
 	}
 }

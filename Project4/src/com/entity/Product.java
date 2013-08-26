@@ -37,6 +37,7 @@ public class Product {
 	@Column(name="remark")
 	private String remark;
 
+	
 	public Long getId() {
 		return id;
 	}
