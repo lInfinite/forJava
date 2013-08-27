@@ -18,7 +18,7 @@
 <table style="width:100%">
     <tr>
         <td class="title_td">编号</td>
-        <td><s:property value="product.id"/></td>
+        <td><s:property value="product.id"/><input name="product.id" type="hidden" value='<s:property value="product.id"/>'/></td>
         <td class="title_td">名称</td>
         <td><input name="product.name" type="text" value='<s:property value="product.name"/>'/></td>
     </tr>

@@ -18,14 +18,14 @@
 <table style="width:100%;">
     <tr>
         <td class="title_td">编号</td>
-        <td><s:property value="stock.id"/></td>
+        <td><s:property value="stock.id"/><input name="stock.id" type="hidden" value='<s:property value="stock.id"/>'/></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
         <td class="title_td">产品</td>
         <td>
-            <select name="stock.product">
+            <select name="stock.product.id">
               <s:iterator value="product_list" id="product_list">
                   <option value='<s:property value="id"/>'><s:property value="name"/></option>
               </s:iterator>

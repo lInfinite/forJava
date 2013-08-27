@@ -19,7 +19,7 @@
     <tr>
         <td class="title_td">产品</td>
         <td>
-            <select name="stock.product">
+            <select name="stock.product.id">
               <s:iterator value="product_list" id="product_list">
                   <option value='<s:property value="id"/>'><s:property value="name"/></option>
               </s:iterator>

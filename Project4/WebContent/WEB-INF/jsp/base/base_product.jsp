@@ -12,7 +12,7 @@
 产品查询<br/>
 <form action="product" method="post">
 <input type="button" value="关于"/>
-<a href="product_create"><input type="button" value="新建"/></a>
+<a href="create_product"><input type="button" value="新建"/></a>
 <input type="submit" value="查询"/>
 <table>
     <tr>
@@ -40,13 +40,13 @@
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="name"/></td>
-        <td><s:property value="modle"/></td>
+        <td><s:property value="model"/></td>
         <td><s:property value="level"/></td>
         <td><s:property value="unit"/></td>
         <td><s:property value="money"/></td>
         <td><s:property value="remark"/></td>
-        <td><a href='product_update?product.id=<s:property value="product.id"/>'>[编辑]</a>
-            <a href='deleteProduct?product.id=<s:property value="product.id"/>'>[删除]</a>
+        <td><a href='product_update?product.id=<s:property value="id"/>'>[编辑]</a>
+            <a href='deleteProduct?product.id=<s:property value="id"/>'>[删除]</a>
         </td>
     </tr>
     </s:iterator>

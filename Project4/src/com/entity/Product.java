@@ -25,14 +25,14 @@ public class Product {
 	@Column(name="model")
 	private String model;
 
-	@Column(name="level")
+	@Column(name="level_s")
 	private String level;
 	
 	@Column(name="unit")
 	private String unit;
 	
 	@Column(name="money")
-	private float money;
+	private Float money;
 	
 	@Column(name="remark")
 	private String remark;
@@ -78,11 +78,11 @@ public class Product {
 		this.unit = unit;
 	}
 
-	public float getMoney() {
+	public Float getMoney() {
 		return money;
 	}
 
-	public void setMoney(float money) {
+	public void setMoney(Float money) {
 		this.money = money;
 	}
 

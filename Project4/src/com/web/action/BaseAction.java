@@ -33,13 +33,16 @@ public class BaseAction  extends ActionSupport{
     private Product product;
     private Stock stock;
     
-	private List<ClintLevel> clint_level_list;
-	private List<ServiceType> service_type_list;
-	private List<Region> region_list;
-	private List<Product> product_list;
-	private List<Stock> stock_list;
+	private List<ClintLevel> clint_level_list=null;
+	private List<ServiceType> service_type_list=null;
+	private List<Region> region_list=null;
+	private List<Product> product_list=null;
+	private List<Stock> stock_list=null;
 	
-	
+	/**
+	 * 商品的货物条件查询erorr
+	 * 库存编辑未测试 条件查询未测试
+	 * **/
 	
 	/**
 	 * 客户等级
@@ -72,6 +75,7 @@ public class BaseAction  extends ActionSupport{
     //创建客户等级
     public String createClintLevel(){
     	base.add(clint_level);
+    	clint_level = null;
     	return clintlevel();
     }
     
@@ -79,6 +83,7 @@ public class BaseAction  extends ActionSupport{
     //编辑客户等级
     public String updateClintLevel(){
     	base.update(clint_level);
+    	clint_level = null;
     	return clintlevel();
     }
     
@@ -86,6 +91,7 @@ public class BaseAction  extends ActionSupport{
     //删除客户等级
     public String deleteClintLevel(){
     	base.delete(clint_level);
+    	clint_level = null;
     	return clintlevel();
     }
     
@@ -121,6 +127,7 @@ public class BaseAction  extends ActionSupport{
     //添加服务类型
     public String createServiceType(){
     	base.add(service_type);
+    	service_type = null;
     	return service_type();
     }
     
@@ -128,6 +135,7 @@ public class BaseAction  extends ActionSupport{
     //编辑服务类型
     public String updateServiceType(){
     	base.update(service_type);
+    	service_type = null;
     	return service_type();
     }
     
@@ -135,6 +143,7 @@ public class BaseAction  extends ActionSupport{
     //删除服务类型
     public String deleteServiceType(){
     	base.delete(service_type);
+    	service_type = null;
     	return service_type();
     }
     
@@ -170,6 +179,7 @@ public class BaseAction  extends ActionSupport{
     //添加地区
     public String createRegion(){
     	base.add(region);
+    	region = null;
     	return region();
     }
     
@@ -177,6 +187,7 @@ public class BaseAction  extends ActionSupport{
     //编辑地区
     public String updateRegion(){
     	base.update(region);
+    	region = null;
     	return region();
     }
     
@@ -184,6 +195,7 @@ public class BaseAction  extends ActionSupport{
     //删除地区
     public String deleteRegion(){
     	base.delete(region);
+    	region = null;
     	return region();
     }
     
@@ -204,21 +216,22 @@ public class BaseAction  extends ActionSupport{
     
     
     //初始化添加
-    public String product_create(){
-    	return "base_service_type_create.html";
+    public String create_product(){
+    	return "base_product_create.html";
     }
     
     
     //初始化更新
     public String product_update(){
     	product = bases_dao.product(product.getId());
-    	return "base_service_type_update.jsp";
+    	return "base_product_update.jsp";
     }
     
     
     //添加
     public String createProduct(){
     	base.add(product);
+    	product = null;
     	return product();
     }
     
@@ -226,6 +239,7 @@ public class BaseAction  extends ActionSupport{
     //更新
     public String updateProduct(){
     	base.update(product);
+    	product = null;
     	return product();
     }
     
@@ -233,6 +247,7 @@ public class BaseAction  extends ActionSupport{
     //删除
     public String deleteProduct(){
     	base.delete(product);
+    	product = null;
     	return product();
     }
     
@@ -255,7 +270,7 @@ public class BaseAction  extends ActionSupport{
     
     //初始化添加
     public String create_stock(){
-    	product_list = base.query("Stock");
+    	product_list = base.query("Product");
     	return "base_stock_create.jsp";
     }
     
@@ -263,7 +278,7 @@ public class BaseAction  extends ActionSupport{
     //初始化更新
     public String update_stock(){
     	stock = bases_dao.stock(stock.getId());
-    	product_list = base.query("Stock");
+    	product_list = base.query("Product");
     	return "base_stock_update.jsp";
     }
     
@@ -271,6 +286,7 @@ public class BaseAction  extends ActionSupport{
     //添加
     public String createStock(){
     	base.add(stock);
+    	stock=null;
     	return stock();
     }
     
@@ -278,6 +294,7 @@ public class BaseAction  extends ActionSupport{
     //更新
     public String updateStock(){
     	base.update(stock);
+    	stock=null;
     	return stock();
     }
     
@@ -285,6 +302,7 @@ public class BaseAction  extends ActionSupport{
     //删除
     public String deleteStock(){
     	base.delete(stock);
+    	stock=null;
     	return stock();
     }
     

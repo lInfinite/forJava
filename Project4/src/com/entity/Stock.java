@@ -21,7 +21,7 @@ public class Stock {
     private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="product_id")
+	@JoinColumn(name="product")
 	private Product product;
 	
 	@Column(name="repositories")
@@ -30,7 +30,7 @@ public class Stock {
 	@Column(name="cargo_space")
 	private String cargo_space;
 	
-	@Column(name="number")
+	@Column(name="number_s")
 	private int number;
 	
 	@Column(name="remark")

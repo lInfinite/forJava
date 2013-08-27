@@ -31,11 +31,11 @@
             <result name="base_client_region_update.jsp">/WEB-INF/jsp/base/base_client_region_update.jsp</result>
             <!-- 商品 -->
             <result name="base_product.jsp">/WEB-INF/jsp/base/base_product.jsp</result>
-            <result name="base_service_type_create.html">/WEB-INF/jsp/base/base_service_type_create.html</result>
-            <result name="base_service_type_update.jsp">/WEB-INF/jsp/base/base_service_type_update.jsp</result>
+            <result name="base_product_create.html">/WEB-INF/jsp/base/base_product_create.html</result>
+            <result name="base_product_update.jsp">/WEB-INF/jsp/base/base_product_update.jsp</result>
             <!-- 库存 -->
             <result name="base_stock.jsp">/WEB-INF/jsp/base/base_stock.jsp</result>
-            <result name="base_stock_create.jsp">/WEB-INF/jsp/base/base_stock_create.jspl</result>
+            <result name="base_stock_create.jsp">/WEB-INF/jsp/base/base_stock_create.jsp</result>
             <result name="base_stock_update.jsp">/WEB-INF/jsp/base/base_stock_update.jsp</result>
         </action>
     </package>  
@@ -43,7 +43,7 @@
     <package name="user" namespace="/user" extends="struts-default">
         <action name="*" class="com.web.action.UserAction" method="{1}">
             <!-- 登陆 -->
-            <result name="login.html">/login.html</result>
+            <result name="login.html" type="redirect">/</result>
             <result name="index">/WEB-INF/jsp/index.jsp</result>
             <!-- 用户 -->
             <result name="privilege_user.jsp">/WEB-INF/jsp/privilege/privilege_user.jsp</result>

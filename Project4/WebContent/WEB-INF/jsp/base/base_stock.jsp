@@ -12,7 +12,7 @@
 仓库查询<br/>
 <form action="stock" method="post">
 <input type="button" value="关于"/>
-<a><input type="button" value="新建"/></a>
+<a href="create_stock"><input type="button" value="新建"/></a>
 <input type="submit" value="查询"/>
 </form>
 <table>
@@ -38,13 +38,13 @@
     <s:iterator value="stock_list" id="stock_list">
     <tr>
         <td><s:property value="id"/></td>
-        <td>产品<s:property value="product.name"/></td>
-        <td>仓库<s:property value="repositories"/></td>
-        <td>货位<s:property value="cargo_space"/></td>
-        <td>件数<s:property value="number"/></td>
-        <td>备注<s:property value="remark"/></td>
-        <td><a href='update_stock?stock.id=<s:property value="stock.id"/>'>[编辑]</a>
-            <a href='deleteStock?stock.id=<s:property value="stock.id"/>'>[删除]</a>
+        <td><s:property value="product.name"/></td>
+        <td><s:property value="repositories"/></td>
+        <td><s:property value="cargo_space"/></td>
+        <td><s:property value="number"/></td>
+        <td><s:property value="remark"/></td>
+        <td><a href='update_stock?stock.id=<s:property value="id"/>'>[编辑]</a>
+            <a href='deleteStock?stock.id=<s:property value="id"/>'>[删除]</a>
             </td>
      </tr>
     </s:iterator>
