@@ -49,12 +49,16 @@ public class SellAction extends ActionSupport{
     public String create_sell(){
     	client_level_list = base.query("ClintLevel");
     	region_list = base.query("Region");
-    	
     	User user = new User();
     	Role role = new Role();
     	role.setName("客户经理");
+    	try{
+    	role = (Role)base.query("Role", util.getValue(role)).get(0);
     	user.setRole(role);
     	System.out.println(user.getRole().getName());
+    	}catch(IndexOutOfBoundsException e){
+    		e.printStackTrace();
+    	}
     	user_list = base.query("User", util.getValue(user));
     	return "sell_chance_add.jsp";
     }
