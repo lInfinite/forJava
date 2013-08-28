@@ -40,17 +40,12 @@ public class Test {
 		System.out.println("u.name" + u.getName());
 	}
 	public static void main(String[] args) {
-        Product p = new Product();
-        p.setName("纸箱战机");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		BaseImpl base = (BaseImpl)context.getBean("BaseImpl");
 		Util util = (Util)context.getBean("Util");
-		Map<String, Object> map = util.getValue(p);
-		List<Product> list = base.query("Product", map, 0, 5);
-		
-		for(Product p2 : list){
-			System.out.println(p2.getId());
-		}
+	
+		int size = base.size("ClintLevel");
+		System.out.println(size);
 		
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.crypto.Mac;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -103,7 +105,7 @@ public class BaseImpl implements BaseDao {
 			query = session.createQuery(hql);
 		}
     	query.setMaxResults(max_results);
-    	query.setFirstResult(page);
+    	query.setFirstResult(page*max_results);
 		return query.list();
 	}
 	
@@ -118,6 +120,16 @@ public class BaseImpl implements BaseDao {
 		return obj;
 	}
 
+	
+	@Override
+	public Integer size(String entity){
+		 Session session = util.getSessionFactory().getCurrentSession();
+		 Transaction t = session.beginTransaction();
+		 String hql = "select count(*) from " +entity;
+		 Query query = session.createQuery(hql);
+		 return Integer.parseInt(query.uniqueResult().toString()); 
+	}
+	
 	
 	@Override
     public String where(Map valueName){

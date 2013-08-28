@@ -17,12 +17,12 @@
 <table>
     <tr>
         <td>编号</td>
-        <td><input name="clint_level.id" type="text"/></td>
+        <td><input name="clint_level.id" type="text" value='<s:property value="clint_level.id"/>'/></td>
         <td>值</td>
-        <td><input name="clint_level.value" type="text"/></td>
+        <td><input name="clint_level.value" type="text" value='<s:property value="clint_level.value"/>'/></td>
     </tr>
 </table>
-</form>
+
 
 <table style="width:100%">
     <tr style="background-color:#00F; color:#FFF;">
@@ -39,6 +39,7 @@
     </tr>
     </s:iterator>
 </table>
-<!--body_page.html-->
+<jsp:include page="../body/Body_Page.jsp"/>
+</form>
 </body>
 </html>

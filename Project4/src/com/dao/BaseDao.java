@@ -12,4 +12,5 @@ public interface BaseDao {
 	public List query(String entityName, Map<String,Object> value, int page, int max_results);
     public String where(Map valueName);
     public Object object(Class entityName, long id);
+    public Integer size(String entity);
 }

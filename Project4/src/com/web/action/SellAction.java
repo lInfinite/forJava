@@ -29,7 +29,7 @@ public class SellAction extends ActionSupport{
 	private List<User> user_list;
 	
 	
-    public String sell_manage(){
+    public String sell_chance(){
     	sell_list = base.query("Sell");
     	return "sell_chance.jsp";
     }

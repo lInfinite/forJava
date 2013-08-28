@@ -20,11 +20,11 @@ import com.util.Page;
 import com.util.Util;
 
 public class BaseAction  extends ActionSupport{
-
+    
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
-	private Page page = (Page)context.getBean("Page");
+	private Page page = (Page)context.getBean("Page");;
 	private BasesDao bases_dao = (BasesImpl)context.getBean("BasesImpl");
 	
 	private ClintLevel clint_level;
@@ -39,10 +39,10 @@ public class BaseAction  extends ActionSupport{
 	private List<Product> product_list=null;
 	private List<Stock> stock_list=null;
 	
-	/**
-	 * 商品的货物条件查询erorr
-	 * 库存编辑未测试 条件查询未测试
-	 * **/
+	public BaseAction(){
+		page.setMax_results(5);
+	}
+
 	
 	/**
 	 * 客户等级
@@ -50,10 +50,11 @@ public class BaseAction  extends ActionSupport{
 	//初始客户等级
 	public String clintlevel(){
 		if(clint_level==null){
-		    clint_level_list = base.query("ClintLevel", null, page.getPage(), 5);
+		    clint_level_list = base.query("ClintLevel", null, page.getPage(), page.getMax_results());
 		}else{
-	    	clint_level_list = base.query("ClintLevel", util.getValue(clint_level), page.getPage(), 5);
+	    	clint_level_list = base.query("ClintLevel", util.getValue(clint_level), page.getPage(), page.getMax_results());
 		}
+		page.setList_size_and_End(base.size("ClintLevel"));
 		return "base_client_level.jsp";
 	}
 	
@@ -416,6 +417,10 @@ public class BaseAction  extends ActionSupport{
 	public void setStock_list(List<Stock> stock_list) {
 		this.stock_list = stock_list;
 	}
+
+
+
+
 
 	
     	
