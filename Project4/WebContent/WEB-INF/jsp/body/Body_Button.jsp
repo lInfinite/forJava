@@ -6,7 +6,7 @@
        <dd id="system_main">
            <dl>
            <dt><a onclick="showButton(['sell_chance','sell_develop'])">营销管理</a></dt>
-               <dd id="sell_chance"><a href="../sell/sell_chance.jsp" target="body_main">销售机会管理</a></dd>
+               <dd id="sell_chance"><a href="<%=request.getContextPath() %>/sell/sell_chance" target="body_main">销售机会管理</a></dd>
                <dd id="sell_develop"><a href="#" target="body_main">客户开发计划</a></dd>
            <dt><a onclick="showButton(['client_msg','client_runaway'])">客户管理</a></dt>
                <dd id="client_msg"><a href="#" target="body_main">客户信息管理</a></dd>

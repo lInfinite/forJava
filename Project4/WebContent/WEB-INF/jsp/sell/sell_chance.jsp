@@ -13,7 +13,7 @@
 销售机会管理<br/>
 <form action="" method="post">
     <input type="button" value="关于" />
-    <a href="sell/create_sell"><input type="button" value="新建" /></a>
+    <a href="create_sell"><input type="button" value="新建" /></a>
     <input type="submit" value="查询" />
 <table>
     <tr>
@@ -23,9 +23,8 @@
         <td><input type="text" name="summary" /></td>
     </tr>
 </table>
-</form>
 
-<table>
+<table style="width:100%;">
     <tr>
         <td style="background-color:#03F;">编号</td>
         <td style="background-color:#03F;">客户名称</td>
@@ -36,7 +35,6 @@
     </tr>
     <s:iterator value="sell_list" id="sell_list">
     <tr>
-    
         <td><s:property value="id"/></td>
         <td><s:property value="clinet_name"/></td>
         <td><s:property value="charge"/></td>
@@ -49,19 +47,8 @@
         </td>
     </tr>
     </s:iterator>
-    <tr>
-        <td></td>
-        <td>共?条记录</td>
-        <td>每页<input class="page" type="text" value="" /></td>
-        <td>第<input class="page" type="text" value="" />页/共?页</td>
-        <td>
-            <a href="">第一页</a>
-            <a href="">上一页</a>
-            <a href="">下一页</a>
-            <a href="">最后一页</a>
-        </td>
-        <td>转到第<input class="page" type="text" value=""/>页<input type="submit" value="GO"/></td>
-    </tr>
 </table>
+<jsp:include page="../body/Body_Page.jsp"/>
+</form>
 </body>
 </html>

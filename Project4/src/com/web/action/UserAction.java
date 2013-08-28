@@ -47,7 +47,9 @@ public class UserAction extends ActionSupport implements SessionAware{
     private List<Role> role_list = null;
     private String[] Manages_name;
     
-    
+	public UserAction(){
+		page.setMax_results(5);
+	}    
     
 
     //用户登陆
@@ -66,9 +68,11 @@ public class UserAction extends ActionSupport implements SessionAware{
     //初始化用户管理页面
     public String user_manage(){
     	if(user==null){
-    	    user_list = base.query("User", null, page.getPage(), 5);
+    	    user_list = base.query("User", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("User"));
     	}else{
-        	user_list = base.query("User", util.getValue(user), page.getPage(), 5);
+        	user_list = base.query("User", util.getValue(user), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("User", util.getValue(user)));
     	}
     	return "privilege_user.jsp";
     }
@@ -125,9 +129,11 @@ public class UserAction extends ActionSupport implements SessionAware{
     //初始化 角色页面
     public String role_manage(){
     	if(role==null){
-    	role_list = base.query("Role", null, page.getPage(), 5);
+	    	role_list = base.query("Role", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Role"));
     	}else{
-    		role_list = base.query("Role", util.getValue(role), page.getPage(), 5);
+    		role_list = base.query("Role", util.getValue(role), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Role", util.getValue(role)));
     	}
     	return "privilege_role.jsp";
     }
@@ -249,6 +255,16 @@ public class UserAction extends ActionSupport implements SessionAware{
 	}
 
 	
+	public Page getPage() {
+		return page;
+	}
+
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+
 	@Override
     public void setSession(Map<String, Object> session) {
     	this.session = session;

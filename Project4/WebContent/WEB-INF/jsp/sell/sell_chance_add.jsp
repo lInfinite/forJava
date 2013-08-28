@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +14,7 @@
     <input type="button" value="关于" />
     <input type="button" value="返回" />
     <input type="submit" value="保存" />
-<table>
+<table style="width:100%;">
     <tr>
         <td style="background-color:#09F;">客户名称</td>
         <td><input name="" type="text"/><font color="#FF0000">*必填项</font></td>
@@ -32,8 +33,8 @@
         <td style="background-color:#09F;">客户等级</td>
         <td>
             <select>
-            <s:iterator value="" id="">
-                <option value=""><s:property value=""/></option>
+            <s:iterator value="client_level_list" id="client_level_list">
+                <option value='<s:property value="id"/>'><s:property value="value"/></option>
             </s:iterator>
             </select>
             <font color="#FF0000">*必填项</font>
@@ -45,8 +46,8 @@
         <td style="background-color:#09F;">地区</td>
         <td>
             <select>
-            <s:iterator value="" id="">
-                <option value=""><s:property value=""/></option>
+            <s:iterator value="region_list" id="region_list">
+                <option value='<s:property value="id"/>'><s:property value="value"/></option>
             </s:iterator>
             </select>
             <font color="#FF0000">*</font>
@@ -55,7 +56,7 @@
     <tr>
         <td style="background-color:#09F;">机会描述</td>
         <td colspan="3">
-            <textarea></textarea>
+            <textarea style="width:100%; height:200px;"></textarea>
             <font color="#FF0000">*必填项</font>
         </td>
     </tr>

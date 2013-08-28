@@ -5,12 +5,12 @@ import java.util.List;
 public class Page {
 
 	
-	private int page;
-	private int next;
-	private int back;
-	private int end;
-	private int max_results;
-    private int list_size;
+	private int page=0;
+	private int next=0;
+	private int back=0;
+	private int end=0;
+	private int max_results=0;
+    private int list_size=0;
     
 	public int getPage() {
 		return page;
@@ -46,12 +46,12 @@ public class Page {
 		return end;
 	}
 
-	public void setList_size_and_End(int size){
-		this.list_size = size;
+	public void setList_size_and_End(List size){
+		this.list_size = size.size();
 		if(list_size % this.max_results == 0){
-		    this.end = list_size / this.max_results ;
+		    this.end = list_size / this.max_results -1;
 		}else if(list_size% this.max_results  > 0){
-			this.end = list_size / this.max_results  + 1;
+			this.end = list_size / this.max_results ;
 		}
 	}
 	

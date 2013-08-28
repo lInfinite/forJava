@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.SellDao;
 import com.service.dao.impl.SellImpl;
 import com.util.Page;
+import com.util.Util;
 
 public class SellAction extends ActionSupport{
 	
@@ -22,15 +23,25 @@ public class SellAction extends ActionSupport{
 	private SellChance sell_chance;
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");;
 	private Page page = (Page)context.getBean("Page");
+	private Util util = (Util)context.getBean("Util");
 	
 	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
 	private List<User> user_list;
 	
+	public SellAction(){
+		page.setMax_results(5);
+	}
 	
     public String sell_chance(){
-    	sell_list = base.query("Sell");
+    	if(sell_chance==null){
+    		sell_list = base.query("SellChance",null, page.getPage(), page.getMax_results());
+    		page.setList_size_and_End(base.query("SellChance"));
+    	}else{
+    		sell_list = base.query("SellChance", util.getValue(sell_chance), page.getPage(), page.getMax_results());
+    		page.setList_size_and_End(base.query("SellChance", util.getValue(sell_chance)));
+    	}
     	return "sell_chance.jsp";
     }
 
@@ -38,7 +49,13 @@ public class SellAction extends ActionSupport{
     public String create_sell(){
     	client_level_list = base.query("ClintLevel");
     	region_list = base.query("Region");
-    	user_list = base.query("User");
+    	
+    	User user = new User();
+    	Role role = new Role();
+    	role.setName("客户经理");
+    	user.setRole(role);
+    	System.out.println(user.getRole().getName());
+    	user_list = base.query("User", util.getValue(user));
     	return "sell_chance_add.jsp";
     }
     

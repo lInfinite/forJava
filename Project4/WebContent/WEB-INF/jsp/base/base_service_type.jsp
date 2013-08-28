@@ -22,7 +22,6 @@
         <td><input name="service_type.value" type="text"/></td>
     </tr>
 </table>
-</form>
 <table style="width:100%">
     <tr style="background-color:#00F; color:#FFF;">
        <td>编号</td>
@@ -40,6 +39,7 @@
     </tr>
     </s:iterator>
 </table>
-<!--body_page.html-->
+<jsp:include page="../body/Body_Page.jsp"/>
+</form>
 </body>
 </html>

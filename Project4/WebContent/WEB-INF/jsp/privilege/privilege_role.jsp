@@ -22,7 +22,6 @@
         <td><input name="role.name" type="text" /></td>
     </tr>
 </table>
-</form>
 <table style="width:100%;">
     <tr style="background-color:#00F; color:#FFF; width:100%;">
         <td>编号</td>
@@ -38,5 +37,6 @@
    </s:iterator>
 </table>
 <jsp:include page="../body/Body_Page.jsp"/>
+</form>
 </body>
 </html>

@@ -14,7 +14,6 @@
 <input type="button" value="关于"/>
 <a href="create_stock"><input type="button" value="新建"/></a>
 <input type="submit" value="查询"/>
-</form>
 <table>
     <tr>
         <td>产品</td>
@@ -49,5 +48,7 @@
      </tr>
     </s:iterator>
 </table>
+<jsp:include page="../body/Body_Page.jsp"/>
+</form>
 </body>
 </html>

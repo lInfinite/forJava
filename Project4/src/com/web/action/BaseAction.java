@@ -24,7 +24,7 @@ public class BaseAction  extends ActionSupport{
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
 	private Util util = (Util)context.getBean("Util");
-	private Page page = (Page)context.getBean("Page");;
+	private Page page = (Page)context.getBean("Page");
 	private BasesDao bases_dao = (BasesImpl)context.getBean("BasesImpl");
 	
 	private ClintLevel clint_level;
@@ -51,10 +51,11 @@ public class BaseAction  extends ActionSupport{
 	public String clintlevel(){
 		if(clint_level==null){
 		    clint_level_list = base.query("ClintLevel", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("ClintLevel"));
 		}else{
 	    	clint_level_list = base.query("ClintLevel", util.getValue(clint_level), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("ClintLevel", util.getValue(clint_level)));
 		}
-		page.setList_size_and_End(base.size("ClintLevel"));
 		return "base_client_level.jsp";
 	}
 	
@@ -104,9 +105,11 @@ public class BaseAction  extends ActionSupport{
     //初始化服务类型 
     public String service_type(){
     	if(service_type==null){
-    	    service_type_list = base.query("ServiceType", null, page.getPage(), 5);
+    	    service_type_list = base.query("ServiceType", null, page.getPage(), page.getMax_results());
+    	    page.setList_size_and_End(base.query("ServiceType"));
     	}else{
-        	service_type_list = base.query("ServiceType", util.getValue(service_type), page.getPage(), 5);
+        	service_type_list = base.query("ServiceType", util.getValue(service_type), page.getPage(), page.getMax_results());
+    	    page.setList_size_and_End(base.query("ServiceType", util.getValue(service_type)));
     	}
     	return "base_service_type.jsp";
     }
@@ -156,9 +159,11 @@ public class BaseAction  extends ActionSupport{
     //初始化地区
     public String region(){
     	if(region==null){
-    	    region_list = base.query("Region", null, page.getPage(), 5);
+    	    region_list = base.query("Region", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Region"));
     	}else{
-        	region_list = base.query("Region", util.getValue(region), page.getPage(), 5);
+        	region_list = base.query("Region", util.getValue(region), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Region", util.getValue(region)));
     	}
     	return "base_client_region.jsp";
     }
@@ -208,9 +213,11 @@ public class BaseAction  extends ActionSupport{
     //商品
     public String product(){
     	if(product==null){
-    	    product_list = base.query("Product", null, page.getPage(), 5);
+    	    product_list = base.query("Product", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Product"));
     	}else{
-    		product_list = base.query("Product", util.getValue(product), page.getPage(), 5);
+    		product_list = base.query("Product", util.getValue(product), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Product", util.getValue(product)));
     	}
     	return "base_product.jsp";
     }
@@ -258,12 +265,14 @@ public class BaseAction  extends ActionSupport{
      * **/
 
     
-    //商品
+    //库存
     public String stock(){
     	if(stock==null){
-    	    stock_list = base.query("Stock", null, page.getPage(), 5);
+    	    stock_list = base.query("Stock", null, page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Stock"));
     	}else{
-    		stock_list = base.query("Stock",util.getValue(stock), page.getPage(), 5);
+    		stock_list = base.query("Stock",util.getValue(stock), page.getPage(), page.getMax_results());
+			page.setList_size_and_End(base.query("Stock",util.getValue(stock)));
     	}
     	return "base_stock.jsp";
     }

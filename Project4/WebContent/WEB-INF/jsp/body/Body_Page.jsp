@@ -4,7 +4,7 @@
 <div>
         <span>共<s:property value="page.list_size"/>条记录</span>
         <span>每页<input readonly class="page" type="text" style="width:30px;" value='<s:property value="page.max_results"/>' />条</span>
-        <span>第<input readonly class="page" type="text" style="width:30px;" value='<s:property value="page.page+1"/>' />页/共<s:property value="page.end"/>页</span>
+        <span>第<input readonly class="page" type="text" style="width:30px;" value='<s:property value="page.page+1"/>' />页/共<s:property value="page.end+1"/>页</span>
         <span>
             <a id="top" onClick="page('top')">第一页</a>
             <a id="back" onClick="page('back')">上一页</a>
