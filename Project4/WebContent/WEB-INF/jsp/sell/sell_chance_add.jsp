@@ -10,7 +10,7 @@
 
 <body>
 销售机会管理>新建销售机会<br/>
-<form action="" method="post">
+<form action="createSell" method="post">
     <input type="button" value="关于" />
     <input type="button" value="返回" />
     <input type="submit" value="保存" />

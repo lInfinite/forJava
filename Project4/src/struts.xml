@@ -12,6 +12,7 @@
         <action name="*" class="com.web.action.SellAction" method="{1}">
             <result name="sell_chance.jsp">/WEB-INF/jsp/sell/sell_chance.jsp</result>
             <result name="sell_chance_add.jsp">/WEB-INF/jsp/sell/sell_chance_add.jsp</result>
+            <result name="sell_chance_appoint.jsp">/WEB-INF/jsp/sell/sell_chance_appoint.jsp</result>
         </action>
     </package>  
    

@@ -30,10 +30,14 @@ public class SellAction extends ActionSupport{
 	private List<Region> region_list;
 	private List<User> user_list;
 	
+	
+	
 	public SellAction(){
 		page.setMax_results(5);
 	}
 	
+	
+	//初始化销售机会管理
     public String sell_chance(){
     	if(sell_chance==null){
     		sell_list = base.query("SellChance",null, page.getPage(), page.getMax_results());
@@ -46,6 +50,7 @@ public class SellAction extends ActionSupport{
     }
 
     
+    //初始化创建销售机会
     public String create_sell(){
     	client_level_list = base.query("ClintLevel");
     	region_list = base.query("Region");
@@ -67,8 +72,18 @@ public class SellAction extends ActionSupport{
     }
     
     
+    //添加销售机会
+    public String createSell(){
+    	base.add(sell_chance);
+    	sell_chance=null;
+    	return sell_chance();
+    }
     
-    
+    //初始化指派
+    public String appoint(){
+        
+    	return "sell_chance_appoint.jsp";
+    }
     
     
     public Page getPage() {
@@ -122,6 +137,14 @@ public class SellAction extends ActionSupport{
 		this.region_list = region_list;
 	}
 
+
+	public List<User> getUser_list() {
+		return user_list;
+	}
+
+	public void setUser_list(List<User> user_list) {
+		this.user_list = user_list;
+	}
 
 	public BaseDao getBase() {
 		return base;
