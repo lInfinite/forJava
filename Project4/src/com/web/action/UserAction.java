@@ -93,6 +93,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     	}else{
     		user.setPassword(util.eccrypt(user.getPassword()));
     		base.add(user);
+        	user=null;
     		return user_manage();
     	}
     } 
@@ -110,6 +111,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     public String updateUser(){
     	user.setPassword(util.eccrypt(user.getPassword()));
     	base.update(user);
+    	user=null;
     	return user_manage();
     }
     
@@ -157,6 +159,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	    	role.setManage(manage_set);
     	}
     	base.add(role);
+    	role=null;
     	return role_manage();
     }
     
@@ -192,6 +195,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 	    	role.setManage(manage_set);
     	}
     	base.update(role);
+    	role=null;
     	return role_manage();
     }
     

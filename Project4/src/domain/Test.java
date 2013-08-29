@@ -44,8 +44,20 @@ public class Test {
 		BaseImpl base = (BaseImpl)context.getBean("BaseImpl");
 		Util util = (Util)context.getBean("Util");
 	
-		int size = base.size("ClintLevel");
-		System.out.println(size);
+		User user = new User();
+    	Role role = new Role();
+    	role.setName("客户经理");
+    	try{
+    	role = (Role)base.query("Role", util.getValue(role)).get(0);
+    	user.setRole(role);
+    	System.out.println(user.getRole().getName());
+    	}catch(IndexOutOfBoundsException e){
+    		e.printStackTrace();
+    	}
+    	List<User> user_list = base.query("User", util.getValue(user));
+    	for(User u : user_list){
+    		System.out.println(u.getName());
+    	}
 		
 	}
 }
