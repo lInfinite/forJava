@@ -30,7 +30,7 @@ public class SellAction extends ActionSupport{
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
 	private List<User> user_list;
-	
+	private Long clinet_manage_id;
 	
 	
 	public SellAction(){
@@ -72,25 +72,14 @@ public class SellAction extends ActionSupport{
     
     //添加销售机会
     public String createSell(){
-    	if(sell_chance.getClinet_manage().getId()==null || sell_chance.getClinet_manage().getId()<1){
+    	if(clinet_manage_id==null || clinet_manage_id<1){
     		sell_chance.setState("未分配");
     	}else{
     		sell_chance.setState("已指派");
+    		User manage = (User)base.object(User.class, clinet_manage_id);
+    		sell_chance.setClinet_manage(manage);
     	}
     	base.add(sell_chance);
-    	sell_chance=null;
-    	return sell_chance();
-    }
-    
-    
-    //编辑销售机会
-    public String updateSell(){
-    	if(sell_chance.getClinet_manage().getId()==null || sell_chance.getClinet_manage().getId()<1){
-    		sell_chance.setState("未分配");
-    	}else{
-    		sell_chance.setState("已指派");
-    	}
-    	base.update(sell_chance);
     	sell_chance=null;
     	return sell_chance();
     }
@@ -104,12 +93,20 @@ public class SellAction extends ActionSupport{
     }
     
     
-    
-    //初始化指派
-    public String appoint(){
-    	update_sell();
-    	return "sell_chance_appoint.jsp";
+    //编辑销售机会
+    public String updateSell(){
+    	if(clinet_manage_id==null || clinet_manage_id<1){
+    		sell_chance.setState("未分配");
+    	}else{
+    		sell_chance.setState("已指派");
+    		User manage = (User)base.object(User.class, clinet_manage_id);
+    		sell_chance.setClinet_manage(manage);
+    	}
+    	base.update(sell_chance);
+    	sell_chance=null;
+    	return sell_chance();
     }
+
     
     
     //删除销售机会
@@ -121,6 +118,12 @@ public class SellAction extends ActionSupport{
     	return sell_chance();
     }
     
+    
+    //初始化指派
+    public String appoint(){
+    	update_sell();
+    	return "sell_chance_appoint.jsp";
+    }
     
     /**
      * 客户开发管理
@@ -212,6 +215,16 @@ public class SellAction extends ActionSupport{
 	}
 	public void setBase(BaseDao base) {
 		this.base = base;
+	}
+
+
+	public Long getClinet_manage_id() {
+		return clinet_manage_id;
+	}
+
+
+	public void setClinet_manage_id(Long clinet_manage_id) {
+		this.clinet_manage_id = clinet_manage_id;
 	}
 	
 	

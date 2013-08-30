@@ -31,6 +31,7 @@
         <td style="background-color:#03F;">负责人</td>
         <td style="background-color:#03F;">公司电话</td>
         <td style="background-color:#03F;">概要</td>
+        <td style="background-color:#03F;">状态</td>
         <td style="background-color:#03F;">操作</td>
     </tr>
     <s:iterator value="sell_list" id="sell_list">
@@ -40,6 +41,7 @@
         <td><s:property value="charge"/></td>
         <td><s:property value="phone"/></td>
         <td><s:property value="summary"/></td>
+        <td><s:property value="state"/></td>
         <td>
             <a href='appoint?sell_chance.id=<s:property value="id"/>'>指派</a>&nbsp;
             <a href='update_sell?sell_chance.id=<s:property value="id"/>'>编辑</a>&nbsp;

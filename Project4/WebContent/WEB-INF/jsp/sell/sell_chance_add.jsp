@@ -63,12 +63,13 @@
     <tr>
         <td style="background-color:#09F;">指派给</td>
         <td>
-            <select name="sell_chance.clinet_manage.id">
-                <option value="0">--选择--</option>
-                <s:iterator value="user_list" var="user_list">
-                    <option value='<s:property value="id"/>'><s:property value="name"/></option>
-                </s:iterator>
-            </select>  <font color="#FF0000">*</font>
+        <select name="clinet_manage_id">
+                <option value="-1">--选择--</option>
+            <s:iterator value="user_list" var="user_list">
+                <option value='<s:property value="id"/>'><s:property value="name"/></option>
+            </s:iterator>
+        </select> 
+		 <font color="#FF0000">*</font>
         </td>
         <td style="background-color:#09F;">指派时间</td>
         <td><input name="sell_chance.appoint_time" type="text"/><font color="#FF0000">*</font></td>
