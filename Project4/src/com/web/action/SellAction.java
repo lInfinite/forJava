@@ -122,6 +122,28 @@ public class SellAction extends ActionSupport{
     }
     
     
+    /**
+     * 客户开发管理
+     * **/
+    
+    //初始化客户开发
+    public String client(){
+    	
+    	return "sell_client.jsp";
+    }
+    
+    //初始化添加
+    public String create_client(){
+    	
+    	return "";
+    }
+    
+    
+    //初始化编辑
+    public String update_client(){
+    	
+    	return "";
+    }
     
     
     

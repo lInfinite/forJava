@@ -15,6 +15,7 @@
             <result name="sell_chance_update.jsp">/WEB-INF/jsp/sell/sell_chance_update.jsp</result>
             <result name="sell_chance_appoint.jsp">/WEB-INF/jsp/sell/sell_chance_appoint.jsp</result>
             
+            <result name="sell_client.jsp">/WEB-INF/jsp/sell/sell_client.jsp</result>
         </action>
     </package>  
    
