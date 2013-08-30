@@ -36,7 +36,7 @@ public class Test {
 			System.out.println("user_name:"+user.getName());
 		}
 		
-		User u = (User)base.object(User.class, 1);
+		User u = (User)base.object(User.class,1);
 		System.out.println("u.name" + u.getName());
 	}
 	public static void main(String[] args) {

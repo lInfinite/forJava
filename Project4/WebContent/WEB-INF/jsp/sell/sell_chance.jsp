@@ -18,9 +18,9 @@
 <table>
     <tr>
         <td style="background-color:#09F;">客户名称</td>
-        <td><input type="text" name="user_name" /></td>
+        <td><input type="text" name="sell_chance.clinet_name" /></td>
         <td style="background-color:#09F;">概要</td>
-        <td><input type="text" name="summary" /></td>
+        <td><input type="text" name="sell_chance.summary" /></td>
     </tr>
 </table>
 
@@ -41,9 +41,9 @@
         <td><s:property value="phone"/></td>
         <td><s:property value="summary"/></td>
         <td>
-            <a href="">指派</a>&nbsp;
-            <a href="">编辑</a>&nbsp;
-            <a href="">删除</a>&nbsp;
+            <a href='appoint?sell_chance.id=<s:property value="id"/>'>指派</a>&nbsp;
+            <a href='update_sell?sell_chance.id=<s:property value="id"/>'>编辑</a>&nbsp;
+            <a href='deleteSell?sell_chance.id=<s:property value="id"/>'>删除</a>&nbsp;
         </td>
     </tr>
     </s:iterator>

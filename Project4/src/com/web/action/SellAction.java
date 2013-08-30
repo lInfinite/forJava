@@ -20,10 +20,11 @@ public class SellAction extends ActionSupport{
 	
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
-	private SellChance sell_chance;
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");;
 	private Page page = (Page)context.getBean("Page");
 	private Util util = (Util)context.getBean("Util");
+
+	private SellChance sell_chance;
 	
 	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
@@ -65,25 +66,63 @@ public class SellAction extends ActionSupport{
     		e.printStackTrace();
     	}
     	user_list = base.query("User", util.getValue(user));
-    	for(User u:user_list){
-    		System.out.println(u.getName());
-    	}
     	return "sell_chance_add.jsp";
     }
     
     
     //添加销售机会
     public String createSell(){
+    	if(sell_chance.getClinet_manage().getId()==null || sell_chance.getClinet_manage().getId()<1){
+    		sell_chance.setState("未分配");
+    	}else{
+    		sell_chance.setState("已指派");
+    	}
     	base.add(sell_chance);
     	sell_chance=null;
     	return sell_chance();
     }
     
+    
+    //编辑销售机会
+    public String updateSell(){
+    	if(sell_chance.getClinet_manage().getId()==null || sell_chance.getClinet_manage().getId()<1){
+    		sell_chance.setState("未分配");
+    	}else{
+    		sell_chance.setState("已指派");
+    	}
+    	base.update(sell_chance);
+    	sell_chance=null;
+    	return sell_chance();
+    }
+    
+    
+    //初始化编辑销售机会
+    public String update_sell(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	create_sell();
+    	return "sell_chance_update.jsp";
+    }
+    
+    
+    
     //初始化指派
     public String appoint(){
-        
+    	update_sell();
     	return "sell_chance_appoint.jsp";
     }
+    
+    
+    //删除销售机会
+    public String deleteSell(){
+    	SellChance sc = sell_dao.sellChance(sell_chance.getId());
+    	if(sc.getClinet_manage().getName().equals("未分配")){
+    		base.delete(sell_chance);
+    	}
+    	return sell_chance();
+    }
+    
+    
+    
     
     
     public Page getPage() {
