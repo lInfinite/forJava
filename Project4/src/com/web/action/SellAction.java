@@ -1,23 +1,30 @@
 package com.web.action;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.dao.BaseDao;
 import com.dao.impl.BaseImpl;
 import com.entity.*;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.SellDao;
 import com.service.dao.impl.SellImpl;
 import com.util.Page;
 import com.util.Util;
 
-public class SellAction extends ActionSupport{
+public class SellAction extends ActionSupport implements SessionAware{
 	
 	
+
+
 	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
 	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");;
@@ -32,6 +39,7 @@ public class SellAction extends ActionSupport{
 	private List<User> user_list;
 	private Long clinet_manage_id;
 	
+	private Map<String,Object> session;
 	
 	public SellAction(){
 		page.setMax_results(5);
@@ -72,6 +80,7 @@ public class SellAction extends ActionSupport{
     
     //添加销售机会
     public String createSell(){
+    	
     	if(clinet_manage_id==null || clinet_manage_id<1){
     		sell_chance.setState("未分配");
     	}else{
@@ -79,6 +88,9 @@ public class SellAction extends ActionSupport{
     		User manage = (User)base.object(User.class, clinet_manage_id);
     		sell_chance.setClinet_manage(manage);
     	}
+    	User user = (User)session.get("user");
+    	System.out.println(user);
+    	sell_chance.setCreate_man(user);
     	base.add(sell_chance);
     	sell_chance=null;
     	return sell_chance();
@@ -112,9 +124,11 @@ public class SellAction extends ActionSupport{
     //删除销售机会
     public String deleteSell(){
     	SellChance sc = sell_dao.sellChance(sell_chance.getId());
-    	if(sc.getClinet_manage().getName().equals("未分配")){
+    	
+    	if(sc.getState().equals("未分配")){
     		base.delete(sell_chance);
     	}
+    	sell_chance=null;
     	return sell_chance();
     }
     
@@ -226,6 +240,17 @@ public class SellAction extends ActionSupport{
 	public void setClinet_manage_id(Long clinet_manage_id) {
 		this.clinet_manage_id = clinet_manage_id;
 	}
+
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	
+	
+	
+
 	
 	
 }
