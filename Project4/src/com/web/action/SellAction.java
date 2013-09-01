@@ -20,27 +20,26 @@ import com.service.dao.impl.SellImpl;
 import com.util.Page;
 import com.util.Util;
 
-public class SellAction extends ActionSupport implements SessionAware{
-	
-	
+public class SellAction extends SuperAction implements SessionAware{
 
-
-	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
+	//service
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
-	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");;
-	private Page page = (Page)context.getBean("Page");
-	private Util util = (Util)context.getBean("Util");
-
+    //entity
 	private SellChance sell_chance;
-	
+	private CreateClinet create_clinet;
+	//list
 	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
 	private List<User> user_list;
+	private List<CreateClinet> clinet_list;
+	//
 	private Long clinet_manage_id;
-	
 	private Map<String,Object> session;
 	
+	
+	
+	//初始化action
 	public SellAction(){
 		page.setMax_results(5);
 	}
@@ -48,14 +47,9 @@ public class SellAction extends ActionSupport implements SessionAware{
 	
 	//初始化销售机会管理
     public String sell_chance(){
-    	if(sell_chance==null){
-    		sell_list = base.query("SellChance",null, page.getPage(), page.getMax_results());
-    		page.setList_size_and_End(base.query("SellChance"));
-    	}else{
-    		sell_list = base.query("SellChance", util.getValue(sell_chance), page.getPage(), page.getMax_results());
-    		page.setList_size_and_End(base.query("SellChance", util.getValue(sell_chance)));
-    	}
-    	return "sell_chance.jsp";
+    	String result = super.result(sell_chance, "SellChance", "sell_chance.jsp");
+    	sell_list = super.list;
+    	return result;
     }
 
     
@@ -118,7 +112,6 @@ public class SellAction extends ActionSupport implements SessionAware{
     	sell_chance=null;
     	return sell_chance();
     }
-
     
     
     //删除销售机会
@@ -139,15 +132,16 @@ public class SellAction extends ActionSupport implements SessionAware{
     	return "sell_chance_appoint.jsp";
     }
     
+    
     /**
      * 客户开发管理
      * **/
     
     //初始化客户开发
     public String client(){
-    	
-    	return "sell_client.jsp";
+    	return super.result(create_clinet, "CreateClinet", "sell_client.jsp");
     }
+    
     
     //初始化添加
     public String create_client(){
@@ -164,32 +158,45 @@ public class SellAction extends ActionSupport implements SessionAware{
     
     
     
-    public Page getPage() {
-		return page;
+    
+    //entity getter and setter
+	public SellChance getSell_chance() {
+		return sell_chance;
 	}
-
-
-	public void setPage(Page page) {
-		this.page = page;
+	
+	public void setSell_chance(SellChance sell_chance) {
+		this.sell_chance = sell_chance;
 	}
-
+	
 
 	public SellDao getSell_dao() {
 		return sell_dao;
 	}
+	
 	public void setSell_dao(SellDao sell_dao) {
 		this.sell_dao = sell_dao;
 	}
 
 
-	public SellChance getSell_chance() {
-		return sell_chance;
-	}
-	public void setSell_chance(SellChance sell_chance) {
-		this.sell_chance = sell_chance;
+	public CreateClinet getCreate_clinet() {
+		return create_clinet;
 	}
 
-	
+	public void setCreate_clinet(CreateClinet create_clinet) {
+		this.create_clinet = create_clinet;
+	}
+
+
+	public List<CreateClinet> getClinet_list() {
+		return clinet_list;
+	}
+
+	public void setClinet_list(List<CreateClinet> clinet_list) {
+		this.clinet_list = clinet_list;
+	}
+
+
+	//list getter and setter
 	public List<SellChance> getSell_list() {
 		return sell_list;
 	}
@@ -203,6 +210,7 @@ public class SellAction extends ActionSupport implements SessionAware{
 	public List<ClintLevel> getClient_level_list() {
 		return client_level_list;
 	}
+	
 	public void setClient_level_list(List<ClintLevel> client_level_list) {
 		this.client_level_list = client_level_list;
 	}
@@ -211,6 +219,7 @@ public class SellAction extends ActionSupport implements SessionAware{
 	public List<Region> getRegion_list() {
 		return region_list;
 	}
+	
 	public void setRegion_list(List<Region> region_list) {
 		this.region_list = region_list;
 	}
@@ -224,14 +233,9 @@ public class SellAction extends ActionSupport implements SessionAware{
 		this.user_list = user_list;
 	}
 
-	public BaseDao getBase() {
-		return base;
-	}
-	public void setBase(BaseDao base) {
-		this.base = base;
-	}
 
-
+	
+    //
 	public Long getClinet_manage_id() {
 		return clinet_manage_id;
 	}
@@ -249,7 +253,13 @@ public class SellAction extends ActionSupport implements SessionAware{
 
 	
 	
-	
+    public Page getPage() {
+		return super.page;
+	}
+
+	public void setPage(Page page) {
+		super.page = page;
+	}
 
 	
 	

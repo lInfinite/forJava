@@ -10,6 +10,7 @@
 
 <body>
 销售机会管理>指派销售机会<br/>
+<form action="updateSell" method="post">
 <input type="button" value="关于" />
 <input type="submit" value="返回" />
 <input type="submit" value="保存" />
@@ -62,5 +63,6 @@
         <td><input name="" type="text"/><font color="#FF0000">*</font></td>
     </tr>
 </table>
+</form>
 </body>
 </html>
