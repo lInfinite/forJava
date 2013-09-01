@@ -11,7 +11,7 @@
 
 <body>
 销售机会管理<br/>
-<form action="" method="post">
+<form action="sell_chance" method="post">
     <input type="button" value="关于" />
     <a href="create_sell"><input type="button" value="新建" /></a>
     <input type="submit" value="查询" />
