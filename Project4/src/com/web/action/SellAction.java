@@ -3,49 +3,38 @@ package com.web.action;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.dao.BaseDao;
-import com.dao.impl.BaseImpl;
 import com.entity.*;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.SellDao;
 import com.service.dao.impl.SellImpl;
 import com.util.Page;
-import com.util.Util;
 
-public class SellAction extends SuperAction implements SessionAware{
+public class SellAction extends SuperAction{
 
-	//service
+	/**service**/
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
-    //entity
+    /**entity**/
 	private SellChance sell_chance;
 	private CreateClinet create_clinet;
-	//list
+	/**list**/
 	private List<SellChance> sell_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
 	private List<User> user_list;
 	private List<CreateClinet> clinet_list;
-	//
+	/****/
 	private Long clinet_manage_id;
-	private Map<String,Object> session;
 	
 	
 	
-	//初始化action
+	/**初始化action**/
 	public SellAction(){
 		page.setMax_results(5);
 	}
 	
 	
-	//初始化销售机会管理
+	/**初始化销售机会管理**/
     public String sell_chance(){
     	String result = super.result(sell_chance, "SellChance", "sell_chance.jsp");
     	sell_list = super.list;
@@ -53,7 +42,7 @@ public class SellAction extends SuperAction implements SessionAware{
     }
 
     
-    //初始化创建销售机会
+    /**初始化创建销售机会**/
     public String create_sell(){
     	client_level_list = base.query("ClintLevel");
     	region_list = base.query("Region");
@@ -72,7 +61,7 @@ public class SellAction extends SuperAction implements SessionAware{
     }
     
     
-    //添加销售机会
+    /**添加销售机会**/
     public String createSell(){
     	
     	if(clinet_manage_id==null || clinet_manage_id<1){
@@ -83,15 +72,14 @@ public class SellAction extends SuperAction implements SessionAware{
     		sell_chance.setClinet_manage(manage);
     	}
     	User user = (User)session.get("user");
-    	System.out.println(user);
     	sell_chance.setCreate_man(user);
     	base.add(sell_chance);
-    	sell_chance=null;
+    	sell_chance = null;
     	return sell_chance();
     }
     
     
-    //初始化编辑销售机会
+    /**始化编辑销售机会**/
     public String update_sell(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	create_sell();
@@ -99,26 +87,41 @@ public class SellAction extends SuperAction implements SessionAware{
     }
     
     
-    //编辑销售机会
+    /**编辑销售机会**/
     public String updateSell(){
-    	if(clinet_manage_id==null || clinet_manage_id<1){
-    		sell_chance.setState("未分配");
-    	}else{
-    		sell_chance.setState("已指派");
-    		User manage = (User)base.object(User.class, clinet_manage_id);
-    		sell_chance.setClinet_manage(manage);
+    	SellChance sc = null;
+    	User user = (User)session.get("user");
+    	boolean isCreateMan = false;
+    	//确认不是表单的默认值id而是数据库查找到的id，确保找到实体对象
+    	if(clinet_manage_id>0){ 
+    		sc = sell_dao.sellChance(sell_chance.getId());
+    		System.out.println(sc.getCreate_man().getId());
+    		System.out.println("user:    "+user.getId());
+    		isCreateMan = sc.getCreate_man().getId()==user.getId();
     	}
-    	base.update(sell_chance);
-    	sell_chance=null;
+    	//如果查找到的实体类对象的创建人与登陆用户的id相同的话执行修改操作，否则什么都不执行
+    	if(isCreateMan){
+	    	if(clinet_manage_id==null || clinet_manage_id<1){
+	    		sell_chance.setState("未分配");
+	    	}else{
+	    		sell_chance.setState("已指派");
+	    		User manage = (User)base.object(User.class, clinet_manage_id);
+	    		sell_chance.setClinet_manage(manage);
+	    	}
+	    	base.update(sell_chance);
+	    }
+    	sell_chance = null;
     	return sell_chance();
     }
     
     
-    //删除销售机会
+    /**删除销售机会**/
     public String deleteSell(){
     	SellChance sc = sell_dao.sellChance(sell_chance.getId());
+    	User user = (User)session.get("user");
+    	boolean isCreateMan = sc.getCreate_man().getId()==user.getId();
     	
-    	if(sc.getState().equals("未分配")){
+    	if(sc.getState().equals("未分配") && isCreateMan){
     		base.delete(sell_chance);
     	}
     	sell_chance=null;
@@ -126,7 +129,7 @@ public class SellAction extends SuperAction implements SessionAware{
     }
     
     
-    //初始化指派
+    /**初始化指派**/
     public String appoint(){
     	update_sell();
     	return "sell_chance_appoint.jsp";
@@ -137,20 +140,20 @@ public class SellAction extends SuperAction implements SessionAware{
      * 客户开发管理
      * **/
     
-    //初始化客户开发
+    /**初始化客户开发**/
     public String client(){
     	return super.result(create_clinet, "CreateClinet", "sell_client.jsp");
     }
     
     
-    //初始化添加
+    /**初始化添加**/
     public String create_client(){
     	
     	return "";
     }
     
     
-    //初始化编辑
+    /**初始化编辑**/
     public String update_client(){
     	
     	return "";
@@ -159,7 +162,7 @@ public class SellAction extends SuperAction implements SessionAware{
     
     
     
-    //entity getter and setter
+    /**entity getter and setter**/
 	public SellChance getSell_chance() {
 		return sell_chance;
 	}
@@ -196,7 +199,7 @@ public class SellAction extends SuperAction implements SessionAware{
 	}
 
 
-	//list getter and setter
+	/**list getter and setter**/
 	public List<SellChance> getSell_list() {
 		return sell_list;
 	}
@@ -235,31 +238,16 @@ public class SellAction extends SuperAction implements SessionAware{
 
 
 	
-    //
+    /****/
 	public Long getClinet_manage_id() {
 		return clinet_manage_id;
 	}
-
 
 	public void setClinet_manage_id(Long clinet_manage_id) {
 		this.clinet_manage_id = clinet_manage_id;
 	}
 
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-
-	
-	
-    public Page getPage() {
-		return super.page;
-	}
-
-	public void setPage(Page page) {
-		super.page = page;
-	}
 
 	
 	

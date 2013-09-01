@@ -52,7 +52,7 @@
     <tr>
         <td style="background-color:#09F;">指派给</td>
         <td> 
-        <select name="sell_chance.clinet_manage.id">
+        <select name="clinet_manage_id">
             <s:iterator value="user_list" var="user_list">
                 <option value='<s:property value="id"/>'><s:property value="name"/></option>
             </s:iterator>

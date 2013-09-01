@@ -3,56 +3,38 @@ package com.web.action;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.SessionAware;
-import org.hibernate.Hibernate;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import com.dao.BaseDao;
-import com.dao.impl.BaseImpl;
 import com.entity.Manage;
 import com.entity.Role;
 import com.entity.User;
-import com.opensymphony.xwork2.ActionSupport;
 import com.service.dao.RoleDao;
 import com.service.dao.UserDao;
 import com.service.dao.impl.RoleImpl;
 import com.service.dao.impl.UserImpl;
-import com.util.Page;
-import com.util.Util;
 
-public class UserAction extends ActionSupport implements SessionAware{
-	
-	private ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-	private Map<String, Object> session;
-	
+public class UserAction extends SuperAction{
+	/**service**/
 	private UserDao user_dao = (UserImpl)context.getBean("UserImpl");
 	private RoleDao role_dao = (RoleImpl)context.getBean("RoleImpl");
-	private BaseDao base = (BaseImpl)context.getBean("BaseImpl");
-	private Util util = (Util)context.getBean("Util");
-	private Page page = (Page)context.getBean("Page");
-	
+	/**entity**/
     private User user;
     private Role role;
     private Manage manage;
-    
+    /**list**/
     private List<User> user_list = null;
     private List<Role> role_list = null;
     private String[] Manages_name;
     
+    
+    
+    /**初始化action**/
 	public UserAction(){
 		page.setMax_results(5);
 	}    
     
 
-    //用户登陆
+    /**用户登陆**/
     public String logon(){
     	user.setPassword(util.eccrypt(user.getPassword()));
     	User u = user_dao.user(user, true);
@@ -65,27 +47,22 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
-    //初始化用户管理页面
+    /**初始化用户管理页面**/
     public String user_manage(){
-    	if(user==null){
-    	    user_list = base.query("User", null, page.getPage(), page.getMax_results());
-			page.setList_size_and_End(base.query("User"));
-    	}else{
-        	user_list = base.query("User", util.getValue(user), page.getPage(), page.getMax_results());
-			page.setList_size_and_End(base.query("User", util.getValue(user)));
-    	}
-    	return "privilege_user.jsp";
+    	String result = super.result(user, "User", "privilege_user.jsp");
+    	user_list = super.list;
+    	return result;
     }
     
     
-    //初始化 用户添加页面
+    /**初始化 用户添加页面**/
     public String add_user(){
     	role_list = base.query("Role");
     	return "privilege_user_create.jsp";
     }
 
     
-    //用户注册
+    /**用户注册**/
     public String login(){
     	if(user_dao.user(user, false)!=null){
     		this.addActionError("已有改用户名");
@@ -99,7 +76,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     } 
     
     
-    //初始化 更新用户页面
+    /**初始化 更新用户页面**/
     public String update_user(){
     	user = user_dao.user(user.getId());
     	role_list = base.query("Role");
@@ -107,7 +84,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
-    //编辑用户
+    /**编辑用户**/
     public String updateUser(){
     	user.setPassword(util.eccrypt(user.getPassword()));
     	base.update(user);
@@ -116,7 +93,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
-    //删除用户
+    /**删除用户**/
     public String deleteUser(){
     	base.delete(user);
     	return user_manage();
@@ -128,26 +105,21 @@ public class UserAction extends ActionSupport implements SessionAware{
      * */
     
     
-    //初始化 角色页面
+    /**初始化 角色页面**/
     public String role_manage(){
-    	if(role==null){
-	    	role_list = base.query("Role", null, page.getPage(), page.getMax_results());
-			page.setList_size_and_End(base.query("Role"));
-    	}else{
-    		role_list = base.query("Role", util.getValue(role), page.getPage(), page.getMax_results());
-			page.setList_size_and_End(base.query("Role", util.getValue(role)));
-    	}
-    	return "privilege_role.jsp";
+    	String result = super.result(role, "Role", "privilege_role.jsp");
+    	user_list = super.list;
+    	return result;
     }
     
     
-    //初始化 角色添加页面
+    /**初始化 角色添加页面**/
     public String add_role(){
     	return "privilege_role_create.html";
     }
     
     
-    //添加角色
+    /**添加角色**/
     public String addRole(){
     	Set<Manage> manage_set = new HashSet<Manage>();
     	if(Manages_name!=null){
@@ -164,7 +136,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
-    //删除角色
+    /**删除角色**/
     public String deleteRole(){
     	role = role_dao.role(role.getId());
     	
@@ -176,14 +148,14 @@ public class UserAction extends ActionSupport implements SessionAware{
     }
     
     
-    //初始化编辑角色页面
+    /**初始化编辑角色页面**/
     public String update_role(){
     	role = role_dao.role(role.getId());
     	return "privilege_role_update.jsp";
     }
     
     
-    //编辑角色
+    /**编辑角色**/
     public String updateRole(){
     	Set<Manage> manage_set = new HashSet<Manage>();
     	if(Manages_name!=null){
@@ -204,7 +176,7 @@ public class UserAction extends ActionSupport implements SessionAware{
     
     
     
-    
+    /**entity getter and setter**/
     public Role getRole() {
 		return role;
 	}
@@ -222,7 +194,17 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.user = user;
 	}
 
+	
+	public Manage getManage() {
+		return manage;
+	}
 
+	public void setManage(Manage manage) {
+		this.manage = manage;
+	}
+	
+	
+	/**list getter and setter**/
 	public List<User> getUser_list() {
 		return user_list;
 	}
@@ -240,38 +222,5 @@ public class UserAction extends ActionSupport implements SessionAware{
 		this.role_list = role_list;
 	}
 
-	
-	public Manage getManage() {
-		return manage;
-	}
 
-	public void setManage(Manage manage) {
-		this.manage = manage;
-	}
-
-	
-	public String[] getManages_name() {
-		return Manages_name;
-	}
-
-	public void setManages_name(String[] manages_name) {
-		Manages_name = manages_name;
-	}
-
-	
-	public Page getPage() {
-		return page;
-	}
-
-
-	public void setPage(Page page) {
-		this.page = page;
-	}
-
-
-	@Override
-    public void setSession(Map<String, Object> session) {
-    	this.session = session;
-    }
-    
 }
