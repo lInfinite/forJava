@@ -142,7 +142,9 @@ public class SellAction extends SuperAction{
     
     /**初始化客户开发**/
     public String client(){
-    	return super.result(create_clinet, "CreateClinet", "sell_client.jsp");
+    	String result = super.result(sell_chance, "SellChance", "sell_client.jsp");
+    	sell_list = super.list;
+    	return result;
     }
     
     
