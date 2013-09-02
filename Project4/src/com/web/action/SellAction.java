@@ -89,24 +89,23 @@ public class SellAction extends SuperAction{
     
     /**编辑销售机会**/
     public String updateSell(){
-    	SellChance sc = null;
+    	SellChance sc = sell_dao.sellChance(sell_chance.getId());
     	User user = (User)session.get("user");
-    	boolean isCreateMan = false;
-    	//确认不是表单的默认值id而是数据库查找到的id，确保找到实体对象
-    	if(clinet_manage_id>0){ 
-    		sc = sell_dao.sellChance(sell_chance.getId());
-    		System.out.println(sc.getCreate_man().getId());
-    		System.out.println("user:    "+user.getId());
-    		isCreateMan = sc.getCreate_man().getId()==user.getId();
-    	}
+    	boolean isCreateMan = isCreateMan = sc.getCreate_man().getId()==user.getId();
     	//如果查找到的实体类对象的创建人与登陆用户的id相同的话执行修改操作，否则什么都不执行
     	if(isCreateMan){
 	    	if(clinet_manage_id==null || clinet_manage_id<1){
-	    		sell_chance.setState("未分配");
-	    	}else{
-	    		sell_chance.setState("已指派");
+	    		sc.setState("未分配");
 	    		User manage = (User)base.object(User.class, clinet_manage_id);
-	    		sell_chance.setClinet_manage(manage);
+	    		sc.setClinet_manage(manage);
+	    		sc.setCreate_man(user);
+	    		this.setSell_chance(sc);
+	    	}else{
+	    		sc.setState("已指派");
+	    		User manage = (User)base.object(User.class, clinet_manage_id);
+	    		sc.setClinet_manage(manage);
+	    		sc.setCreate_man(user);
+	    		this.setSell_chance(sc);
 	    	}
 	    	base.update(sell_chance);
 	    }
@@ -139,6 +138,7 @@ public class SellAction extends SuperAction{
     /**
      * 客户开发管理
      * **/
+    
     
     /**初始化客户开发**/
     public String client(){
