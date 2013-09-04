@@ -142,23 +142,26 @@ public class SellAction extends SuperAction{
     
     /**初始化客户开发**/
     public String client(){
+    	SellChance sell_chance = new SellChance();
+    	sell_chance.setState("已指派");
     	String result = super.result(sell_chance, "SellChance", "sell_client.jsp");
     	sell_list = super.list;
     	return result;
     }
     
     
-    /**初始化添加**/
-    public String create_client(){
-    	
-    	return "";
+    /**初始化制定计划**/
+    public String client_inset(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	clinet_list = sell_dao.list_for_OneToMany(sell_chance.getCreate_clinet());
+    	return "sell_client_inset.jsp";
     }
     
     
-    /**初始化编辑**/
-    public String update_client(){
-    	
-    	return "";
+    /**初始化执行计划**/
+    public String client_execute(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	return "sell_client_execute.jsp";
     }
     
     

@@ -30,16 +30,28 @@
         <td style="background-color:#03F;">负责人</td>
         <td style="background-color:#03F;">公司电话</td>
         <td style="background-color:#03F;">概要</td>
+        <td style="background-color:#03F;">状态</td>
         <td style="background-color:#03F;">操作</td>
     </tr>
-    <s:iterator value="client_level_list" id="client_level_list">
+    <s:iterator value="sell_list" id="sell_list">
     <tr>
-        <td>编号<s:property value="id"/></td>
-        <td>客户名称<s:property value=""/></td>
-        <td>负责人<s:property value=""/></td>
-        <td>公司电话<s:property value="phone"/></td>
-        <td>概要<s:property value=""/></td>
-        <td><a>[编辑]</a>&nbsp;<a>[删除]</a></td>
+        <td><s:property value="id"/></td>
+        <td><s:property value="clinet_name"/></td>
+        <td><s:property value="charge"/></td>
+        <td><s:property value="phone"/></td>
+        <td><s:property value="summary"/></td>
+        <s:if test="state=='已指派'">
+            <td>开发中</td>
+        <td>
+            <a href='client_inset?sell_chance.id=<s:property value="id"/>'>[定制计划]</a>&nbsp;
+            <a href='client_execute?sell_chance.id=<s:property value="id"/>'>[执行计划]</a>&nbsp;
+            <a>[开发成功]</a>
+        </td>
+        </s:if> 
+        <s:else>
+            <td>已归档</td>
+        <td><a>[查看]</a></td>
+        </s:else>
     </tr>
     </s:iterator>
 </table>
