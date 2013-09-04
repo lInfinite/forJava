@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
+
 import com.dao.BaseDao;
 import com.entity.SellChance;
 import com.service.dao.SellDao;
