@@ -26,14 +26,17 @@
     </tr>
     </s:iterator>
 </table>
-<input type="button" value="添加" />
+<form action="insetClient" method="post">
+<input type="submit" value="添加" />
 <table style="width:100%;">
     <tr>
         <td style="background-color:#09F">日期</td>
         <td></td>
         <td style="background-color:#09F">计划项</td>
-        <td><input type="text" /><font color="#FF0000">*</font></td>
+        <td><input name="create_clinet.project" type="text" /><font color="#FF0000">*</font></td>
     </tr>
 </table>
+<input name="sell_chance.id" type="hidden" value='<s:property value="sell_chance.id"/>' />
+</form>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.web.action;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -158,13 +159,20 @@ public class SellAction extends SuperAction{
     }
     
     
+    /**制定计划**/
+    public String insetClient(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	create_clinet.setSell_chance(sell_chance);
+    	base.add(create_clinet);
+    	return client_inset();
+    }
+    
+    
     /**初始化执行计划**/
     public String client_execute(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	return "sell_client_execute.jsp";
     }
-    
-    
     
     
     /**entity getter and setter**/

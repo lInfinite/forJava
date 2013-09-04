@@ -60,7 +60,7 @@ public class SellChance {
 	@JoinColumn(name="create_man")
     private User create_man;
 	
-    @OneToMany(mappedBy="sell_chance")
+    @OneToMany(mappedBy="sell_chance", fetch=FetchType.EAGER)
     private Set<CreateClinet> create_clinet;
     
     
