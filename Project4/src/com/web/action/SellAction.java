@@ -143,8 +143,6 @@ public class SellAction extends SuperAction{
     
     /**初始化客户开发**/
     public String client(){
-    	SellChance sell_chance = new SellChance();
-    	sell_chance.setState("已指派");
     	String result = super.result(sell_chance, "SellChance", "sell_client.jsp");
     	sell_list = super.list;
     	return result;
@@ -179,10 +177,16 @@ public class SellAction extends SuperAction{
     /**初始化执行计划**/
     public String client_execute(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	clinet_list = sell_dao.list_for_OneToMany(sell_chance.getCreate_clinet());
     	return "sell_client_execute.jsp";
     }
     
     
+    /**保存“制定计划”的“执行效果”AJAX**/
+    public String saveClientExecute(){
+    	System.out.println("AJAX");
+    	return "ajaxSaveClientExecute";
+    }
     
     
     

@@ -64,16 +64,13 @@
     </package>    
        
 
-<!-- json
-    <package name="json" extends="json-default">
-        <action name="ajax_*" class="" method="">
-        
-            <result type="json" name="">
-                <param name="includeProperties"></param>
+
+    <package name="json" namespace="/sell" extends="json-default">
+        <action name="ajax_*" class="com.web.action.SellAction" method="{1}">
+            <result type="json" name="ajaxSaveClientExecute">
+                <param name="includeProperties">create_clinet.*</param>
             </result>
-            
         </action>
     </package>
-     -->
 
 </struts>

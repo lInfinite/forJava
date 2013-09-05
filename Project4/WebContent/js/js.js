@@ -36,3 +36,18 @@ function checkedAll(id,bton){
 		}
 	}
 }
+
+
+
+// ajax
+function ajax_sell_saveClientExecute(id){
+	var sell_client_effect=document.getElementById(id).value;
+	alert(sell_client_effect);
+	var create_clinet={"effect":sell_client_effect};	
+	$.post("ajax_saveClientExecute", 
+		   create_clinet,
+		   function(date){
+			   $("#ShowNames").html(date.u.names);
+		   }
+	);
+} 

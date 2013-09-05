@@ -10,18 +10,20 @@
 
 <body>
 客户开发计划<br/>
+<form action="client" method="post">
 <input type="button" value="关于" />
 <input type="submit" value="查询" />
 <table>
     <tr>
         <td style="background-color:#09F;">客户名称</td>
-        <td><input type="text" name="user_name" /></td>
+        <td><input type="text" name="sell_chance.clinet_name" /></td>
         <td style="background-color:#09F">负责人</td>
-        <td><input type="text" name="" /></td>
+        <td><input type="text" name="sell_chance.charge" /></td>
         <td style="background-color:#09F;">概要</td>
-        <td><input type="text" name="summary" /></td>
+        <td><input type="text" name="sell_chance.summary" /></td>
     </tr>
 </table>
+</form>
 
 <table style="width:100%;">
     <tr>
@@ -34,6 +36,9 @@
         <td style="background-color:#03F;">操作</td>
     </tr>
     <s:iterator value="sell_list" id="sell_list">
+    <s:if test="state=='未分配'">
+    </s:if>
+    <s:else>
     <tr>
         <td><s:property value="id"/></td>
         <td><s:property value="clinet_name"/></td>
@@ -53,6 +58,7 @@
         <td><a>[查看]</a></td>
         </s:else>
     </tr>
+    </s:else>
     </s:iterator>
 </table>
 <jsp:include page="../body/Body_Page.jsp"/>
