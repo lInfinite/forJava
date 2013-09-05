@@ -26,7 +26,7 @@ public class SellAction extends SuperAction{
 	private List<CreateClinet> clinet_list;
 	/****/
 	private Long clinet_manage_id;
-	
+	private String system_time = util.systemTime();
 	
 	
 	/**初始化action**/
@@ -168,11 +168,23 @@ public class SellAction extends SuperAction{
     }
     
     
+    /**删除制定计划**/
+    public String deleteClient(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	base.delete(create_clinet);
+    	return client_inset();
+    }
+    
+    
     /**初始化执行计划**/
     public String client_execute(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	return "sell_client_execute.jsp";
     }
+    
+    
+    
+    
     
     
     /**entity getter and setter**/
@@ -258,6 +270,15 @@ public class SellAction extends SuperAction{
 
 	public void setClinet_manage_id(Long clinet_manage_id) {
 		this.clinet_manage_id = clinet_manage_id;
+	}
+
+
+	public String getSystem_time() {
+		return system_time;
+	}
+
+	public void setSystem_time(String system_time) {
+		this.system_time = system_time;
 	}
 
 

@@ -13,11 +13,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Util {
 	
+	
     //hibernate
 	public SessionFactory getSessionFactory(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		return (SessionFactory)context.getBean("SessionFactory");
 	}
+	
 	
 	//md5
     public String eccrypt(String str){
@@ -33,16 +35,14 @@ public class Util {
         return new String(resultBytes);
     }  
     
+    
 	//系统时间
     public String systemTime(){
     	Date date=new Date();
-    	String dt = new String(new SimpleDateFormat("yyyy-MM-dd").format(date));
-    	String now = new SimpleDateFormat("yyyy-MM-dd").format(date);
+    	String dt = new String(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date));
+    	String now = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
     	return now;
     }
-    
-
-    
     
     
 	//特殊字符过滤

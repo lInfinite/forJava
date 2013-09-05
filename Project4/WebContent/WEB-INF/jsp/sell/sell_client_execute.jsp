@@ -15,7 +15,7 @@
 <input type="submit" value="制定计划" />
 <input type="submit" value="开发成功" />
 <jsp:include page="sell_client_table.jsp"/>
-<table>
+<table width="100%">
     <tr>
         <td style="background-color:#00F;">日期</td>
         <td style="background-color:#00F;">计划</td>

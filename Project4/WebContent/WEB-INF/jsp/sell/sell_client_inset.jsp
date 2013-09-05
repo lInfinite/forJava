@@ -21,8 +21,8 @@
     </tr>
     <s:iterator value="clinet_list" id="create_client">
     <tr>
-        <td></td>
-        <td><input readonly type="text" name="" value='<s:property value="project"/>' /><input type="button" value="删除" /></td>
+        <td><s:property value="time"/></td>
+        <td><input readonly type="text" value='<s:property value="project"/>' /><a href='deleteClient?sell_chance.id=<s:property value="sell_chance.id"/>&&create_clinet.id=<s:property value="id"/>'><input type="button" value="删除" /></a></td>
     </tr>
     </s:iterator>
 </table>
@@ -31,7 +31,7 @@
 <table style="width:100%;">
     <tr>
         <td style="background-color:#09F">日期</td>
-        <td></td>
+        <td><s:property value="system_time"/><input name="create_clinet.time" type="hidden" value='<s:property value="system_time"/>'/></td>
         <td style="background-color:#09F">计划项</td>
         <td><input name="create_clinet.project" type="text" /><font color="#FF0000">*</font></td>
     </tr>
