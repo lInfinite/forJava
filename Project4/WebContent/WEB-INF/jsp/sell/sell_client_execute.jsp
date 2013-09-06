@@ -46,7 +46,6 @@
     </tr>
     </s:iterator>
 </table>
-</body>
 <script>
     function execute(id){
 	    values = document.getElementById(id).value;
@@ -58,4 +57,5 @@
 		}
 	}
 </script>
+</body>
 </html>

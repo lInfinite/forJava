@@ -162,7 +162,6 @@ public class SellAction extends SuperAction{
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	create_clinet.setSell_chance(sell_chance);
     	base.add(create_clinet);
-    	sell_chance = null;
     	return client_inset();
     }
     
@@ -171,7 +170,6 @@ public class SellAction extends SuperAction{
     public String deleteClient(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	base.delete(create_clinet);
-    	sell_chance = null;
     	return client_inset();
     }
     
