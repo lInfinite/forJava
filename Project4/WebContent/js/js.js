@@ -40,14 +40,14 @@ function checkedAll(id,bton){
 
 
 // ajax
-function ajax_sell_saveClientExecute(id){
-	var sell_client_effect=document.getElementById(id).value;
-	alert(sell_client_effect);
-	var create_clinet={"effect":sell_client_effect};	
+function ajax_sell_saveClientExecute(effect,id,show){
+	var sell_client_effect=document.getElementById(effect).value;
+	var sell_client_id=document.getElementById(id).value;
+	var create_clinet = {"create_clinet.id":sell_client_id,"create_clinet.effect":sell_client_effect}	
 	$.post("ajax_saveClientExecute", 
 		   create_clinet,
 		   function(date){
-			   $("#ShowNames").html(date.u.names);
+			   document.getElementById(show).innerHTML=date.create_clinet.effect;
 		   }
 	);
 } 

@@ -80,7 +80,20 @@ public class Util {
 	}
 	
 	
+	//把Set类型转换成List类型 与页面交互
+	public List list_for_OneToMany(Set one_to_many) {
+		if(one_to_many == null){
+			return null;
+		}
+		List list = new ArrayList();
+		for(Object obj : one_to_many){
+			list.add(obj);
+		}
+		return list;
+	}
 	
+	
+	//获取类型的方法名
 	public List<String> getMethodName(Object object){
 		Class c = object.getClass();
 		List<String> list= new ArrayList<String>();
@@ -97,7 +110,7 @@ public class Util {
 	}
 	
 
-	
+	//
 	public List<Class> getParameterType(Object object, String methodName) throws ClassNotFoundException{
 		Class c = object.getClass();
 		List<Class> list = new ArrayList<Class>();
@@ -115,7 +128,7 @@ public class Util {
 	}
 	
 
-	
+	//获取对象的get里有参数的值
 	public Map<String, Object> getValue(Object object){
 		Map<String, Object> map = new HashMap<String, Object>();
 		Class c = object.getClass();

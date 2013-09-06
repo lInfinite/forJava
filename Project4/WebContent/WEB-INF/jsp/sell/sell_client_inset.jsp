@@ -11,7 +11,7 @@
 <body>
 客户开发计划>制定计划
 <input type="button" value="关于" />
-<input type="submit" value="执行计划" />
+<a href='client_execute?sell_chance.id=<s:property value="sell_chance.id"/>'><input type="submit" value="执行计划" /></a>
 <input type="button" value="返回" />
 <jsp:include page="sell_client_table.jsp"/>
 <table style="width:100%;">

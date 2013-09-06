@@ -50,12 +50,12 @@
         <td>
             <a href='client_inset?sell_chance.id=<s:property value="id"/>'>[定制计划]</a>&nbsp;
             <a href='client_execute?sell_chance.id=<s:property value="id"/>'>[执行计划]</a>&nbsp;
-            <a>[开发成功]</a>
+            <a href='insert_execute?sell_chance.id=<s:property value="id"/>&&execute=ok'>[开发成功]</a>
         </td>
         </s:if> 
         <s:else>
             <td>已归档</td>
-        <td><a>[查看]</a></td>
+        <td><a href='see_client?sell_chance.id=<s:property value="id"/>'>[查看]</a></td>
         </s:else>
     </tr>
     </s:else>

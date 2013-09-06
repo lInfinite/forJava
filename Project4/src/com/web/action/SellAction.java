@@ -27,7 +27,7 @@ public class SellAction extends SuperAction{
 	/****/
 	private Long clinet_manage_id;
 	private String system_time = util.systemTime();
-	
+	private String execute;
 	
 	/**初始化action**/
 	public SellAction(){
@@ -152,7 +152,7 @@ public class SellAction extends SuperAction{
     /**初始化制定计划**/
     public String client_inset(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
-    	clinet_list = sell_dao.list_for_OneToMany(sell_chance.getCreate_clinet());
+    	clinet_list = util.list_for_OneToMany(sell_chance.getCreate_clinet());
     	return "sell_client_inset.jsp";
     }
     
@@ -162,6 +162,7 @@ public class SellAction extends SuperAction{
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	create_clinet.setSell_chance(sell_chance);
     	base.add(create_clinet);
+    	sell_chance = null;
     	return client_inset();
     }
     
@@ -170,6 +171,7 @@ public class SellAction extends SuperAction{
     public String deleteClient(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
     	base.delete(create_clinet);
+    	sell_chance = null;
     	return client_inset();
     }
     
@@ -177,14 +179,41 @@ public class SellAction extends SuperAction{
     /**初始化执行计划**/
     public String client_execute(){
     	sell_chance = sell_dao.sellChance(sell_chance.getId());
-    	clinet_list = sell_dao.list_for_OneToMany(sell_chance.getCreate_clinet());
+    	clinet_list = util.list_for_OneToMany(sell_chance.getCreate_clinet());
     	return "sell_client_execute.jsp";
+    }
+    
+    
+    /**归档执行计划**/
+    public String insert_execute(){
+    	String state = null;
+    	if(execute.equals("终止开发")){
+    		state = "失败";
+    	}else if(execute.equals("开发成功")||execute.equals("ok")){
+    		state = "成功";
+    	}
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	sell_chance.setState(state);
+    	base.update(sell_chance);
+    	sell_chance = null;
+    	return client();
+    }
+    
+    
+    /**查看以归档**/
+    public String see_client(){
+    	sell_chance = sell_dao.sellChance(sell_chance.getId());
+    	clinet_list = util.list_for_OneToMany(sell_chance.getCreate_clinet());
+    	return "sell_client_see.jsp";
     }
     
     
     /**保存“制定计划”的“执行效果”AJAX**/
     public String saveClientExecute(){
-    	System.out.println("AJAX");
+    	CreateClinet cc = sell_dao.createClient(create_clinet.getId());
+    	cc.setEffect(create_clinet.getEffect());
+    	base.update(cc);
+    	cc = null;
     	return "ajaxSaveClientExecute";
     }
     
@@ -283,6 +312,15 @@ public class SellAction extends SuperAction{
 
 	public void setSystem_time(String system_time) {
 		this.system_time = system_time;
+	}
+
+
+	public String getExecute() {
+		return execute;
+	}
+
+	public void setExecute(String execute) {
+		this.execute = execute;
 	}
 
 
