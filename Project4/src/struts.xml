@@ -31,6 +31,13 @@
             <result name="sell_client_see.jsp">/WEB-INF/jsp/sell/sell_client_see.jsp</result>
         </action>
     </package>  
+
+    <package name="client" namespace="/client" extends="struts-default">
+        <action name="*" class="com.web.action.ClientAction" method="{1}">
+            <result name="client_msg.jsp">/WEB-INF/jsp/client/client_msg.jsp</result>
+        </action>
+    </package>  
+
    
     <package name="bases" namespace="/base" extends="struts-default">
         <action name="*" class="com.web.action.BaseAction" method="{1}">
