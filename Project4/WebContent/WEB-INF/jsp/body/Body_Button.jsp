@@ -9,7 +9,7 @@
                <dd id="sell_chance"><a href="<%=request.getContextPath() %>/sell/sell_chance" target="body_main">销售机会管理</a></dd>
                <dd id="sell_develop"><a href="<%=request.getContextPath() %>/sell/client" target="body_main">客户开发计划</a></dd>
            <dt><a onclick="showButton(['client_msg','client_runaway'])">客户管理</a></dt>
-               <dd id="client_msg"><a href="#" target="body_main">客户信息管理</a></dd>
+               <dd id="client_msg"><a href="<%=request.getContextPath() %>/client/msg" target="body_main">客户信息管理</a></dd>
                <dd id="client_runaway"><a href="#" target="body_main">客户流失管理</a></dd>
            <dt><a onclick="showButton(['service_create','service_allocation','service_handle','service_feedback','service_archive'])">服务管理</a></dt>
                <dd id="service_create"><a href="#" target="body_main">服务创建</a></dd>

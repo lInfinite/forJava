@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,15 +48,19 @@
         <td style="background-color:#03C; color:#FFF;">客户等级</td>
         <td style="background-color:#03C; color:#FFF;">操作</td>
     </tr>
+    
+    <s:iterator value="sell_chance_list" id="sell_list">
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><s:property value="id"/></td>
+        <td><s:property value="clinet_name"/></td>
+        <td><s:property value="id"/></td>
+        <td><s:property value="region.value"/></td>
+        <td><s:property value="clinet_manage.name"/></td>
+        <td><s:property value="clinet_level.value"/></td>
         <td>操作</td>
     </tr>
+    </s:iterator>
+    
 </table>
 </body>
 </html>
