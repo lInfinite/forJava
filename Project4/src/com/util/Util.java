@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,22 +20,13 @@ public class Util {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		return (SessionFactory)context.getBean("SessionFactory");
 	}
-	
-	
-	//md5
-    public String eccrypt(String str){
-        MessageDigest md5=null;
-			try {
-				md5 = MessageDigest.getInstance("MD5");
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			}  
-        byte[] srcBytes = str.getBytes();
-        md5.update(srcBytes);  
-        byte[] resultBytes = md5.digest();  
-        return new String(resultBytes);
-    }  
     
+    
+    //sha1
+    public String eccryptForSHA1(String str){
+    	str = DigestUtils.sha1Hex(str);
+    	return str;
+    }
     
 	//系统时间
     public String systemTime(){

@@ -29,7 +29,7 @@ public class DoMain {
 			Role role = new Role();
 			User user = new User();
 			user.setName("admin");
-			user.setPassword(util.eccrypt("admin"));
+			user.setPassword(util.eccryptForSHA1("admin"));
 			Region region = new Region();
 			ClintLevel clint_level = new ClintLevel();
 			Manage manage = new Manage();

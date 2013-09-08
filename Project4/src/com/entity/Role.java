@@ -5,7 +5,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 import java.util.Set;
 
 import javax.persistence.*;
-
+/**角色**/
 @Entity
 @Table(name="project4_role")
 public class Role {

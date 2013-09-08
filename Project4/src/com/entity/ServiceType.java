@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+/**服务类型**/
 @Entity
 @Table(name="project4_service_type")
 public class ServiceType {

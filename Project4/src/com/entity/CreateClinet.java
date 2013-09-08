@@ -4,7 +4,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 import javax.persistence.*;
 
-
+/**开发客户**/
 @Entity
 @Table(name="createclinet")
 public class CreateClinet {

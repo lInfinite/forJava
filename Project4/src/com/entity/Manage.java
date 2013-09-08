@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+/**权限**/
 @Entity
 @Table(name="project4_manage")
 public class Manage {

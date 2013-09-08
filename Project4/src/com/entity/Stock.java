@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+/**库存**/
 @Entity
 @Table(name="project4_stock")
 public class Stock {

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
+/**客户等级**/
 @Entity
 @Table(name="project4_clintlevel")
 public class ClintLevel {

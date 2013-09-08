@@ -6,7 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
+/**销售机会**/
 @Entity
 @Table(name="project4_sellchance")
 public class SellChance {
@@ -63,7 +63,8 @@ public class SellChance {
     @OneToMany(mappedBy="sell_chance", fetch=FetchType.EAGER)
     private Set<CreateClinet> create_clinet;
     
-    
+    @OneToOne
+    private ClientMsg client_msg;
     
 	
 	public Long getId() {
@@ -155,6 +156,12 @@ public class SellChance {
 	}
 	public void setCreate_clinet(Set<CreateClinet> create_clinet) {
 		this.create_clinet = create_clinet;
+	}
+	public ClientMsg getClient_msg() {
+		return client_msg;
+	}
+	public void setClient_msg(ClientMsg client_msg) {
+		this.client_msg = client_msg;
 	}
 
 

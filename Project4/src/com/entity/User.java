@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 import static javax.persistence.GenerationType.SEQUENCE;
-
+/**用户**/
 @Entity
 @Table(name="project4_user")
 public class User {

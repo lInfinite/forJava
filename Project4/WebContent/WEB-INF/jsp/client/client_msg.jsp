@@ -15,13 +15,16 @@
 <table>
     <tr>
        <td style="background-color:#09F;">客户名称</td>
-       <td><input type="text" /></td>
+       <td><input name="" type="text" /></td>
        <td style="background-color:#09F;">客户编号</td>
-       <td><input type="text" /></td>
+       <td><input name="" type="text" /></td>
        <td style="background-color:#09F;">地区</td>
        <td>
-           <select>
+           <select name="">
                <option>--请选择--</option>
+           <s:iterator value="region_list" id="region">
+               <option value='<s:property value="id"/>'><s:property value="value"/></option>
+           </s:iterator>
            </select>
        </td>
     </tr>
@@ -30,8 +33,11 @@
        <td><input type="text" /></td>
        <td style="background-color:#09F;">客户等级</td>
        <td>
-           <select>
+           <select name="">
                <option>--请选择--</option>
+           <s:iterator value="client_level_list" id="client_level">
+               <option value='<s:property value="id"/>'><s:property value="value"/></option>
+           </s:iterator>
            </select>
        </td>
        <td style="background-color:#09F;"></td>
@@ -57,7 +63,13 @@
         <td><s:property value="region.value"/></td>
         <td><s:property value="clinet_manage.name"/></td>
         <td><s:property value="clinet_level.value"/></td>
-        <td>操作</td>
+        <td>
+            <a href='update_msg?sell_chance.id=<s:property value="id"/>'>［编辑］</a>
+            <a>［联系人］</a>
+            <a>［交往纪录］</a>
+            <a>［历史订单］</a>
+            <a>［删除］</a>
+        </td>
     </tr>
     </s:iterator>
     

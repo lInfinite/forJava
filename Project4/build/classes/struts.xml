@@ -35,6 +35,7 @@
     <package name="client" namespace="/client" extends="struts-default">
         <action name="*" class="com.web.action.ClientAction" method="{1}">
             <result name="client_msg.jsp">/WEB-INF/jsp/client/client_msg.jsp</result>
+            <result name="client_msg_update.jsp">/WEB-INF/jsp/client/client_msg_update.jsp</result>
         </action>
     </package>  
 

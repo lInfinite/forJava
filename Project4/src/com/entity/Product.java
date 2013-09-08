@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+/**商品**/
 @Entity
 @Table(name="project4_product")
 public class Product {

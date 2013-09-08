@@ -6,7 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
+/**地区**/
 @Entity
 @Table(name="project4_region")
 public class Region {

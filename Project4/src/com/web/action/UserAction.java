@@ -36,7 +36,7 @@ public class UserAction extends SuperAction{
 
     /**用户登陆**/
     public String logon(){
-    	user.setPassword(util.eccrypt(user.getPassword()));
+    	user.setPassword(util.eccryptForSHA1(user.getPassword()));
     	User u = user_dao.user(user, true);
     	if(u!=null){
     		session.put("user", u);
@@ -68,7 +68,7 @@ public class UserAction extends SuperAction{
     		this.addActionError("已有改用户名");
     	    return "privilege_user_create.jsp";
     	}else{
-    		user.setPassword(util.eccrypt(user.getPassword()));
+    		user.setPassword(util.eccryptForSHA1(user.getPassword()));
     		base.add(user);
         	user=null;
     		return user_manage();
@@ -86,7 +86,7 @@ public class UserAction extends SuperAction{
     
     /**编辑用户**/
     public String updateUser(){
-    	user.setPassword(util.eccrypt(user.getPassword()));
+    	user.setPassword(util.eccryptForSHA1(user.getPassword()));
     	base.update(user);
     	user=null;
     	return user_manage();
@@ -96,6 +96,7 @@ public class UserAction extends SuperAction{
     /**删除用户**/
     public String deleteUser(){
     	base.delete(user);
+    	user = null;
     	return user_manage();
     }
     
