@@ -48,7 +48,7 @@ public class Page {
 
 	public void setList_size_and_End(List size){
 		this.list_size = size.size();
-		if(list_size % this.max_results == 0){
+		if(list_size % getMax_results() == 0){
 		    this.end = list_size / this.max_results -1;
 		}else if(list_size% this.max_results  > 0){
 			this.end = list_size / this.max_results ;

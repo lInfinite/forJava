@@ -38,6 +38,7 @@
            <list>
              <value>com.entity.SellChance</value>
              <value>com.entity.CreateClinet</value>
+             <value>com.entity.ClientMsg</value>
              
              <value>com.entity.Role</value>
              <value>com.entity.User</value>

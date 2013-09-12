@@ -63,7 +63,7 @@ public class SellChance {
     @OneToMany(mappedBy="sell_chance", fetch=FetchType.EAGER)
     private Set<CreateClinet> create_clinet;
     
-    @OneToOne
+    @OneToOne(mappedBy = "sell_chance")
     private ClientMsg client_msg;
     
 	

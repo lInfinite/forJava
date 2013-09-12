@@ -92,7 +92,7 @@ public class SellAction extends SuperAction{
     public String updateSell(){
     	SellChance sc = sell_dao.sellChance(sell_chance.getId());
     	User user = (User)session.get("user");
-    	boolean isCreateMan = isCreateMan = sc.getCreate_man().getId()==user.getId();
+    	boolean isCreateMan = sc.getCreate_man().getId()==user.getId();
     	//如果查找到的实体类对象的创建人与登陆用户的id相同的话执行修改操作，否则什么都不执行
     	if(isCreateMan){
 	    	if(clinet_manage_id==null || clinet_manage_id<1){

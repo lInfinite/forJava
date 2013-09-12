@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name="project4_client_msg")
 public class ClientMsg {
 	@Id
-	@GeneratedValue(strategy=SEQUENCE, generator="p4_sclient_msg_seq")     
+	@GeneratedValue(strategy=SEQUENCE, generator="p4_client_msg_seq")     
 	@SequenceGenerator(name="p4_client_msg_seq", sequenceName="project4_client_msg_sequence", allocationSize=1)
 	private Long id;                         //ID
 	
@@ -35,8 +35,6 @@ public class ClientMsg {
 	@Column(name="postalcode")
 	private int postalcode;                  //邮政编码
 	
-	@Column(name="phone")
-	private String phone;                    //电话
 	
 	@Column(name="fax")
 	private String fax;                      //传真
@@ -68,7 +66,7 @@ public class ClientMsg {
 	@Column(name="national_tax")
 	private String national_tax;             //国税登记号
     
-	@OneToOne(mappedBy="client_msg")
+	@OneToOne
 	@JoinColumn(name="sell_chance_id")
 	private SellChance sell_chance;          //与sellchuance里的客户为一对一的关系
 
@@ -117,13 +115,6 @@ public class ClientMsg {
 		this.postalcode = postalcode;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 	public String getFax() {
 		return fax;

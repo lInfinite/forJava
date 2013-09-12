@@ -22,15 +22,20 @@ public class ClientAction extends SuperAction{
 	/**service**/
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
 	
+	
+	
 	/**
 	 * 客户信息
 	 * **/
-	
-	
+		
 	/**初始化客户信息**/
 	public String msg(){
 		client_level_list = base.query("ClintLevel");
 		region_list = base.query("Region");
+		if(sell_chance == null){
+			sell_chance = new SellChance();
+			sell_chance.setState("成功");
+		}
 		String result = super.result(sell_chance, "SellChance", "client_msg.jsp");
 		sell_chance_list = super.list;
 		return result;
@@ -39,8 +44,19 @@ public class ClientAction extends SuperAction{
 	
 	/**初始化客户信息编辑**/
 	public String update_msg(){
+		client_level_list = base.query("ClintLevel");
 		sell_chance = sell_dao.sellChance(sell_chance.getId());
+		region_list = base.query("Region");
 		return "client_msg_update.jsp";
+	}
+	
+	
+	/**添加或修改客户信息**/
+	public String updateMsg(){
+		client_msg.setSell_chance(sell_chance);
+		base.update(client_msg);
+		sell_chance = null;
+		return msg();
 	}
 	
 	
