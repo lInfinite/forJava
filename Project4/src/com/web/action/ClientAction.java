@@ -54,7 +54,7 @@ public class ClientAction extends SuperAction{
 	/**添加或修改客户信息**/
 	public String updateMsg(){
 		client_msg.setSell_chance(sell_chance);
-		base.update(client_msg);
+		base.add(client_msg);
 		sell_chance = null;
 		return msg();
 	}

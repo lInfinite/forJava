@@ -34,8 +34,7 @@ public class ClientMsg {
 	
 	@Column(name="postalcode")
 	private int postalcode;                  //邮政编码
-	
-	
+
 	@Column(name="fax")
 	private String fax;                      //传真
 	
