@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+  <!--   <constant name="struts.devMode" value="true" /> -->
+    <constant name="struts.objectFactory" value="spring"/>
+  <!-- JSON -->
+<!--     <package name="json" namespace="/sell" extends="json-default">
+        <action name="ajax_*" class="com.web.action.SellAction" method="{1}">
+            <result type="json" name="ajaxSaveClientExecute">
+                <param name="includeProperties">create_clinet.*</param>
+            </result>
+        </action>
+    </package> -->
+
+    <!-- struts -->
+    <package name="user" namespace="/" extends="struts-default">
+        <action name="user_*" class="web.action.UserAction" method="{1}">
+            <!-- 销售机会管理 -->
+            <result></result>
+        </action>
+    </package>  
+
+</struts>

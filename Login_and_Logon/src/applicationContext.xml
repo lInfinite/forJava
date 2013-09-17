@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Middle tier application context definition for the image database.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context
+				http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx 
+				http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@aptech.keji.asia:1521:orcl"/>
+        <property name="username" value="pb_linw"/>
+        <property name="password" value="LinWei"/>
+    </bean>
+    
+    
+    <!-- 用注解配置实体类 -->
+   <bean id="SessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"/>
+	       <!-- .getCurrentSession() -->
+	       <property name="exposeTransactionAwareSessionFactory"><value>false</value></property>
+	<property name="hibernateProperties">
+		<value>
+			hibernate.show_sql=true
+			hibernate.hbm2ddl.auto=update
+			hibernate.current_session_context_class=thread
+		</value>
+	</property>
+       <property name="annotatedClasses">
+           <list>
+             <value>entity.User</value>
+           </list>
+       </property>
+   </bean> 
+<!-- Util -->   
+   <bean id="Util" class="util.UtilForMe" />
+   <bean id="Page" class="util.Page" />
+<!-- dao -->
+   <bean id="BaseImpl" class="dao.impl.BaseImpl">
+       <property name="factory" ref="SessionFactory"/>
+   </bean>
+<!-- service -->
+   <bean id="UserService" class="service.dao.impl.UserServiceImpl">
+       <property name="base" ref="BaseImpl"/>
+   </bean>
+
+</beans>
