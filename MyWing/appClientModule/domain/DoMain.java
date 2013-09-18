@@ -21,6 +21,7 @@ public class DoMain {
     	u.setPassword("22");
     	
     	base.update(u, sdu.SAVE);
+    	base.allClose();
     }
     
    

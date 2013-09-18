@@ -22,7 +22,7 @@ public class BaseImpl implements BaseDao{
     public Connection getConnerction(){
     	try {
 			Class.forName("org.sqlite.JDBC");
-			return DriverManager.getConnection("jdbc:sqlite:F://JavaWorkSpace//MyWing");
+			return DriverManager.getConnection("jdbc:sqlite:MyWing.sqlite3");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -95,6 +95,7 @@ public class BaseImpl implements BaseDao{
 	    		statement.setObject(j+2, map.get("id"));
 				break;
 			}
+    		statement.executeUpdate();
     		connection.commit();
     	}catch(SQLException e){
     		try {
