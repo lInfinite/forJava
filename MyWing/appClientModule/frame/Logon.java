@@ -16,16 +16,15 @@ public class Logon {
 	private Bean bean = new Bean();
 	
 	public Logon(){
-		//±êÌâ
-		final JLabel name_title = bean.title("ÓÃ»§Ãû:", 80, 30, 90, 35);
-		final JLabel pass_title = bean.title("ÃÜÂë:", 80, 85, 90, 35);
-		//ÊäÈë¿ò
+		final JLabel name_title = bean.title("ç”¨æˆ·å:", 80, 30, 90, 35);
+		final JLabel pass_title = bean.title("å¯†ç :", 80, 85, 90, 35);
+		
 		final JTextField name = bean.text(152, 30, 200);
 		final JPasswordField pass = bean.passwrod(152, 80, 200);
-        //°´¼ü
-		final JButton logon_button = bean.button("µÇÂ½", 100, 150, 100, 50);
-		final JButton login_button = bean.button("×¢²á", 250, 150, 100, 50);
-		//ÊÂ¼ş¼àÊÓ
+        
+		final JButton logon_button = bean.button("ç™»é™†", 100, 150, 100, 50);
+		final JButton login_button = bean.button("æ³¨å†Œ", 250, 150, 100, 50);
+		
 		logon_button.addActionListener(
 				new ActionListener() {	
 					@Override
@@ -38,7 +37,6 @@ public class Logon {
 				}
 		);
 		
-		//´°¿Ú
 		JFrame jf = logon_frame(name_title,pass_title,name,pass,login_button,logon_button);
 		jf.setVisible(true);
 		
@@ -46,7 +44,7 @@ public class Logon {
 	}
 	
     public JFrame logon_frame(Component ... beans){
-    	JFrame jf = new JFrame("µÇÂ½");
+    	JFrame jf = new JFrame("ç™»é™†");
     	jf.setBounds(0,0,450,250);
     	jf.setLayout(null);
     	

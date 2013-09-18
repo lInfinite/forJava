@@ -22,7 +22,7 @@ public class BaseImpl implements BaseDao{
     public Connection getConnerction(){
     	try {
 			Class.forName("org.sqlite.JDBC");
-			return DriverManager.getConnection("jdbc:sqlite:F://JavaWorkSpace//MyWing");
+			return DriverManager.getConnection("jdbc:sqlite:MyWing.sqlite3");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -34,7 +34,7 @@ public class BaseImpl implements BaseDao{
     }
     
     
-    public void update(String sql, Object[] value){
+    public int update(String sql, Object[] value){
     	connection = this.getConnerction();
     	try {
     		connection.setAutoCommit(false);
@@ -42,11 +42,13 @@ public class BaseImpl implements BaseDao{
 	        for(int i=0; i<value.length-1; i++){
 	        	statement.setObject(i+1, value[i]);
 	        }
-	        statement.executeUpdate();
+	        int all = statement.executeUpdate();
 			connection.commit();
+			return all;
 		} catch (SQLException e) {
 			try {connection.rollback();} catch (SQLException e1) {e1.printStackTrace();}
 			e.printStackTrace();
+			return 0;
 		}
     }
     
@@ -66,7 +68,7 @@ public class BaseImpl implements BaseDao{
     }
     
     
-    public void update(Object obj, sdu em){
+    public int update(Object obj, sdu em){
     	BaseUtil util = new BaseUtil();
     	Map<String,Object> map = util.values(obj);
     	List<String> name = util.getValue_name();
@@ -95,7 +97,9 @@ public class BaseImpl implements BaseDao{
 	    		statement.setObject(j+2, map.get("id"));
 				break;
 			}
+    		int number = statement.executeUpdate();
     		connection.commit();
+    		return number;
     	}catch(SQLException e){
     		try {
 				connection.rollback();
@@ -103,6 +107,7 @@ public class BaseImpl implements BaseDao{
 				e1.printStackTrace();
 			}
     		e.printStackTrace();
+    		return 0;
     	}
     }
     
