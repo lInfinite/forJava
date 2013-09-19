@@ -36,7 +36,16 @@ public class Logon {
 					}
 				}
 		);
-		
+		login_button.addActionListener(
+		    new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new Login();
+				}
+		    	
+		    }
+		);
 		
 		JFrame jf = logon_frame(name_title,pass_title,name,pass,login_button,logon_button);
 		jf.setVisible(true);
