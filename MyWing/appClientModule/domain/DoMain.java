@@ -14,6 +14,7 @@ import frame.Logon;
 public class DoMain {
     
     public static void main(String[] args){
+
     	//new Logon();
     	BaseImpl base = new BaseImpl();
     	String sql = "select * from user";
@@ -29,6 +30,8 @@ public class DoMain {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+    	new Logon();
     }
     
    

@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 import db.BaseDao;
 import db.impl.BaseUtil.sdu;
@@ -67,6 +67,25 @@ public class BaseImpl implements BaseDao{
 		}
     }
     
+    public List list(String sql, Object obj){
+    	connection = this.getConnerction();
+    	BaseUtil util = new BaseUtil();
+    	Map<String,Object> map = util.values(obj);
+    	List<String> list = util.getValue_name();
+    	try {
+    		statement = connection.prepareStatement(sql);
+		    
+			result = statement.executeQuery();
+			for(String name : list){
+				result.getObject(name);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
     
     public int update(Object obj, sdu em){
     	BaseUtil util = new BaseUtil();
@@ -98,6 +117,7 @@ public class BaseImpl implements BaseDao{
 				break;
 			}
     		int number = statement.executeUpdate();
+    		statement.executeUpdate();
     		connection.commit();
     		return number;
     	}catch(SQLException e){

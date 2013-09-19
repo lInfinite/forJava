@@ -32,9 +32,25 @@ public class Logon {
 						String nameText = name.getText();
 						char[] passWord = pass.getPassword();
 						String passText = new String(passWord);
+						
 						System.out.println("name:"+nameText+" pass:"+passText);
+						
+						if(true){
+							
+						}
 					}
 				}
+		);
+		
+		login_button.addActionListener(
+		    new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new Login();
+				}
+		    	
+		    }
 		);
 		
 		JFrame jf = logon_frame(name_title,pass_title,name,pass,login_button,logon_button);
