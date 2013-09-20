@@ -64,7 +64,7 @@ public class Login {
     }
 	
 	public JFrame login(){
-		JFrame login = new JFrame("ע��");
+		JFrame login = new JFrame("注册");
 		login.setLayout(null);
 		login.setBounds(0, 0, 350, 700);
 		login.setVisible(true);

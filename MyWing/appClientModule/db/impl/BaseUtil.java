@@ -4,8 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 使用values得出两个List！value_name（保存key）和value（保存值）自身方法是返回Map<String,Object> 也保存了key and value
@@ -50,6 +52,34 @@ public class BaseUtil {
            }
     	}
     	return map;
+    }
+    
+    
+    public void setterValue(Object obj, String methodName, Object value){
+     	Class c = obj.getClass();
+     	String top = methodName.substring(0, 1).toUpperCase();
+     	String ethod = methodName.substring(1, methodName.length());
+     	Class clas = value.getClass();
+     	if(value.getClass() == Integer.class){
+     		clas = int.class;
+     	}
+     		try {
+				Method method = c.getMethod("set"+top+ethod,clas);
+				method.invoke(obj, value);
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     }
     
 

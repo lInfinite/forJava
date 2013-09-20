@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-
 import db.BaseDao;
 import db.impl.BaseUtil.sdu;
 
@@ -106,6 +105,26 @@ public class BaseImpl implements BaseDao{
     		e.printStackTrace();
     	}
     }
+    
+    
+    public List list(String sql, Object[] value,Object obj){
+    	BaseUtil util = new BaseUtil();
+    	connection = this.getConnerction();
+    	try {
+			statement = connection.prepareStatement(sql);
+			result = statement.executeQuery();
+			for(int i=0; i<value.length; i++){
+				statement.setObject(i+1, value[i]);
+			}
+			
+			while(result.next()){ 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
     
     public void allClose(){
     	try{
