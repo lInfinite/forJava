@@ -1,5 +1,6 @@
 package frame;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +19,6 @@ import bean.Bean;
 public class Login {
     
 	public Login(){
-		final JFrame login = this.login();
 		final Bean bean = new Bean();
 		final BaseDao base = new BaseImpl();
         
@@ -32,7 +32,7 @@ public class Login {
         final JPasswordField pass = bean.passwrod(100, 40, 150);
         final JPasswordField pagain = bean.passwrod(100, 80, 150);
         
-        JButton login_button = bean.button("ע��", 50, 150, 150, 35);
+        JButton login_button = bean.button("注册", 50, 150, 150, 35);
         
         login_button.addActionListener(
             new ActionListener(){
@@ -54,19 +54,27 @@ public class Login {
 				}
             }
         );
-        login.add(name_title);
-        login.add(pass_title);
-        login.add(pass_again);
-        login.add(name);
-        login.add(pass);
-        login.add(pagain);
-        login.add(login_button);
+        
+        final JFrame login = this.login(name_title,
+        		                        pass_title,
+        		                        pass_again,
+        		                        msg,
+        		                        name,
+        		                        pass,
+        		                        pagain,
+        		                        login_button
+        		                        );
     }
 	
-	public JFrame login(){
+	public JFrame login(Component ... beans){
 		JFrame login = new JFrame("注册");
 		login.setLayout(null);
 		login.setBounds(0, 0, 350, 700);
+		
+		for(int i=0; i<beans.length; i++){
+			login.add(beans[i]);
+		}
+		
 		login.setVisible(true);
 		return login;
 	}

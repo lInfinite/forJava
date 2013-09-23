@@ -1,5 +1,6 @@
 package db.impl;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -59,27 +60,36 @@ public class BaseUtil {
      	Class c = obj.getClass();
      	String top = methodName.substring(0, 1).toUpperCase();
      	String ethod = methodName.substring(1, methodName.length());
-     	Class clas = value.getClass();
-     	if(value.getClass() == Integer.class){
-     		clas = int.class;
-     	}
+     	
      		try {
-				Method method = c.getMethod("set"+top+ethod,clas);
+     			Field filed = c.getDeclaredField(methodName);
+     			filed.setAccessible(true);
+				Method method = c.getMethod("set"+top+ethod,filed.getType());
 				method.invoke(obj, value);
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
 				e.printStackTrace();
 			}
+    }
+    
+    
+    public List<String> entityNames(Object obj){
+    	List<String> list = new ArrayList<String>();
+    	Class c = obj.getClass();
+    	Field[] fileds = c.getDeclaredFields();
+    	for(int i=0; i<fileds.length; i++){
+    		list.add(fileds[i].getName());
+    	}
+    	return list;
     }
     
 

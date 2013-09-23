@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -108,21 +109,36 @@ public class BaseImpl implements BaseDao{
     
     
     public List list(String sql, Object[] value,Object obj){
+    	List list = new ArrayList();
     	BaseUtil util = new BaseUtil();
     	connection = this.getConnerction();
+    	List<String> obj_name = util.entityNames(obj);
     	try {
 			statement = connection.prepareStatement(sql);
-			result = statement.executeQuery();
 			for(int i=0; i<value.length; i++){
 				statement.setObject(i+1, value[i]);
 			}
-			
-			while(result.next()){ 
+			result = statement.executeQuery();
+			int num = 0;
+			while(result.next()){
+				/**
+				 * 因为Object是引用类型，传过来的只是内存地址，
+				 * 修改同一个object只是修改了同一内存地址的内容。
+				 * 因此要获取object传递过来的字节码并实例化一个初始的对象，
+				 * 使每次循环都在内存创建新的空间地址确保每次循环添加到list的都是不同的‘对象’。
+				 */
+				Object o = obj.getClass().newInstance();
+				for(int i=0; i<obj_name.size(); i++){
+					String name = obj_name.get(i);
+					util.setterValue(o, name, result.getObject(name));
+				}
+				list.add(o);
 			}
-		} catch (SQLException e) {
+		return list;
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-    	return null;
+			return null;
+		} 
     }
     
     
