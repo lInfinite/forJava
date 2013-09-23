@@ -1,5 +1,7 @@
 package bean;
 
+import java.awt.Component;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,5 +36,17 @@ public class Bean {
     	JPasswordField password = new JPasswordField();
     	password.setBounds(x, y, width, 35);
     	return password;
+    }
+    
+    public JFrame frame(String title,int x, int y, int width, int height, Component ... beans){
+    	JFrame jf = new JFrame(title);
+    	jf.setBounds(x, y, width, height);
+    	jf.setLayout(null);
+    	
+    	for(int i=0; i<beans.length; i++){
+    		jf.add(beans[i]);
+    	}
+    	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	return jf;
     }
 }

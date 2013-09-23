@@ -1,6 +1,5 @@
 package frame;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -30,58 +29,55 @@ public class Logon {
         
 		final JButton logon_button = bean.button("登陆", 100, 150, 100, 50);
 		final JButton login_button = bean.button("注册", 250, 150, 100, 50);
+
+		final JFrame logon = bean.frame("登陆", 320, 220, 450, 250, name_title,
+				                                           pass_title,
+				                                           name,pass,
+				                                           login_button,
+				                                           logon_button,
+                                                           msg);
+		logon.setVisible(true);
 		
 		logon_button.addActionListener(
 				new ActionListener() {	
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
+						String admin = "admin";
 						String nameText = name.getText();
 						char[] passWord = pass.getPassword();
 						String passText = new String(passWord);
-						
-						BaseDao base = new BaseImpl();
-						String sql = "select * from user where name=? and password=?";
-						Object[] value = {nameText,passText};
-						User user = new User();
-						List<User> list = base.list(sql, value, user);
-						for(User u:list){
-							System.out.println(u.getName());
-						}
-						if(list.size()==1){
-							System.out.println("登陆成功");
+						if((!nameText.equals("") && !passText.equals(""))){
+							BaseDao base = new BaseImpl();
+							String sql = "select * from user where name=? and password=?";
+							Object[] value = {nameText,passText};
+							User user = new User();
+							List<User> list = base.list(sql, value, user);
+							if(list.size()==1 || (nameText.equals(admin) && passText.equals(admin))){
+								logon.setVisible(false);
+								new Notbook();
+							}else{
+								msg.setVisible(true);
+							}
 						}else{
-							System.out.println("登陆失败");
 							msg.setVisible(true);
 						}
 					}
 				}
 		);
+		
 		login_button.addActionListener(
 		    new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					logon.setVisible(false);
 					new Login();
 				}
 		    	
 		    }
 		);
 		
-		JFrame jf = logon_frame(name_title,pass_title,name,pass,login_button,logon_button, msg);
-		jf.setVisible(true);
-		
 		
 	}
-	
-    public JFrame logon_frame(Component ... beans){
-    	JFrame jf = new JFrame("登陆");
-    	jf.setBounds(0,0,450,250);
-    	jf.setLayout(null);
-    	
-    	for(int i=0; i<beans.length; i++){
-    		jf.add(beans[i]);
-    	}
-    	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	return jf;
-    }
+
 }

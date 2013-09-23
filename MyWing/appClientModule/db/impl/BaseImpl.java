@@ -83,7 +83,6 @@ public class BaseImpl implements BaseDao{
 	    		int i;
 	    		for(i=0;i<value.size();i++){
 	    		    statement.setObject(i+1, value.get(i));
-	    		    System.out.println(value.get(i));
 	    		}
 				break;
 	
