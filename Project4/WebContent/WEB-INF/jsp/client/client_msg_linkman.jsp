@@ -14,7 +14,7 @@
 <input type="button" value="返回"/>
 <!--client_msg_linkman_input.html-->
 
-<table>
+<table style="100%">
    <tr>
        <td style="background-color:#06F; color:#FFF;">姓名</td>
        <td style="background-color:#06F; color:#FFF;">性别</td>

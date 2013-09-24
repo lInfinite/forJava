@@ -60,6 +60,17 @@ public class ClientAction extends SuperAction{
 	}
 	
 	
+	/**初始化创建联系人**/
+	public String create_linkman(){
+		return "client_msg_linkman_create.html";
+	}
+	
+	
+	/**保存联系人**/
+	
+	
+	
+	
 	/** entity getter and setter **/
 	public SellChance getSell_chance() {
 		return sell_chance;

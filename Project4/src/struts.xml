@@ -36,6 +36,7 @@
         <action name="*" class="com.web.action.ClientAction" method="{1}">
             <result name="client_msg.jsp">/WEB-INF/jsp/client/client_msg.jsp</result>
             <result name="client_msg_update.jsp">/WEB-INF/jsp/client/client_msg_update.jsp</result>
+            <result name="client_msg_linkman_create.html">/WEB-INF/jsp/client/client_msg_linkman_create.html</result>
         </action>
     </package>  
 
