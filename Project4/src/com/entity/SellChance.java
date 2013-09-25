@@ -63,10 +63,15 @@ public class SellChance {
     @OneToMany(mappedBy="sell_chance", fetch=FetchType.EAGER)
     private Set<CreateClinet> create_clinet;
     
-    @OneToOne(mappedBy = "sell_chance")
+    @OneToOne(mappedBy="sell_chance")
     private ClientMsg client_msg;
     
+    @OneToMany(mappedBy="sell_chance", fetch=FetchType.EAGER)
+    private Set<LinkMan> linkman;
 	
+    
+    
+   
 	public Long getId() {
 		return id;
 	}
@@ -162,6 +167,12 @@ public class SellChance {
 	}
 	public void setClient_msg(ClientMsg client_msg) {
 		this.client_msg = client_msg;
+	}
+	public Set<LinkMan> getLinkman() {
+		return linkman;
+	}
+	public void setLinkman(Set<LinkMan> linkman) {
+		this.linkman = linkman;
 	}
 
 

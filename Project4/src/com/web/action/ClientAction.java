@@ -1,9 +1,12 @@
 package com.web.action;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.entity.ClientMsg;
 import com.entity.ClintLevel;
+import com.entity.LinkMan;
 import com.entity.Region;
 import com.entity.SellChance;
 import com.service.dao.SellDao;
@@ -15,10 +18,12 @@ public class ClientAction extends SuperAction{
 	/**entity**/
 	private SellChance sell_chance;
 	private ClientMsg client_msg;
+	private LinkMan linkman;
     /**list**/
 	private List<SellChance> sell_chance_list;
 	private List<ClintLevel> client_level_list;
 	private List<Region> region_list;
+	private List<LinkMan> link_man_list;
 	/**service**/
 	private SellDao sell_dao = (SellImpl)context.getBean("SellImpl");
 	
@@ -51,6 +56,7 @@ public class ClientAction extends SuperAction{
 	}
 	
 	
+	
 	/**添加或修改客户信息**/
 	public String updateMsg(){
 		client_msg.setSell_chance(sell_chance);
@@ -58,17 +64,54 @@ public class ClientAction extends SuperAction{
 		sell_chance = null;
 		return msg();
 	}
+
+	
+	/**初始化linkman**/
+	public String link_man(){
+		sell_chance = (SellChance)base.object(SellChance.class, sell_chance.getId());
+		link_man_list = util.list_for_OneToMany(sell_chance.getLinkman());
+	    return "client_msg_linkman.jsp";	
+	}
 	
 	
 	/**初始化创建联系人**/
 	public String create_linkman(){
-		return "client_msg_linkman_create.html";
+		return "client_msg_linkman_create.jsp";
 	}
 	
 	
 	/**保存联系人**/
+	public String createLinkman(){
+		sell_chance = (SellChance)base.object(SellChance.class, sell_chance.getId());
+		linkman.setSell_chance(sell_chance);
+		base.add(linkman);
+		linkman = null;
+		return link_man();
+	}
 	
 	
+	/**初始化编辑联系人**/
+	public String update_linkman(){
+		linkman = (LinkMan)base.object(LinkMan.class, linkman.getId());
+		return "client_msg_linkman_update.jsp";
+	}
+	
+	
+	/**编辑联系人**/
+	public String updateLikman(){
+		sell_chance = (SellChance)base.object(SellChance.class, sell_chance.getId());
+		linkman.setSell_chance(sell_chance);
+		base.update(linkman);
+		linkman = null;
+		return link_man();
+	}
+	
+	
+	/**删除联系人**/
+	public String delteLinkman(){
+		base.delete(linkman);
+		return link_man();
+	} 
 	
 	
 	/** entity getter and setter **/
@@ -89,6 +132,14 @@ public class ClientAction extends SuperAction{
 		this.client_msg = client_msg;
 	}
 
+	
+	public LinkMan getLinkman() {
+		return linkman;
+	}
+
+	public void setLinkman(LinkMan linkman) {
+		this.linkman = linkman;
+	}
 
     /**list getter and setter**/
 	public List<SellChance> getSell_chance_list() {
@@ -118,11 +169,13 @@ public class ClientAction extends SuperAction{
 	}
 
 
+	public List<LinkMan> getLink_man_list() {
+		return link_man_list;
+	}
+
+	public void setLink_man_list(List<LinkMan> link_man_list) {
+		this.link_man_list = link_man_list;
+	}
 
 
-
-	
-	
-  
-    
 }

@@ -65,7 +65,7 @@
         <td><s:property value="clinet_level.value"/></td>
         <td>
             <a href='update_msg?sell_chance.id=<s:property value="id"/>'>［编辑］</a>
-            <a href='create_linkman?sell_chance.id=<s:property value="id"/>'>［联系人］</a>
+            <a href='link_man?sell_chance.id=<s:property value="id"/>'>［联系人］</a>
             <a>［交往纪录］</a>
             <a>［历史订单］</a>
             <a>［删除］</a>
